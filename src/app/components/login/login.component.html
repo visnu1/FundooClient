@@ -1,0 +1,51 @@
+<html>
+
+<body>
+  <div class="parrentcard">
+    <div class="child1">
+      <div class="logo">
+        <div></div>
+      </div>
+      <div class="content">
+        <h1>
+          Sign in
+        </h1>
+        <div>
+          Use your Fundoo Account
+        </div>
+      </div>
+      <div class="child3">
+        <div>
+          <mat-form-field appearance="outline" class="email">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder type="email" [formControl]="email">
+          </mat-form-field>
+          <mat-error *ngIf="email.errors && click">
+            {{email.errors.userError}}
+          </mat-error>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="psw">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder [type]="hide ?'text':'password'" [formControl]="password">
+            <mat-icon matSuffix (click)="hide = !hide">{{
+              hide ? "visibility" : "visibility_off"
+            }}</mat-icon>
+          </mat-form-field>
+          <mat-error *ngIf="password.errors && click">
+            Password is required
+          </mat-error>
+        </div>
+        <div id="forgotpsw">
+          <button class="forgotpsw" type="button" (click) = forgotPsw() >Forgot password?</button>
+        </div>
+        <div id = "qwsqw">
+          <button class="createAcc" (click) = signup()>Create Account</button>
+          <button mat-button class="button" (click) = signin()>Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

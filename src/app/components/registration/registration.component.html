@@ -1,0 +1,84 @@
+<body>
+  <div class="parent">
+    <div class="child">
+      <div class="child2" [formGroup]="signupForm">
+        <div class="logo">
+          <div></div>
+        </div>
+        <div class="content">
+          <h1>
+            Create your Fundoo Account
+          </h1>
+          <div>
+            Continue to Keep
+          </div>
+        </div>
+        <div class="child3">
+          <div class="c31">
+            <span>
+              <mat-form-field appearance="outline" class="fname">
+                <mat-label>First name</mat-label>
+                <input matInput placeholder type="text" formControlName="fname">
+              </mat-form-field>
+            </span>
+            <span>
+              <mat-form-field appearance="outline" class="lname">
+                <mat-label>Last name</mat-label>
+                <input matInput placeholder type="text" formControlName="lname">
+              </mat-form-field>
+            </span>
+            <span>
+              <mat-error *ngIf="formErrors.fname">
+                {{formErrors.fname}}
+              </mat-error>
+              <mat-error *ngIf="formErrors.lname">
+                {{formErrors.lname}}
+              </mat-error>
+            </span>
+          </div>
+
+          <div class="c32">
+            <mat-form-field appearance="outline" class="uname">
+              <mat-label>Username</mat-label>
+              <input matInput placeholder type="text" formControlName="email">
+            </mat-form-field>
+            <div class="ovnfwe" *ngIf="!formErrors.email">You can use letters, numbers &amp; periods</div>
+            <mat-error *ngIf="formErrors.email">
+              {{formErrors.email}}
+            </mat-error>
+          </div>
+          <div class="c33">
+            <span>
+              <mat-form-field appearance="outline" class="psw">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder [type]="hide ?'text':'password'" formControlName="psw">
+              </mat-form-field>
+            </span>
+            <span>
+              <mat-form-field appearance="outline" class="cpsw">
+                <mat-label>Confirm</mat-label>
+                <input matInput placeholder [type]="hide ?'text':'password'" formControlName="cpsw">
+              </mat-form-field>
+            </span>
+            <mat-icon id="eye" (click)="hide = !hide">{{
+            hide ? "visibility" : "visibility_off"
+          }}</mat-icon>
+            <mat-error *ngIf="formErrors.psw">
+              {{formErrors.psw}}
+            </mat-error>
+            <mat-error *ngIf="formErrors.cpsw ">
+              {{formErrors.cpsw}}
+            </mat-error>
+            <mat-error>
+              {{message}}
+            </mat-error>
+          </div>
+          <div id="qwsqw">
+            <button class="createAcc" (click)= signin()>Signin instead</button>
+            <button mat-button class="button" [ngClass]="'btn btn-primary'" (click)= signup()>Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

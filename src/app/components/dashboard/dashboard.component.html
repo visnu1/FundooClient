@@ -1,0 +1,177 @@
+<body>
+  <mat-toolbar>
+    <mat-toolbar-row id=row>
+      <div class=left>
+        <div title="Main menu" class=icondiv (click)="drawer.toggle()">
+          <svg focusable="false" viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+          </svg>
+          <!-- <button mat-icon-button>
+            <mat-icon>menu</mat-icon>
+          </button> -->
+        </div>
+        <div class='k2'>
+          <img class="k21" src="../../../assets/keep_big_logo.png">
+          <span class="k22">Keep</span>
+        </div>
+        <div class='k3'>
+          <span class="k22">Change here</span>
+        </div>
+      </div>
+      <div class="all">
+        <div class="search">
+          <form method="get" class="form">
+
+            <button class="button se">
+              <div class=buttondiv>
+                <svg focusable="false" height="24px" viewBox="0 0 24 24" width="24px"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                  </path>
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                </svg>
+              </div>
+            </button>
+
+
+            <input type="text" placeholder="Search">
+
+
+            <button class="button close">
+              <div class=buttondiv>
+                <svg focusable="false" height="24px" viewBox="0 0 24 24" width="24px"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                  </path>
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                </svg>
+              </div>
+            </button>
+
+          </form>
+        </div>
+        <div class="icons3">
+          <div title="Refresh" class=refreshico (click)=refresh()></div>
+          <div title="list" class=listico></div>
+          <div title="Settings" class=settingsico></div>
+        </div>
+      </div>
+      <div class="ball">
+        <div class="uball" [matMenuTriggerFor]="profile">
+          <a>{{name | slice:0:1}}</a>
+        </div>
+      </div>
+      <div></div>
+      <div></div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-drawer-container class="example-container">
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <div class="sbar">
+        <div class="sbar1">
+          <ul class="sul">
+            <li class=sli>
+              <a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_mc">
+                  <path
+                    d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z">
+                  </path>
+                </svg>
+                <span class="stext">Notes</span>
+              </a>
+            </li>
+            <li class=sli>
+              <a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_mc">
+                  <path
+                    d="M18 17v-6c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v6H4v2h16v-2h-2zm-2 0H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-4 5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z">
+                  </path>
+                </svg>
+                <span class="stext">Reminders</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="sul">
+            <li class=sli>
+              <div class="qwer">
+                LABELS
+              </div>
+              <a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_mc">
+                  <path
+                    d="M20.41 4.94l-1.35-1.35c-.78-.78-2.05-.78-2.83 0L13.4 6.41 3 16.82V21h4.18l10.46-10.46 2.77-2.77c.79-.78.79-2.05 0-2.83zm-14 14.12L5 19v-1.36l9.82-9.82 1.41 1.41-9.82 9.83z">
+                  </path>
+                </svg>
+                <span class="stext">Edit labels</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="sul">
+            <li class=sli>
+              <a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_mc">
+                  <path
+                    d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z">
+                  </path>
+                </svg>
+                <span class="stext">Archive</span>
+              </a>
+            </li>
+            <li class=sli>
+              <a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_mc">
+                  <path d="M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path>
+                  <path d="M9 8h2v9H9zm4 0h2v9h-2z"></path>
+                </svg>
+                <span class="stext">Trash</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </mat-drawer>
+
+    <mat-menu class="prof" #profile="matMenu">
+      <div>
+        <div class="pdet">
+          <span class="uball2">
+            <a>BIG PROFILE</a>
+          </span>
+          <span class="pdet2">
+            <div id=name>{{name | titlecase}}</div>
+            <div>{{email | titlecase}}</div>
+          </span>
+        </div>
+        <div class="pbtns">
+          <div>
+            <button class="h">Sign in</button>
+          </div>
+          <div>
+            <button (click)='signIn()'>Sign out</button>
+          </div>
+        </div>
+      </div>
+    </mat-menu>
+
+    <!-- <div class="nbar">
+      <div class=nbar1>
+
+      </div>
+    </div> -->
+
+    <router-outlet></router-outlet>
+
+    <div style="font-size: 35px">hello</div>
+    <div style="font-size: 35px">hello</div>
+    <div style="font-size: 35px">hello</div>
+    <div style="font-size: 35px">hello</div>
+    <div style="font-size: 35px">hello</div>
+    <div style="font-size: 35px">hello</div>
+
+
+
+  </mat-drawer-container>
+</body>

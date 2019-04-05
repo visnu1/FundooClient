@@ -1,0 +1,29 @@
+@font-face {
+  font-family: product-sans;
+  src: url("../fonts/product.ttf");
+}
+
+@font-face {
+  font-family: google-sans;
+  src: url("../fonts/GoogleSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url("../fonts/roboto-regular.ttf");
+}
+
+/deep/ .material-icons {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+/deep/ .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: rgba(0, 0, 0, 0.08);
+}
+
+/deep/ .error-snackbar {
+  background: #fff;
+  color: rgb(207, 30, 30);
+  // height: 500px;
+  // width: 200px
+}
