@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from '../http/http.service'
+import { HttpService } from '../http/http.service';
 import { environment } from "../../../environments/environment";
 
 @Injectable({
@@ -27,5 +27,25 @@ export class UserService {
 
   createNote(body: any) {
     return this.httpService.post(body, environment.createNote);
+  }
+
+  getNotes(token: string) {
+    return this.httpService.userPost(environment.userNotes, token);
+  }
+
+  archiveService(body: any, token: string) {
+    return this.httpService.userPut(environment.archive, token, body);
+  }
+
+  trashService(body: any, token: string) {
+    return this.httpService.userPut(environment.trash, token, body);
+  }
+
+  deleteService(body: any, token: string) {
+    return this.httpService.userPost(environment.delete, token, body);
+  }
+
+  colorService(body: any, token: string) {
+    return this.httpService.userPost(environment.delete, token, body);
   }
 }

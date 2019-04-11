@@ -12,7 +12,13 @@
       <div id="asas" *ngIf=hide data-text="Take a note..." contenteditable="true">
       </div>
     </div>
-    <app-icons-toolbar *ngIf=hide></app-icons-toolbar>
+    <div>
+
+    </div>
+    <app-icons-toolbar *ngIf=hide [undo]="userNoteMsg" (archiveCard)="userArchive($event)">
+    </app-icons-toolbar>
+    <div role="button" class="clo" *ngIf=hide (click)="send()">Close</div>
+
   </div>
   <div class="nic1" *ngIf=!hide></div>
   <div class="nic2" *ngIf=!hide></div>

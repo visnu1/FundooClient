@@ -8,7 +8,11 @@ export const environment = {
   signIn: "http://localhost:5000/loginService",
   forgotPassword: "http://localhost:5000/forgotPswService",
   resetPassword: "http://localhost:5000/resetService/token",
-  createNote: "http://localhost:5000/createNote"
+  createNote: "http://localhost:5000/createNote",
+  userNotes: "http://localhost:5000/userNotes",
+  archive: "http://localhost:5000/archiveNote",
+  trash: "http://localhost:5000/trashNote",
+  delete: "http://localhost:5000/deleteService",
 };
 
 /*

@@ -36,6 +36,7 @@ import { TitleInputDirective } from './title-input.directive';
 import { RemindersComponent } from './components/reminders/reminders.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
+import { UserNotesComponent } from './components/user-notes/user-notes.component';
 
 
 
@@ -55,7 +56,8 @@ import { TrashComponent } from './components/trash/trash.component';
     TitleInputDirective,
     RemindersComponent,
     ArchiveComponent,
-    TrashComponent
+    TrashComponent,
+    UserNotesComponent
   ],
   imports: [
     BrowserModule,

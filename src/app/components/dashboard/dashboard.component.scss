@@ -79,7 +79,7 @@ title {
   display: flex;
   height: 44px;
   width: 101px;
-  display: none;
+  // display: none;
 
   .k22 {
     line-height: 20px;
@@ -335,6 +335,11 @@ form svg {
   // background-color: #feefc3;
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;
+  outline: none;
+}
+
+.sli:hover:not(.tes) {
+  background-color: #f2f2f7b6;
 }
 
 .sli a {
@@ -461,6 +466,10 @@ form svg {
   letter-spacing: 0.00625em;
 }
 
+.active {
+  background-color: #feefc3;
+  opacity: 1;
+}
 // overflow: hidden;
 // text-overflow: ellipsis;
 // white-space: nowrap;

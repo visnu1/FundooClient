@@ -1,1 +1,4 @@
-<app-take-note></app-take-note>
+<div>
+  <app-take-note (addingNote)="userinteract()"></app-take-note>
+  <app-user-notes [getCards]="cards" (action)="userinteract()"></app-user-notes>
+</div>

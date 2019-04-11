@@ -1,13 +1,32 @@
 <div class="iconlist">
-  <div role="button" class="clo" (click)="close()">Close</div>
   <div class="toolbar">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+    <div class="rem" *ngIf=url></div>
+    <div class="collaborator" *ngIf=url></div>
+    <div class="color" *ngIf=url [matMenuTriggerFor]="colri"></div>
+    <div class="img" *ngIf=url></div>
+    <div class="archive" (click)=archive(card) *ngIf=url></div>
+    <div class="more" (click)=more()></div>
+    <div class="undo" *ngIf="undo"></div>
+    <!-- <div></div> -->
   </div>
 </div>
+
+
+<div class="menu" *ngIf="pop" [ngClass]="menuStyle">
+  <div class="menu1">
+    <div (click)=trash(card)>Delete Note</div>
+    <div (click)=addLabel()>Add label</div>
+    <div>Copy to Google Docs</div>
+  </div>
+  <div class="menu2">
+    <div (click)="delete(card)">Delete forever</div>
+    <div (click)="restore(card)">Restore</div>
+  </div>
+</div>
+
+<mat-menu class="colri" #colri="matMenu" yPosition="above">
+  <div class=colorbox>
+    <div (click)="color(obj,card)" *ngFor="let obj of colorbox" [attr.title]="obj.title"
+      [ngStyle]="{'background-color':obj.color}"></div>
+  </div>
+</mat-menu>

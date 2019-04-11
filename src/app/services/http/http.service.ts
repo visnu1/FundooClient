@@ -16,4 +16,22 @@ export class HttpService {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     })
   }
+
+  userPost(url, token: string, body: any = null) {
+    return this.http.post(url, body, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        'token': token
+      })
+    })
+  }
+
+  userPut(url, token: string, body: any = null) {
+    return this.http.put(url, body, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        'token': token
+      })
+    })
+  }
 }

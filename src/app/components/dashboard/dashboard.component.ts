@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,15 +9,17 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  email: string;
-  name: string;
-  userid: string;
-
+  @Input() email: string;
+  @Input() name: string;
+  @Input() userid: string;
+  @Input() token: string;
+  @Input() style: string;
 
   constructor(private router: Router) {
     this.email = localStorage.getItem('email');
     this.name = localStorage.getItem('name');
     this.userid = localStorage.getItem('userid');
+    this.token = localStorage.getItem('token');
     // localStorage.clear();
   }
 
@@ -27,12 +29,27 @@ export class DashboardComponent implements OnInit {
 
 
   refresh() {
-
   }
 
   signIn() {
+    // console.clear();
     // localStorage.clear();
     this.router.navigate(['signin']);
   }
 
+  notes() {
+    this.router.navigate(['dashboard/note']);
+  }
+
+  reminders() {
+    this.router.navigate(['dashboard/reminders']);
+  }
+
+  archive() {
+    this.router.navigate(['dashboard/archive']);
+  }
+
+  trash() {
+    this.router.navigate(['dashboard/trash']);
+  }
 }

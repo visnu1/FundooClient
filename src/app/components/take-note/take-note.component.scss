@@ -122,3 +122,31 @@
 //   content:attr(data-placeholder);
 //   color:gray
 // }
+
+.clo {
+  margin-right: 15px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.87);
+  letter-spacing: 0.01785714em;
+  font-family: "google-sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  height: 36px;
+  padding: 8px 24px;
+  top: 73%;
+  position: absolute;
+  right: 0%;
+}
+
+.clo:hover {
+  background-color: rgba(95, 99, 104, 0.05);
+  cursor: pointer;
+}
+
+@media (max-width: 601px) {
+  .clo {
+    margin-right: 0px;
+  }
+}
