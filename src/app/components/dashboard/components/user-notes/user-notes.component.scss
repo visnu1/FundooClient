@@ -1,0 +1,203 @@
+.app-pin {
+  opacity: 0;
+  float: right;
+}
+
+.container {
+  //list view
+  width: 632px;
+  // grid view
+  // width: 600px;
+  margin: 0px auto 0px auto;
+  position: relative;
+  background-color: #fff;
+  border-color: #e0e0e0;
+  white-space: nowrap;
+}
+
+@media (max-width: 632px) {
+  .container {
+    width: 100%;
+  }
+
+  // .child {
+  //   margin: 0px 10px;
+  // }
+}
+
+.child {
+  // position: absolute;
+  margin: 16px;
+  // display: block;
+  //here
+  width: 600px;
+  border: 1.25px solid #dadce0;
+  border-radius: 8px;
+  box-sizing: border-box;
+  outline: none;
+  transition-duration: 0.218s;
+  box-shadow: none;
+  transition: box-shadow 0.218s ease-in-out;
+  // transition-property: opacity, transform;
+}
+
+@media (max-width: 632px) {
+  .child {
+    width: 97%;
+    margin: 8px;
+  }
+}
+
+.title {
+  min-height: 26px;
+  padding: 16px 16px 0 16px;
+  transition: background-color 0.218s ease-in;
+  letter-spacing: 0.00625em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  padding-top: 12px;
+
+  //same
+  content: "\A";
+  white-space: pre-line;
+  outline: none;
+}
+
+.descr {
+  color: #202124;
+  font-size: 14px;
+  line-height: 19px;
+  min-height: 30px;
+  padding: 4px 16px 12px 16px;
+  // direction: ltr;
+  // to add break
+
+  //same
+  content: "\A";
+  white-space: pre-line;
+  outline: none;
+}
+
+.child:hover .iconbar,
+.child:hover .app-pin {
+  opacity: 1;
+  transition: opacity 0.318s ease-in-out;
+}
+
+.child:hover {
+  transition: box-shadow 0.218s ease-in-out;
+  box-shadow: 0 1px 4px 0 rgba(60, 64, 67, 0.102), 0 0px 4px 1px rgba(60, 64, 67, 0.149);
+}
+
+//////////
+.grid {
+  //here
+  width: 784px;
+  margin: 0px auto 0px auto;
+  position: relative;
+  background-color: #fff;
+  border-color: #e0e0e0;
+  border-width: 1px 1px 1px 6px;
+  // display: block;
+
+  // display: -webkit-box;
+  // display: -moz-box;
+  // display: -webkit-flex;
+  // display: -ms-flexbox;
+  display: flex;
+  // -webkit-flex-direction: row-reverse;
+  // flex-direction: column-reverse;
+  // -webkit-flex-wrap: wrap-reverse;
+  // flex-wrap: wrap;
+}
+
+.grid * {
+  flex: 1 0 auto;
+}
+
+.gridele {
+  width: 240px;
+  border: 1.25px solid #dadce0;
+  margin: 20px 10px 18px 10px;
+
+  // border: 1px solid transparent;
+  box-sizing: border-box;
+  // overflow: auto;
+  position: relative;
+  border-radius: 8px;
+  transition-duration: 0.218s;
+  transition-property: background, opacity, box-shadow, transform;
+  transition-timing-function: ease-in;
+  flex: 1 0 auto;
+}
+
+.ele {
+  min-height: 60px;
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: max-height 0.218s ease-in;
+  transition: max-height 0.218s ease-in;
+}
+
+.iconbar {
+  font-size: 12px;
+  line-height: 26px;
+  margin: 3.5px 0;
+  position: relative;
+  transition: background-color 0.218s ease-in-out, box-shadow 0.218s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.218s ease-in-out;
+}
+
+.titlee {
+  min-height: 38px;
+  padding: 16px 16px 0 16px;
+  transition: background-color 0.218s ease-in;
+  letter-spacing: 0.00625em;
+  font-family: "google-sans", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.descrr {
+  min-height: 30px;
+  padding: 4px 16px 12px 16px;
+}
+
+.titlee,
+.descrr {
+  box-sizing: border-box;
+  font-variant-ligatures: none;
+  outline: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.gridele:hover .iconbar {
+  opacity: 1;
+  transition: opacity 0.218s ease-in-out;
+}
+
+.gridele:hover {
+  transition: box-shadow 0.218s ease-in-out;
+  box-shadow: 0 2px 4px 2px rgba(60, 64, 67, 0.102), 0 0px 4px 1px rgba(60, 64, 67, 0.149);
+}
+
+// .app-icons-toolbar {
+//   background-color: green;
+// }
+
+.pinned {
+  color: #5f6368;
+  letter-spacing: 0.07272727em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1rem;
+  margin: 32px 32px 8px;
+  display: -webkit-inline-box;
+  display: inline-block;
+}

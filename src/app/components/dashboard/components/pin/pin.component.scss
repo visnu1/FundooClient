@@ -1,0 +1,18 @@
+.pin {
+  background-image: url(../../../../../assets/pin.svg);
+}
+
+.unpin {
+  background-image: url(../../../../../assets/unpin.svg);
+}
+
+.pin,
+.unpin {
+  width: 42px;
+  height: 36px;
+  // float: right;
+  // background-color: burlywood;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+}

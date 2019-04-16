@@ -1,0 +1,74 @@
+.tit-des {
+  transition: opacity 0.218s ease-in;
+}
+
+#title1,
+.descrp {
+  letter-spacing: 0.00625em;
+}
+
+#title1 {
+  font-family: "google-sans", "Roboto", Arial, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.75rem;
+  padding: 10px 15px;
+  outline: none;
+  width: 600px;
+}
+
+.descrp {
+  // width: 100%;
+  min-height: 80px;
+  padding: 4px 16px 12px 16px;
+  box-sizing: border-box;
+  outline: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 350px;
+  overflow: auto;
+}
+
+.iconbar {
+  font-size: 12px;
+  line-height: 26px;
+  margin: 3.5px 0;
+  position: relative;
+  transition: background-color 0.218s ease-in-out, box-shadow 0.218s ease-in-out;
+}
+
+.clo {
+  margin-right: 15px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.87);
+  letter-spacing: 0.01785714em;
+  font-family: "google-sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  height: 36px;
+  padding: 8px 24px;
+  top: 0%;
+  position: absolute;
+  right: 0%;
+}
+
+.clo:hover {
+  background-color: rgba(95, 99, 104, 0.05);
+  cursor: pointer;
+}
+
+/deep/ .mat-dialog-container {
+  padding: 0px;
+  background: #fdcfe8;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  border-radius: 8px;
+  transition-duration: 0.218s;
+  transition-property: background, opacity, box-shadow, transform;
+  transition-timing-function: ease-in;
+  display: block;
+  max-height: 1600px !important;
+  overflow: unset !important;
+}

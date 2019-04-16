@@ -8,10 +8,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {
   AuthGuardService
 } from './services/authentication/auth-guard.service';
-import { NoteComponent } from './components/note/note.component';
-import { RemindersComponent } from './components/reminders/reminders.component';
-import { ArchiveComponent } from './components/archive/archive.component';
-import { TrashComponent } from './components/trash/trash.component';
+import { NoteComponent } from './components/dashboard/components/note/note.component';
+import { RemindersComponent } from './components/dashboard/components/reminders/reminders.component';
+import { ArchiveComponent } from './components/dashboard/components/archive/archive.component';
+import { TrashComponent } from './components/dashboard/components/trash/trash.component';
 
 const routes: Routes = [
   {
@@ -56,7 +56,6 @@ const routes: Routes = [
         path: 'trash',
         component: TrashComponent
       }
-
     ]
   }
 ];

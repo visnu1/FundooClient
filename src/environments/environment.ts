@@ -4,15 +4,26 @@
 
 export const environment = {
   production: false,
-  signUp: "http://localhost:5000/registerService",
-  signIn: "http://localhost:5000/loginService",
-  forgotPassword: "http://localhost:5000/forgotPswService",
-  resetPassword: "http://localhost:5000/resetService/token",
-  createNote: "http://localhost:5000/createNote",
-  userNotes: "http://localhost:5000/userNotes",
-  archive: "http://localhost:5000/archiveNote",
-  trash: "http://localhost:5000/trashNote",
-  delete: "http://localhost:5000/deleteService",
+  // signUp: "http://localhost:5000/registerService",
+  // signIn: "http://localhost:5000/loginService",
+  // forgotPassword: "http://localhost:5000/forgotPswService",
+  // resetPassword: "http://localhost:5000/resetService/token",
+  // createNote: "http://localhost:5000/createNote",
+  // userNotes: "http://localhost:5000/userNotes",
+  // archive: "http://localhost:5000/archiveNote",
+  // trash: "http://localhost:5000/trashNote",
+  // delete: "http://localhost:5000/deleteService",
+  // color: "http://localhost:5000/colorService"
+  signUp: "http://18.220.138.139:5000/registerService",
+  signIn: "http://18.220.138.139:5000/loginService",
+  forgotPassword: "http://18.220.138.139:5000/forgotPswService",
+  resetPassword: "http://18.220.138.139:5000/resetService/token",
+  createNote: "http://18.220.138.139:5000/createNote",
+  userNotes: "http://18.220.138.139:5000/userNotes",
+  archive: "http://18.220.138.139:5000/archiveNote",
+  trash: "http://18.220.138.139:5000/trashNote",
+  delete: "http://18.220.138.139:5000/deleteService",
+  color: "http://18.220.138.139:5000/colorService"
 };
 
 /*

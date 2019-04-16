@@ -1,0 +1,27 @@
+<div class="nbar">
+  <div class=nbar1 [style.background-color]="color">
+    <div class="tnote">
+      <div class="app-pin" *ngIf=hide>
+      </div>
+
+      <div class="asjqsq sasr" (click)=click() *ngIf=!hide>
+        Take a note...
+      </div>
+      <div class="asjqsq" id="title" *ngIf=hide data-text="Title" contenteditable="true">
+      </div>
+      <div id="asas" *ngIf=hide data-text="Take a note..." contenteditable="true">
+      </div>
+    </div>
+    <div>
+
+    </div>
+    <app-icons-toolbar *ngIf=hide [undo]="userNoteMsg" (archiveCard)="userArchive($event)"
+      (colorCard)="noteColor($event)">
+    </app-icons-toolbar>
+    <div role="button" class="clo" *ngIf=hide (click)="send()">Close</div>
+
+  </div>
+  <div class="nic1" *ngIf=!hide></div>
+  <div class="nic2" *ngIf=!hide></div>
+  <div class="nic3" *ngIf=!hide></div>
+</div>

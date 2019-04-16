@@ -10,6 +10,7 @@ body {
   // overflow-y: auto;
   padding: 0;
   overflow: hidden;
+  // opacity: 0.75;
 }
 
 title {
@@ -265,6 +266,9 @@ form svg {
 .listico {
   background-image: url(../../../assets/listView.svg);
 }
+.gridico {
+  background-image: url(../../../assets/grid-view.svg);
+}
 
 .settingsico {
   background-image: url(../../../assets/settings.svg);
@@ -338,7 +342,7 @@ form svg {
   outline: none;
 }
 
-.sli:hover:not(.tes) {
+.sli:hover {
   background-color: #f2f2f7b6;
 }
 
@@ -470,6 +474,7 @@ form svg {
   background-color: #feefc3;
   opacity: 1;
 }
+
 // overflow: hidden;
 // text-overflow: ellipsis;
 // white-space: nowrap;

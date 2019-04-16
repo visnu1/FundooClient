@@ -1,0 +1,91 @@
+<!-- <div class="container">
+  <div class=child>
+    <div *ngFor='let card of getCards' class="ele1">
+      <div class="title" contenteditable="true">
+        {{card.title}}
+      </div>
+      <div class="descr" contenteditable="true">
+        {{card.description}}
+      </div>
+      <div class="iconbar">
+        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()">
+        </app-icons-toolbar>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- beta -->
+
+<!-- ----------------------------------------------------------------------------- -->
+
+<div class="container" *ngIf="!viewType">
+  <div class="fullii">
+    <!-- <div class="pinned">PINNED</div>
+    <div class="pinned">OTHERS</div> -->
+    <div *ngFor='let card of getCards.cards' class="child edit" [style.background-color]="card.color">
+      <div class="ele1" (click)="updateNote(card)">
+        <div class="app-pin" [card]="card">
+        </div>
+        <div class="title" contenteditable="true">{{card.title}}</div>
+        <div class="descr" contenteditable="true">{{card.description}}</div>
+        <!-- <div class="edited" style="display: none">
+          <div class="edi1" aria-label="Created yesterday, 10:25 AM">Edited yesterday, 10:25 AM</div>
+        </div> -->
+      </div>
+      <div class="iconbar">
+        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()">
+        </app-icons-toolbar>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ----------------------------------------------------------------------------------------------- -->
+
+
+<div class="grid container" *ngIf="viewType">
+  <div class=contain>
+    <div class="gridele" *ngFor='let card of getCards.gridCards1' [style.background-color]="card.color">
+      <div class="ele">
+        <div class="titlee" contenteditable="true">
+          {{card.title}}
+        </div>
+        <div class="descrr" contenteditable="true">
+          {{card.description}}
+        </div>
+      </div>
+      <div class="iconbar">
+        <app-icons-toolbar [undo]="userNoteMsg"></app-icons-toolbar>
+      </div>
+    </div>
+  </div>
+  <div class=contain>
+    <div class="gridele" *ngFor='let card of getCards.gridCards2' [style.background-color]="card.color">
+      <div class="ele">
+        <div class="titlee" contenteditable="true">
+          {{card.title}}
+        </div>
+        <div class="descrr" contenteditable="true">
+          {{card.description}}
+        </div>
+      </div>
+      <div class="iconbar">
+        <app-icons-toolbar [undo]="userNoteMsg"></app-icons-toolbar>
+      </div>
+    </div>
+  </div>
+  <div class=contain>
+    <div class="gridele" *ngFor='let card of getCards.gridCards3' [style.background-color]="card.color">
+      <div class="ele">
+        <div class="titlee" contenteditable="true">
+          {{card.title}}
+        </div>
+        <div class="descrr" contenteditable="true">
+          {{card.description}}
+        </div>
+      </div>
+      <div class="iconbar">
+        <app-icons-toolbar [undo]="userNoteMsg"></app-icons-toolbar>
+      </div>
+    </div>
+  </div>
+</div>

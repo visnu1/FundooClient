@@ -1,0 +1,146 @@
+.asjqsq {
+  letter-spacing: 0.00625em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  outline: none;
+  min-height: 22px;
+  padding: 12px 16px;
+}
+
+.nbar {
+  width: 600px;
+  margin: 32px auto 16px auto;
+  position: relative;
+}
+
+@media (max-width: 601px) {
+  .nbar {
+    width: 100%;
+  }
+
+  .nbar1 {
+    margin: 0px 10px;
+  }
+}
+
+.nbar > :nth-child(n + 2) {
+  background-size: 24px 24px;
+  height: 30px;
+  position: absolute;
+  top: 8px;
+  width: 46px;
+  opacity: 0.5;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.nic1 {
+  background-image: url(../../../../../assets/new-list.svg);
+  right: 120px;
+}
+.nic2 {
+  background-image: url(../../../../../assets/pen.svg);
+  right: 65px;
+}
+.nic3 {
+  background-image: url(../../../../../assets/image.svg);
+  right: 12px;
+}
+
+// .nico:nth-child(1){
+//   background-color: teal;
+
+// }
+
+.tnote2 {
+  padding: 15px 0;
+  white-space: nowrap;
+  display: none;
+}
+
+.nbar1 {
+  box-shadow: 0 1px 4px 0 rgba(60, 64, 67, 0.302), 0 0px 6px 1px rgba(60, 64, 67, 0.149);
+  background-color: #fff;
+  border-radius: 8px;
+  border-color: #e0e0e0;
+  // border: solid transparent;
+  border-width: 1px 1px 1px 6px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+#asas {
+  min-height: 24px;
+  outline: none;
+  padding: 12px 16px;
+  // position: relative;
+  width: -webkit-fill-available;
+  letter-spacing: 0.01428571em;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+}
+
+::-webkit-input-placeholder,
+.sasr {
+  /* Chrome/Opera/Safari */
+  letter-spacing: 0.00625em;
+  font-family: "google-sans", "Roboto", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.app-pin {
+  float: right;
+}
+
+[contentEditable="true"]:empty:before {
+  content: attr(data-text);
+  letter-spacing: 0.00625em;
+  font-family: "google-sans", "Roboto", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+// div:empty:before {
+//   content:attr(data-placeholder);
+//   color:gray
+// }
+
+.clo {
+  margin-right: 15px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.87);
+  letter-spacing: 0.01785714em;
+  font-family: "google-sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  height: 36px;
+  padding: 8px 24px;
+  top: 73%;
+  position: absolute;
+  right: 0%;
+}
+
+.clo:hover {
+  background-color: rgba(95, 99, 104, 0.05);
+  cursor: pointer;
+}
+
+@media (max-width: 601px) {
+  .clo {
+    margin-right: 0px;
+  }
+}

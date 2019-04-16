@@ -1,0 +1,16 @@
+<div class="edit">
+  <div class="tit-des">
+    <div>
+      <input id="title1" class="input" [(ngModel)]="data.title" placeholder="Title">
+    </div>
+
+    <div class="descrp" contenteditable="true">{{data.description}}</div>
+    <!-- <div class="edited">
+      <div class="edi1" aria-label="Created yesterday, 10:25 AM">Edited yesterday, 10:25 AM</div>
+    </div> -->
+  </div>
+  <div class="iconbar">
+    <app-icons-toolbar></app-icons-toolbar>
+    <button mat-button [mat-dialog-close]="data">close</button>
+  </div>
+</div>

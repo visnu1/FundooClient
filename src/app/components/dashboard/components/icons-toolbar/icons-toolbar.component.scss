@@ -1,0 +1,144 @@
+.iconlist {
+  align-items: center;
+  color: rgba(0, 0, 0, 0.54);
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+  font-size: 12px;
+  line-height: 26px;
+  margin: 4px 0;
+  position: relative;
+  transition: background-color 0.218s ease-in-out, box-shadow 0.218s ease-in-out;
+}
+
+.toolbar {
+  flex: 1 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  transition-duration: 0.218s;
+  transition-property: opacity;
+  transition-timing-function: ease-in;
+}
+
+.toolbar div {
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  border: 1px solid transparent;
+  height: 32px;
+  // margin: 0 8px;
+  margin: 0 3px;
+  width: 32px;
+  opacity: 0.7;
+}
+
+.rem {
+  background-image: url(../../../../../assets/bell.svg);
+}
+.collaborator {
+  background-image: url(../../../../../assets/user.svg);
+}
+.color {
+  background-image: url(../../../../../assets/color.svg);
+}
+.img {
+  background-image: url(../../../../../assets/image.svg);
+}
+.archive {
+  background-image: url(../../../../../assets/archieve.svg);
+}
+.more {
+  background-image: url(../../../../../assets/more.svg);
+}
+.undo {
+  background-image: url(../../../../../assets/undo.svg);
+}
+
+.toolbar div:hover {
+  opacity: 1;
+}
+
+.menu {
+  user-select: none;
+  opacity: 1;
+  left: 220px;
+  top: 25px;
+  background-color: #fff;
+  border-width: 0;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 2px 6px 2px rgba(60, 64, 67, 0.149);
+  position: absolute;
+  border-radius: 4px;
+  z-index: 9003;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: default;
+  font-size: 13px;
+  margin: 0;
+  outline: none;
+  padding: 6px 0;
+  transition: opacity 0.218s;
+  background: #fff;
+}
+
+.menu div div {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  padding: 5px 15px;
+  white-space: nowrap;
+}
+
+.menu div div:hover {
+  background-color: rgb(248, 244, 244);
+}
+
+.menui {
+  left: 25px;
+  .menu1 {
+    display: none;
+  }
+}
+
+.menue {
+  .menu2 {
+    display: none;
+  }
+}
+
+.colorbox {
+  width: 136px;
+  background-color: #fff;
+  box-sizing: border-box;
+  z-index: 10;
+  padding: 5px 7px 3px;
+  position: absolute;
+  // transition: visibility 0s ease 0.218s, opacity 0.218s linear;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.colorbox div {
+  border: 0.5px solid transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 26px;
+  width: 26px;
+  margin: 2px;
+  // display: inline-flex;
+  display: inline-block;
+  border-color: #e0e0e0;
+}
+
+.mat-menu-content:not(:empty) {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.ele:focus {
+  background-image: url(../../../../../assets/checkmark.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 25px;
+  width: 25px;
+}
