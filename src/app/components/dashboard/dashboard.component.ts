@@ -1,6 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from "../../services/data-service/data.service";
+import { MatDialog } from '@angular/material';
+import { ImageUploadComponent } from './components/image-upload/image-upload.component';
+import { NoteService } from 'src/app/services/service/note.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +16,7 @@ export class DashboardComponent implements OnInit {
 
   view: string = "listico";
   viewType: boolean = false;
+  userAvatar: string;
 
   @Input() email: string;
   @Input() name: string;
@@ -19,8 +24,9 @@ export class DashboardComponent implements OnInit {
   @Input() token: string;
   @Input() style: string;
 
+  @ViewChild("imageSelect") image: any
 
-  constructor(private router: Router, private data: DataService) {
+  constructor(private router: Router, private data: DataService, private matDailog: MatDialog, private service: NoteService) {
 
     this.email = localStorage.getItem('email');
     this.name = localStorage.getItem('name');
@@ -47,6 +53,28 @@ export class DashboardComponent implements OnInit {
     this.viewType = !this.viewType;
     this.data.onViewChange(this.viewType);
 
+  }
+
+  file() {
+    const dialogBox = this.matDailog.open(ImageUploadComponent);
+    dialogBox.afterClosed().subscribe(data => {
+      if (data == undefined) {
+        return;
+      } else {
+        var formData = new FormData();
+        formData.append('image', data);
+        this.service.userProfile(formData).subscribe(result => {
+          console.log("Image has been updated");
+          console.log(result);
+          this.userAvatar = result['profile'];
+
+        },
+          error => {
+            console.warn("Unable to save into the server");
+            console.error(error);
+          })
+      }
+    })
   }
 
   signIn() {

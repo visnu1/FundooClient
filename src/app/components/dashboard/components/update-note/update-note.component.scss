@@ -14,11 +14,13 @@
   line-height: 1.75rem;
   padding: 10px 15px;
   outline: none;
+  max-width: 95%;
   width: 600px;
 }
 
 .descrp {
-  // width: 100%;
+  width: 100%;
+  max-width: 650px;
   min-height: 80px;
   padding: 4px 16px 12px 16px;
   box-sizing: border-box;
@@ -53,20 +55,14 @@
   position: absolute;
   right: 0%;
 }
-
-.clo:hover {
-  background-color: rgba(95, 99, 104, 0.05);
-  cursor: pointer;
-}
-
-/deep/ .mat-dialog-container {
+/deep/ .mat-dialog-container,
+.edit {
   padding: 0px;
-  background: #fdcfe8;
-  border: 1px solid transparent;
+  border: 1px solid inherit;
   box-sizing: border-box;
   border-radius: 8px;
-  transition-duration: 0.218s;
-  transition-property: background, opacity, box-shadow, transform;
+  transition-duration: 0.3s;
+  transition-property: background-color, opacity, box-shadow, transform;
   transition-timing-function: ease-in;
   display: block;
   max-height: 1600px !important;

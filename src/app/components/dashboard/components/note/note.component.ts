@@ -64,6 +64,8 @@ export class NoteComponent implements OnInit {
   }
 
   userinteract() {
+    console.log("came");
+
     this.ngOnInit();
   }
 }

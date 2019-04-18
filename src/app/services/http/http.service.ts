@@ -34,4 +34,12 @@ export class HttpService {
       })
     })
   }
+
+  imgPost(url, token: string, body: any) {
+    return this.http.post(url, body, {
+      headers: new HttpHeaders({
+        'token': token
+      })
+    })
+  }
 }

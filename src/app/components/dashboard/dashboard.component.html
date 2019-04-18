@@ -60,7 +60,8 @@
       </div>
       <div class="ball">
         <div class="uball" [matMenuTriggerFor]="profile">
-          <a>{{name | slice:0:1}}</a>
+          <a class="tiny1" [ngStyle]="{ 'background-image': 'url('+userAvatar+')'}">{{name | slice:0:1}}</a>
+          <!-- <a class="bada"></a> -->
         </div>
       </div>
       <div></div>
@@ -149,7 +150,9 @@
       <div>
         <div class="pdet">
           <span class="uball2">
-            <a>BIG PROFILE</a>
+            <a class="tiny2" [ngStyle]="{ 'background-image': 'url('+userAvatar+')'}">{{name | slice:0:1}}</a>
+            <!-- <a class="bada"></a> -->
+            <div class="change" (click)="file()">change</div>
           </span>
           <span class="pdet2">
             <div id=name>{{name | titlecase}}</div>

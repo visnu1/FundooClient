@@ -34,4 +34,12 @@ export class NoteService {
   colorService(body: any, token: string) {
     return this.httpService.userPut(environment.color, token, body);
   }
+
+  updateNote(body: any) {
+    return this.httpService.userPost(environment.updateNote, this.data.token, body);
+  }
+
+  userProfile(body:any){
+    return this.httpService.imgPost(environment.userProfile, this.data.token, body);
+  }
 }

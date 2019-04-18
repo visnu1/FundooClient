@@ -44,7 +44,9 @@ export class IconsToolbarComponent implements OnInit {
   //To hide the icon
   @Input() undo: boolean;
   //To recieve the card details from the user notes on which the user poke
-  @Input() card
+  @Input() card: any
+
+  // @Input() upDateCard
 
   @Output() archiveCard = new EventEmitter();
   @Output() colorCard = new EventEmitter();
@@ -52,6 +54,8 @@ export class IconsToolbarComponent implements OnInit {
   @Output() action = new EventEmitter();
   //for delete forever and restore
   @Output() trashact = new EventEmitter();
+
+
 
 
   colorbox = [
@@ -88,22 +92,27 @@ export class IconsToolbarComponent implements OnInit {
 
 
   color(colorObj, card) {
-    console.log(colorObj.color);
-    console.log(card);
+    console.log("********************>", colorObj.color);
+    console.log("---------------->", card);
+    // card.color=colorObj.color;
     if (card == undefined) {
       this.colorCard.emit(colorObj.color);
     } else {
-      let obj = {
-        "cardId": card._id,
-        "color": colorObj.color
-      }
-      this.service.colorService(obj, this.data.token).subscribe(data => {
-        console.log("card set for your color");
-        this.action.emit();
-      }, error => {
-        console.error("unable to color your card:", error);
-      })
+      card.color = colorObj.color;
+      this.updateColour(colorObj.color, card);
     }
+  }
+
+  updateColour(color, card) {
+    let obj = {
+      "cardId": card._id,
+      "color": color
+    }
+    this.service.colorService(obj, this.data.token).subscribe(data => {
+      console.log("card set for your choice");
+    }, error => {
+      console.error("unable to color your card:", error);
+    })
   }
 
   archive(card) {
@@ -111,6 +120,7 @@ export class IconsToolbarComponent implements OnInit {
       //take a note event emitter
       this.archiveCard.emit(true);
     } else {
+      card.archive = true;
       console.log(card);
       console.log(card._id);
       var obj = {

@@ -35,6 +35,7 @@ title {
   display: flex;
   padding-right: 32px;
 }
+
 .icondiv {
   display: inline-block;
   border-radius: 50%;
@@ -127,6 +128,16 @@ title {
   padding-right: 16px;
 }
 
+@media (max-width: 426px) {
+  .search {
+    padding-right: 1px;
+  }
+
+  .left {
+    padding-right: 2px;
+  }
+}
+
 .form {
   margin-left: 0;
   margin-right: 0;
@@ -185,6 +196,7 @@ input {
   }
   .left {
     max-width: 130px;
+    transition: max-width 0.218s ease-in;
   }
 }
 
@@ -232,11 +244,19 @@ form svg {
   display: inline-block;
   height: 48px;
   width: 48px;
+  transition: width 0.218s ease-out;
   flex: 0 0 auto;
   cursor: pointer;
   // left: 0;
   // top: 0;
   // position: absolute;
+}
+
+@media (max-width: 403px) {
+  .icons3 div {
+    width: 38px;
+    transition: width 0.218s ease-in;
+  }
 }
 
 .icons3 div:hover {
@@ -292,7 +312,7 @@ form svg {
   padding: 4px;
 }
 
-.uball a {
+.tiny1 {
   background-size: 32px 32px;
   border-radius: 50%;
   display: block;
@@ -306,6 +326,7 @@ form svg {
   font-size: 1.9rem;
   text-align: center;
   font-weight: 400;
+  background-image: url(../../../../../../../Downloads/pig.jpg);
 }
 
 .sbar {
@@ -445,7 +466,7 @@ form svg {
   border: 1px solid #ccc;
 }
 
-.uball2 a {
+.tiny2 {
   background-size: 96px 96px;
   border-radius: 50%;
   display: inline-block;
@@ -456,7 +477,32 @@ form svg {
   height: 96px;
   width: 96px;
   z-index: 1;
+  background-image: url(https://images.pexels.com/photos/1212487/pexels-photo-1212487.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
   background-color: gold;
+}
+
+.uball,
+.uball2 {
+  content: "";
+}
+
+.change {
+  width: 51px;
+  height: 17px;
+  top: 153px;
+  right: 268px;
+  position: fixed;
+  font-family: "google-sans", sans-serif;
+  background: rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-align: center;
+  color: white;
+  cursor: pointer;
 }
 
 .pdet2 div {

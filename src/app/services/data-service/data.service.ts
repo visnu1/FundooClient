@@ -9,10 +9,11 @@ export class DataService {
 
   token: string;
   userId: string;
-
+  avatar: string;
 
   private messageSource = new BehaviorSubject(false);
   currentMessage = this.messageSource.asObservable();
+
 
   constructor() { }
 
@@ -28,6 +29,10 @@ export class DataService {
 
   onUserIdInitialize(user: string) {
     this.userId = user;
+  }
+
+  onSetAvatar(pic) {
+    this.avatar = pic;
   }
 
 }

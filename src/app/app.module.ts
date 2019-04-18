@@ -15,6 +15,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TakeNoteComponent } from './components/dashboard/components/take-note/take-note.component'
 import { NoteComponent } from './components/dashboard/components/note/note.component';
 import { IconsToolbarComponent } from './components/dashboard/components/icons-toolbar/icons-toolbar.component';
+import { ImageUploadComponent } from './components/dashboard/components/image-upload/image-upload.component';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -37,6 +38,8 @@ import { UserNotesComponent } from './components/dashboard/components/user-notes
 import { A11yModule } from '@angular/cdk/a11y';
 import { PinComponent } from './components/dashboard/components/pin/pin.component';
 import { UpdateNoteComponent } from './components/dashboard/components/update-note/update-note.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+
 
 
 @NgModule({
@@ -56,6 +59,7 @@ import { UpdateNoteComponent } from './components/dashboard/components/update-no
     UserNotesComponent,
     PinComponent,
     UpdateNoteComponent,
+    ImageUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,9 +79,10 @@ import { UpdateNoteComponent } from './components/dashboard/components/update-no
     MatSidenavModule,
     MatMenuModule,
     MatDialogModule,
-    A11yModule
+    A11yModule,
+    ImageCropperModule,
   ],
-  entryComponents: [UpdateNoteComponent],
+  entryComponents: [UpdateNoteComponent, ImageUploadComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

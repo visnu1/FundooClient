@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
-import { DialogData } from '../user-notes/user-notes.component';
+import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef, MatCard } from '@angular/material';
+import { DialogData, UserNotesComponent } from '../user-notes/user-notes.component';
 
 @Component({
   selector: 'app-update-note',
@@ -9,21 +9,19 @@ import { DialogData } from '../user-notes/user-notes.component';
 })
 export class UpdateNoteComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+
+  constructor(public dialogRef: MatDialogRef<UserNotesComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
 
   }
 
-  title() {
-    this.data['title'] = document.getElementById('title').innerText;
+  save(event) {
+    if (event.path[0].outerHTML.includes("archive")) {
+      this.dialogRef.close("archive");
+    }
   }
-
-  description() {
-
-  }
-
 }
 
-// constructor( public dialogRef: MatDialogRef<UserNotesComponent>,
-//   @Inject(MAT_DIALOG_DATA) public data: DialogData) { }

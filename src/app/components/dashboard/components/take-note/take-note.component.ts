@@ -62,6 +62,7 @@ export class TakeNoteComponent implements OnInit {
       this.color = "#fff";
       return;
     }
+    this.color = "#fff";;
   }
 
   click() {

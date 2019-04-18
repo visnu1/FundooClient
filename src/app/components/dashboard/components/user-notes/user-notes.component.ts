@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 import { DataService } from "../../../../services/data-service/data.service";
 import { MatDialog } from '@angular/material';
 import { UpdateNoteComponent } from '../update-note/update-note.component';
+import { NoteService } from 'src/app/services/service/note.service';
 
 export interface DialogData {
   data: string;
@@ -21,12 +22,12 @@ export class UserNotesComponent implements OnInit {
 
   @Input() getCards;
 
-  @Output() action = new EventEmitter;
+  @Output() actionOne = new EventEmitter;
 
   @Output() trashAction = new EventEmitter;
 
 
-  constructor(private data: DataService, private matdailog: MatDialog) {
+  constructor(private data: DataService, private matdailog: MatDialog, private service: NoteService) {
   }
 
   ngOnInit() {
@@ -38,14 +39,32 @@ export class UserNotesComponent implements OnInit {
   updateNote(card) {
     const dialogBox = this.matdailog.open(UpdateNoteComponent, {
       data: card
-    })
+    });
     dialogBox.afterClosed().subscribe(result => {
-      console.log(result);
+      if (result == undefined) {
+        console.log("woking undefined");
+        return;
+      }
+      else if (result == "archive") {
+        this.actionOne.emit();
+      } else {
+        const body = {
+          cardId: result._id,
+          title: result.title,
+          description: result.description
+        }
+        this.service.updateNote(body).subscribe(data => {
+          console.log("card updated");
+          this.actionOne.emit();
+        }, error => {
+          console.error("unable to update card:", error);
+        });
+      }
     });
   }
 
   noteCall() {
-    this.action.emit();
+    this.actionOne.emit();
   }
 
   trashCall() {

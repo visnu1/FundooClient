@@ -1,16 +1,15 @@
-<div class="edit">
+<div class="edit" [style.background-color]="data.color">
   <div class="tit-des">
-    <div>
-      <input id="title1" class="input" [(ngModel)]="data.title" placeholder="Title">
+    <div id="title1" contenteditable="true" [textContent]="data.title" (input)="data.title = $event.target.textContent">
     </div>
-
-    <div class="descrp" contenteditable="true">{{data.description}}</div>
+    <div class="descrp" contenteditable="true" [textContent]="data.description"
+      (input)="data.description = $event.target.textContent"></div>
     <!-- <div class="edited">
       <div class="edi1" aria-label="Created yesterday, 10:25 AM">Edited yesterday, 10:25 AM</div>
     </div> -->
   </div>
   <div class="iconbar">
-    <app-icons-toolbar></app-icons-toolbar>
-    <button mat-button [mat-dialog-close]="data">close</button>
+    <app-icons-toolbar [card]="data" (click)="save($event)"></app-icons-toolbar>
+    <button class="clo" mat-button [mat-dialog-close]="data">close</button>
   </div>
 </div>
