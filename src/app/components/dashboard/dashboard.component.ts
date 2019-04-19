@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, Input, ViewChild } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { DataService } from "../../services/data-service/data.service";
 import { MatDialog } from '@angular/material';
@@ -24,9 +27,13 @@ export class DashboardComponent implements OnInit {
   @Input() token: string;
   @Input() style: string;
 
-  @ViewChild("imageSelect") image: any
 
-  constructor(private router: Router, private data: DataService, private matDailog: MatDialog, private service: NoteService) {
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+
+  constructor(private router: Router, private data: DataService, private matDailog: MatDialog, private service: NoteService, private breakpointObserver: BreakpointObserver) {
 
     this.email = localStorage.getItem('email');
     this.name = localStorage.getItem('name');

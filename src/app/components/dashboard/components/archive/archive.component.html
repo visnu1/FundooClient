@@ -1,5 +1,5 @@
 <div>
-  <app-user-notes [getCards]="archiveCards"></app-user-notes>
+  <app-user-notes [getCards]="archiveCards" (archiveAction)="onReload()"></app-user-notes>
 </div>
 
 <!-- <div class="edb">

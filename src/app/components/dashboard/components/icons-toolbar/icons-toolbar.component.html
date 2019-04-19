@@ -4,7 +4,8 @@
     <div class="collaborator" *ngIf=url></div>
     <div class="color" *ngIf=url [matMenuTriggerFor]="colri"></div>
     <div class="img" *ngIf=url></div>
-    <div class="archive" (click)=archive(card) *ngIf=url></div>
+    <div class="archive" (click)=archive(card) *ngIf=url [ngClass]="archiveB"></div>
+    <div class="unarchive" (click)=archive(card) *ngIf=url [ngClass]="unArchiveB"></div>
     <div class="more" (click)=more()></div>
     <div class="undo" *ngIf="undo"></div>
     <!-- <div></div> -->

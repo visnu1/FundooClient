@@ -33,7 +33,8 @@
           </div> -->
       </div>
       <div class="iconbar">
-        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()">
+        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
+          (archiveAct)="archiveCall()">
         </app-icons-toolbar>
       </div>
     </div>
@@ -45,7 +46,7 @@
 <div class="grid container" *ngIf="viewType">
   <div class=contain>
     <div class="gridele" *ngFor='let card of getCards.gridCards1' [style.background-color]="card.color">
-      <div class="ele">
+      <div class="ele" (click)="updateNote(card)">
         <div class="titlee" contenteditable="true">
           {{card.title}}
         </div>
@@ -54,13 +55,14 @@
         </div>
       </div>
       <div class="iconbar">
-        <app-icons-toolbar [undo]="userNoteMsg"></app-icons-toolbar>
+        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()">
+        </app-icons-toolbar>
       </div>
     </div>
   </div>
   <div class=contain>
     <div class="gridele" *ngFor='let card of getCards.gridCards2' [style.background-color]="card.color">
-      <div class="ele">
+      <div class="ele" (click)="updateNote(card)">
         <div class="titlee" contenteditable="true">
           {{card.title}}
         </div>
@@ -69,13 +71,14 @@
         </div>
       </div>
       <div class="iconbar">
-        <app-icons-toolbar [undo]="userNoteMsg"></app-icons-toolbar>
+        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()">
+        </app-icons-toolbar>
       </div>
     </div>
   </div>
   <div class=contain>
     <div class="gridele" *ngFor='let card of getCards.gridCards3' [style.background-color]="card.color">
-      <div class="ele">
+      <div class="ele" (click)="updateNote(card)">
         <div class="titlee" contenteditable="true">
           {{card.title}}
         </div>
@@ -84,7 +87,9 @@
         </div>
       </div>
       <div class="iconbar">
-        <app-icons-toolbar [undo]="userNoteMsg"></app-icons-toolbar>
+        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
+          (archiveAct)="archiveCall()">
+        </app-icons-toolbar>
       </div>
     </div>
   </div>

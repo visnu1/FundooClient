@@ -60,4 +60,8 @@ export class ArchiveComponent implements OnInit {
     this.archiveCards.gridCards2 = temp2
     this.archiveCards.gridCards3 = temp3
   }
+
+  onReload() {
+    this.ngOnInit();
+  }
 }

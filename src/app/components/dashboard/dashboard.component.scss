@@ -97,6 +97,16 @@ title {
   vertical-align: middle;
 }
 
+@media (max-width: 360px) {
+  .k3 {
+    padding-left: 0px;
+  }
+
+  .k22 {
+    font-size: 19px;
+  }
+}
+
 .k21 {
   width: 40px;
   height: 40px;
@@ -326,7 +336,6 @@ form svg {
   font-size: 1.9rem;
   text-align: center;
   font-weight: 400;
-  background-image: url(../../../../../../../Downloads/pig.jpg);
 }
 
 .sbar {

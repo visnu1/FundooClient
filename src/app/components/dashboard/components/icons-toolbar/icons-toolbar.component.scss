@@ -48,6 +48,9 @@
 .archive {
   background-image: url(../../../../../assets/archieve.svg);
 }
+.unarchive {
+  background-image: url(../../../../../assets/unachive.svg);
+}
 .more {
   background-image: url(../../../../../assets/more.svg);
 }
@@ -141,4 +144,12 @@
   background-repeat: no-repeat;
   height: 25px;
   width: 25px;
+}
+
+.on {
+  display: block;
+}
+
+.off {
+  display: none;
 }

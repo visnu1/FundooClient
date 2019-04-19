@@ -70,10 +70,10 @@
   </mat-toolbar>
 
   <mat-drawer-container class="example-container">
-    <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-drawer #drawer class="example-sidenav" [mode]="(isHandset$ | async) ? 'over' : 'side'">
       <div class="sbar">
         <div class="sbar1">
-          <ul class="sul">
+          <ul class="sul" (click)="drawer.toggle()">
             <li class=sli [routerLinkActive]="['active']" [routerLink]="['note']">
               <a (click)=notes()>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_mc">
@@ -121,7 +121,7 @@
               </a>
             </li>
           </ul>
-          <ul class="sul">
+          <ul class="sul" (click)="drawer.toggle()">
             <li class=sli [routerLinkActive]="['active']" [routerLink]="['archive']">
               <a (click)=archive()>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_mc">

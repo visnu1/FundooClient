@@ -16,6 +16,7 @@ import { NoteService } from 'src/app/services/service/note.service';
 export class IconsToolbarComponent implements OnInit {
 
 
+
   constructor(private service: NoteService, private router: Router, private data: DataService) {
   }
 
@@ -40,6 +41,8 @@ export class IconsToolbarComponent implements OnInit {
   //to apply styles
   menuStyle: string = "menue";
 
+  archiveB: string = "on";
+  unArchiveB: string = "off"
 
   //To hide the icon
   @Input() undo: boolean;
@@ -54,6 +57,7 @@ export class IconsToolbarComponent implements OnInit {
   @Output() action = new EventEmitter();
   //for delete forever and restore
   @Output() trashact = new EventEmitter();
+  @Output() archiveAct = new EventEmitter();
 
 
 
@@ -79,6 +83,10 @@ export class IconsToolbarComponent implements OnInit {
       this.url = false;
       this.menuStyle = "menui"
     }
+    if (this.router.url == '/dashboard/archive') {
+      this.archiveB = "off";
+      this.unArchiveB = "on"
+    }
     document.body.click()
   }
 
@@ -92,8 +100,8 @@ export class IconsToolbarComponent implements OnInit {
 
 
   color(colorObj, card) {
-    console.log("********************>", colorObj.color);
-    console.log("---------------->", card);
+    console.log(colorObj.color);
+    console.log(card);
     // card.color=colorObj.color;
     if (card == undefined) {
       this.colorCard.emit(colorObj.color);
@@ -120,27 +128,20 @@ export class IconsToolbarComponent implements OnInit {
       //take a note event emitter
       this.archiveCard.emit(true);
     } else {
-      card.archive = true;
+      // card.archive = true;
       console.log(card);
       console.log(card._id);
       var obj = {
         "cardId": card._id,
-        "archive": true,
+        "archive": !card.archive,
       }
       this.service.archiveService(obj, this.data.token).subscribe(data => {
         this.action.emit();
+        this.archiveAct.emit();
       }, error => {
         console.error("failed to initiate a user service:", error);
       })
     }
-  }
-
-  unarchive(card) {
-    var obj = {
-      "cardId": card._id,
-      "archive": false,
-    }
-    // this.service.archiveService(obj)
   }
 
   trash(card) {
@@ -152,6 +153,7 @@ export class IconsToolbarComponent implements OnInit {
     this.service.trashService(obj, this.data.token).subscribe(data => {
       console.log(data);
       this.action.emit();
+      this.archiveAct.emit();
     }, error => {
       console.error("failed to initiate a user service:", error);
     })

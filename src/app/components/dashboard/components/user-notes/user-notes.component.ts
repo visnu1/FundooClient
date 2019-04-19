@@ -3,6 +3,7 @@ import { DataService } from "../../../../services/data-service/data.service";
 import { MatDialog } from '@angular/material';
 import { UpdateNoteComponent } from '../update-note/update-note.component';
 import { NoteService } from 'src/app/services/service/note.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 export interface DialogData {
   data: string;
@@ -23,8 +24,8 @@ export class UserNotesComponent implements OnInit {
   @Input() getCards;
 
   @Output() actionOne = new EventEmitter;
-
   @Output() trashAction = new EventEmitter;
+  @Output() archiveAction = new EventEmitter;
 
 
   constructor(private data: DataService, private matdailog: MatDialog, private service: NoteService) {
@@ -35,6 +36,21 @@ export class UserNotesComponent implements OnInit {
       this.viewType = message;
     })
   }
+
+  movies = [
+    {
+      title: "hello",
+      description: "working3"
+    },
+    {
+      title: "hello1",
+      description: "working2"
+    },
+    {
+      title: "hello2",
+      description: "working1"
+    }
+  ]
 
   updateNote(card) {
     const dialogBox = this.matdailog.open(UpdateNoteComponent, {
@@ -70,5 +86,25 @@ export class UserNotesComponent implements OnInit {
   trashCall() {
     this.trashAction.emit();
   }
+
+  archiveCall() {
+    this.archiveAction.emit();
+  }
+
+  // drop(event: CdkDragDrop<{
+  //   archive: boolean
+  //   color: string
+  //   createdAt: string
+  //   description: string
+  //   pinned: boolean
+  //   title: string
+  //   trash: boolean
+  //   updatedAt: string
+  //   userId: string
+  //   __v: number
+  //   _id: string
+  // }[]>) {
+  //   moveItemInArray(this.getCards.cards, event.previousIndex, event.currentIndex);
+  // }
 
 }
