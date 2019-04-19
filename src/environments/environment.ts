@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 // var url = `http://localhost:5000/`;
-var url = `http://18.220.138.139:5000/`
+var url = `http://18.188.137.21:5000/`
 
 export const environment = {
   production: false,

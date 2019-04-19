@@ -15,6 +15,11 @@ import { TrashComponent } from './components/dashboard/components/trash/trash.co
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'signin',
+    pathMatch: 'full'
+  },
+  {
     path: 'signin',
     component: LoginComponent,
     children: []
