@@ -147,7 +147,7 @@
   margin: 3.5px 0;
   position: relative;
   transition: background-color 0.218s ease-in-out, box-shadow 0.218s ease-in-out;
-  opacity: 0;
+  opacity: 0; //
   transition: opacity 0.218s ease-in-out;
 }
 
@@ -198,6 +198,56 @@
   font-weight: 500;
   line-height: 1rem;
   margin: 32px 32px 8px;
-  display: -webkit-inline-box;
   display: inline-block;
+}
+
+///// reminder
+.rembox {
+  display: flex;
+  padding: 5px 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.remboxc1 {
+  margin: 6px 6px 0 0;
+  max-width: 100%;
+
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px transparent;
+  box-sizing: border-box;
+  letter-spacing: 0.01785714em;
+  font-family: "google-sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  position: relative;
+}
+
+.remboxc11 {
+  justify-content: center;
+  min-width: 35px;
+  padding: 3px 5px;
+  height: 18px;
+  display: flex;
+}
+
+.clk {
+  background: url(../../../../../assets/clock.svg) no-repeat;
+  flex: 0 0 auto;
+  padding-left: 18px;
+  opacity: 0.65;
+}
+
+.time {
+  text-align: left;
+  width: calc(100% - 12px);
+  color: #3c4043;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  margin: 0 5px;
 }

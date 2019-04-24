@@ -28,12 +28,19 @@ import { MatSnackBarModule } from '@angular/material'
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { NativeDateModule } from '@angular/material';
+import { MatNativeDateModule, MatSliderModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
+
+
 
 import { HttpClientModule } from '@angular/common/http';
 import { RemindersComponent } from './components/dashboard/components/reminders/reminders.component';
 import { ArchiveComponent } from './components/dashboard/components/archive/archive.component';
 import { TrashComponent } from './components/dashboard/components/trash/trash.component';
 import { UserNotesComponent } from './components/dashboard/components/user-notes/user-notes.component';
+
 
 import { A11yModule } from '@angular/cdk/a11y';
 import { PinComponent } from './components/dashboard/components/pin/pin.component';
@@ -81,6 +88,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MatDialogModule,
     A11yModule,
     ImageCropperModule,
+    MatDatepickerModule,
+    NativeDateModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   entryComponents: [UpdateNoteComponent, ImageUploadComponent],
   providers: [],

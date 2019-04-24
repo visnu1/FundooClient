@@ -23,23 +23,29 @@ export class NoteService {
     return this.httpService.userPut(environment.archive, token, body);
   }
 
-  trashService(body: any, token: string) {
-    return this.httpService.userPut(environment.trash, token, body);
+  trashService(body: any) {
+    return this.httpService.userPut(environment.trash, this.data.token, body);
   }
 
-  deleteService(body: any, token: string) {
-    return this.httpService.userPost(environment.delete, token, body);
+  deleteService(body: any) {
+    return this.httpService.userPost(environment.delete, this.data.token, body);
   }
 
-  colorService(body: any, token: string) {
-    return this.httpService.userPut(environment.color, token, body);
+  colorService(body: any) {
+    return this.httpService.userPut(environment.color, this.data.token, body);
+  }
+
+  reminderService(body: any) {
+    return this.httpService.userPut(environment.reminder, this.data.token, body);
   }
 
   updateNote(body: any) {
     return this.httpService.userPost(environment.updateNote, this.data.token, body);
   }
 
-  userProfile(body:any){
+  userProfile(body: any) {
     return this.httpService.imgPost(environment.userProfile, this.data.token, body);
   }
+
+
 }

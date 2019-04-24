@@ -21,6 +21,12 @@ export class UserNotesComponent implements OnInit {
   userNoteMsg = false;
   viewType: boolean;
 
+  d: Date = new Date();
+  date0 = new Date(this.d.getFullYear(), this.d.getMonth(), (this.d.getDate() - 1), 8).toISOString();;
+  date1 = new Date(this.d.getFullYear(), this.d.getMonth(), this.d.getDate(), 20).toISOString();
+  date2 = new Date(this.d.getFullYear(), this.d.getMonth(), (this.d.getDate() + 1), 8).toISOString();
+  date3 = new Date(this.d.getFullYear(), this.d.getMonth(), (this.d.getDate() + 2), 8).toISOString();
+
   @Input() getCards;
 
   @Output() actionOne = new EventEmitter;

@@ -146,6 +146,143 @@
   width: 25px;
 }
 
+.reminders {
+  width: 100%;
+  z-index: 5003;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.218s;
+  background: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 13px;
+  outline: none;
+  padding: 6px 0;
+  position: absolute;
+  // max-width: 250px;
+  max-width: 300px;
+  position: absolute;
+  z-index: 5003;
+  border-radius: 5px;
+}
+
+.ch1 {
+  font-size: 14px;
+  padding: 15px;
+  height: 15px;
+}
+
+.remcom {
+  border: 0;
+  padding: 8px 15px;
+  cursor: pointer;
+  margin: 5px 0;
+  color: #3c4043;
+  position: relative;
+  list-style: none;
+  margin: 5px 0;
+  white-space: nowrap;
+  height: 20px;
+}
+
+.ch {
+  display: flex;
+}
+
+.remcom:hover {
+  background-color: #e9e8e886;
+}
+
+.text {
+  flex: 1 1 auto;
+}
+
+.time {
+  color: rgba(60, 64, 67, 0.541);
+  flex: 1 1 auto;
+  margin-left: 10px;
+  max-width: 200px;
+  text-align: right;
+  white-space: normal;
+}
+
+.clk {
+  background: url(../../../../../assets/clock.svg) no-repeat;
+  background-position: left;
+  background-size: 15px 15px;
+  padding-left: 25px;
+  color: #3c4043;
+}
+
+.pdt {
+  padding: 10px 14px 10px 40px;
+  font-size: 14px;
+  border-bottom: 1px solid #d7d7d8;
+}
+
+.dropz {
+  padding: 0 15px 15px;
+  width: 250px;
+}
+
+.dzc {
+  // margin-top: 15px;
+  position: relative;
+  width: 100%;
+}
+
+.mat-datepicker-content .mat-calendar {
+  width: 210px !important;
+  height: 260px !important;
+}
+
+.mat-calendar-controls {
+  display: flex !important;
+  margin: 2% calc(40% / 7 - 20px) !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 1em !important;
+}
+
+.mat-select-panel {
+  height: 200px !important;
+}
+
+.arrow {
+  background-image: url(../../../../../assets/arrow.svg);
+  background-repeat: no-repeat;
+  left: 10px;
+  position: absolute;
+  top: 15px;
+  width: 24px;
+  height: 24px;
+}
+
+.opt {
+  border: 0;
+  padding: 8px 15px;
+}
+
+.opele {
+  display: flex;
+  height: 30px;
+}
+
+.day {
+  flex: 1 1 auto;
+  margin-right: 10px;
+  color: #3c4043;
+  padding: 13px 13px 13px 0px;
+}
+
+.tim {
+  color: #5f6368;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+  text-align: right;
+}
+
 .on {
   display: block;
 }

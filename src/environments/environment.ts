@@ -18,7 +18,9 @@ export const environment = {
   delete: url + `deleteService`,
   color: url + `colorService`,
   updateNote: url + `updateNote`,
+  reminder: url + `reminderService`,
   userProfile: url + `userProfile`,
+
 };
 
 /*

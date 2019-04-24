@@ -169,7 +169,7 @@ title {
 }
 
 //problem with this
-input {
+.input {
   overflow: hidden;
   padding: 11px 16px;
   border: none;
@@ -188,7 +188,7 @@ input {
 }
 
 @media (max-width: 775px) {
-  input {
+  .input {
     display: none;
   }
 

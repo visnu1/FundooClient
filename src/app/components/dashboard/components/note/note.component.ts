@@ -59,13 +59,11 @@ export class NoteComponent implements OnInit {
       }
     }
     this.allCards.gridCards1 = temp1;
-    this.allCards.gridCards2 = temp2
-    this.allCards.gridCards3 = temp3
+    this.allCards.gridCards2 = temp2;
+    this.allCards.gridCards3 = temp3;
   }
 
   userinteract() {
-    console.log("came");
-
     this.ngOnInit();
   }
 }

@@ -4,6 +4,7 @@ import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { OnDestroy, AfterViewInit, ElementRef, ViewChild, ChangeDetectorRef, NgZone } from '@angular/core';
 import { DataService } from 'src/app/services/data-service/data.service';
 import { NoteService } from 'src/app/services/service/note.service';
+import { FormControl } from '@angular/forms';
 
 
 
@@ -11,14 +12,29 @@ import { NoteService } from 'src/app/services/service/note.service';
   selector: 'app-icons-toolbar',
   templateUrl: './icons-toolbar.component.html',
   styleUrls: ['./icons-toolbar.component.scss'],
+  // host: {
+  //   '(document:click)': 'onClick($event)',
+  // },
   encapsulation: ViewEncapsulation.None
 })
 export class IconsToolbarComponent implements OnInit {
 
 
 
-  constructor(private service: NoteService, private router: Router, private data: DataService) {
+  constructor(private service: NoteService, private router: Router, private data: DataService, private _eref: ElementRef) {
   }
+
+  date = new FormControl(new Date());
+  period = new FormControl('Does not repeat');
+  pdt: boolean = false;
+
+  pop: boolean = false;
+  url: boolean = true;
+  //to apply styles
+  menuStyle: string = "menue";
+
+  archiveB: string = "on";
+  unArchiveB: string = "off"
 
   // @ViewChild('element') element: ElementRef<HTMLElement>;
 
@@ -36,13 +52,6 @@ export class IconsToolbarComponent implements OnInit {
 
   ///////////////////////////////////
 
-  pop: boolean = false;
-  url: boolean = true;
-  //to apply styles
-  menuStyle: string = "menue";
-
-  archiveB: string = "on";
-  unArchiveB: string = "off"
 
   //To hide the icon
   @Input() undo: boolean;
@@ -58,8 +67,6 @@ export class IconsToolbarComponent implements OnInit {
   //for delete forever and restore
   @Output() trashact = new EventEmitter();
   @Output() archiveAct = new EventEmitter();
-
-
 
 
   colorbox = [
@@ -98,6 +105,12 @@ export class IconsToolbarComponent implements OnInit {
     this.pop = !this.pop;
   }
 
+  // onClick(event) {
+  //   if (!this._eref.nativeElement.contains(event.target)) {
+  //     console.log(this._eref.nativeElement.contains(event.target));
+  //   } // or some similar check
+  // }
+
 
   color(colorObj, card) {
     console.log(colorObj.color);
@@ -116,7 +129,7 @@ export class IconsToolbarComponent implements OnInit {
       "cardId": card._id,
       "color": color
     }
-    this.service.colorService(obj, this.data.token).subscribe(data => {
+    this.service.colorService(obj).subscribe(data => {
       console.log("card set for your choice");
     }, error => {
       console.error("unable to color your card:", error);
@@ -150,7 +163,7 @@ export class IconsToolbarComponent implements OnInit {
       "cardId": card._id,
       "trash": true,
     }
-    this.service.trashService(obj, this.data.token).subscribe(data => {
+    this.service.trashService(obj).subscribe(data => {
       console.log(data);
       this.action.emit();
       this.archiveAct.emit();
@@ -164,7 +177,7 @@ export class IconsToolbarComponent implements OnInit {
       "cardId": card._id,
       "trash": false
     }
-    this.service.trashService(obj, this.data.token).subscribe(data => {
+    this.service.trashService(obj).subscribe(data => {
       this.trashact.emit(card);
     }, error => {
       console.error("unable to restore the card:", error)
@@ -176,7 +189,7 @@ export class IconsToolbarComponent implements OnInit {
     var obj = {
       "cardId": card._id
     }
-    this.service.deleteService(obj, this.data.token).subscribe(data => {
+    this.service.deleteService(obj).subscribe(data => {
       console.log(data);
       this.trashact.emit(card);
     }, error => {
@@ -185,12 +198,46 @@ export class IconsToolbarComponent implements OnInit {
   }
 
 
+  setReminder(card, when) {
 
-  // $(document.body).click( function() {
+    let d: Date = new Date();
+    let date;
+    if (when.toLowerCase().trim() == 'today') {
+      date = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 20);
+    } else if (when.toLowerCase().trim() == 'tommorow') {
+      date = new Date(d.getFullYear(), d.getMonth(), (d.getDate() + 1), 8);
+    } else if (when.toLowerCase().trim() == 'mon') {
+      date = new Date(d.getFullYear(), d.getMonth(), (d.getDate() + 7), 8);
+    }
+    let data = {
+      cardId: card._id,
+      reminder: date
+    }
+    this.service.reminderService(data).subscribe(res => {
+      console.log(res);
+      this.action.emit();
+      this.archiveAct.emit();
+    }, err => {
+      console.warn("Unable to set reminder");
+    })
+
+    //heart is here
+    // var f = new Date()
+    // var d1 = new Date(f.getFullYear(), f.getMonth(), (f.getDate() + 1), 8);
+    // console.log(d1.toLocaleString('en-US', { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }));
+
+    // let obj = {
+    //   cardId: card._id,
+    //   reminders: d1
+    // }
+  }
+}
+
+
+ // $(document.body).click( function() {
   //   closeMenu();
   // });
 
   // $(".dialog").click( function(e) {
   //   e.stopPropagation(); // this stops the event from bubbling up to the body
   // });
-}
