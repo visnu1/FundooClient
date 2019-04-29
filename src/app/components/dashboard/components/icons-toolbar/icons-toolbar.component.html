@@ -70,7 +70,7 @@
     </div>
     <div class="remcom">
       <div class="ch">
-        <div class="text clk" (click)="$event.stopPropagation()" (click)="pdt = !pdt">
+        <div class="text clk" (click)="$event.stopPropagation(); pdt = !pdt">
           Pick date & time
         </div>
       </div>
@@ -78,7 +78,7 @@
   </div>
 
   <div class="reminders" [style.display]="pdt?'block':'none'">
-    <div class="arrow" (click)="pdt = !pdt" (click)="$event.stopPropagation()"></div>
+    <div class="arrow" (click)="pdt = !pdt; $event.stopPropagation()"></div>
     <div class="pdt">Pick date &amp; time</div>
     <div class="dropz">
       <div>
@@ -92,54 +92,56 @@
       </div>
       <div>
         <mat-form-field class="dzc" (click)="$event.stopPropagation()">
-          <mat-select>
-            <div class="opt">
-              <div class="opele">
-                <div class="day">
-                  Morning
-                </div>
-                <mat-option value="option">8:00 AM</mat-option>
-              </div>
-            </div>
-            <div class="opt">
-              <div class="opele">
-                <div class="day">
-                  Afternoon
-                </div>
-                <mat-option value="option">1:00 PM</mat-option>
-              </div>
-            </div>
-            <div class="opt">
-              <div class="opele">
-                <div class="day">
-                  Evening
-                </div>
-                <mat-option value="option">6:00 PM</mat-option>
-              </div>
-            </div>
-            <div class="opt">
-              <div class="opele">
-                <div class="day">Night</div>
-                <mat-option value="option">8:00 PM</mat-option>
-              </div>
-            </div>
-            <!-- <mat-option value="option">Custom</mat-option> -->
-          </mat-select>
+          <button class="dpb" mat-button>
+            <mat-icon class="dpa" matDatepickerToggleIcon [matMenuTriggerFor]="klsdas">keyboard_arrow_down</mat-icon>
+          </button>
+          <input style="width: 80%" matInput [formControl]="time" />
+        </mat-form-field>
 
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="dzc" (click)="$event.stopPropagation()">
-          <mat-select>
-            <mat-option value="option">Does not repeat</mat-option>
-            <mat-option value="option">Daily</mat-option>
-            <mat-option value="option">Weekly</mat-option>
-            <mat-option value="option">Monthly</mat-option>
-            <mat-option value="option">Yearly</mat-option>
-            <!-- <mat-option value="option">Custom</mat-option> -->
-          </mat-select>
-        </mat-form-field>
+        <div>
+          <mat-form-field class="dzc" (click)="$event.stopPropagation()">
+            <mat-select placeholder="Does not repeat">
+              <mat-option value="option">Does not repeat</mat-option>
+              <mat-option value="option">Daily</mat-option>
+              <mat-option value="option">Weekly</mat-option>
+              <mat-option value="option">Monthly</mat-option>
+              <mat-option value="option">Yearly</mat-option>
+              <!-- <mat-option value="option">Custom</mat-option> -->
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
     </div>
+    <div class="sa">
+      <div class="sa1" (click)="customReminder(card)">Save</div>
+    </div>
   </div>
+</mat-menu>
+
+<mat-menu #klsdas="matMenu">
+  <div class="opt">
+    <div class="opele" (click)="time.setValue('08:00'); $event.stopPropagation()">
+      <div class="day">Morning</div>
+      <div class="dyti">8:00</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="opele" (click)="time.setValue('13:00'); $event.stopPropagation()">
+      <div class="day">Afternoon</div>
+      <div class="dyti">13:00</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="opele" (click)="time.setValue('18:00'); $event.stopPropagation()">
+      <div class="day">Evening</div>
+      <div class="dyti">18:00</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="opele" (click)="time.setValue('20:00'); $event.stopPropagation()">
+      <div class="day">Night</div>
+      <div class="dyti">20:00</div>
+    </div>
+  </div>
+  <!-- <mat-option value="option">Custom</mat-option> -->
 </mat-menu>

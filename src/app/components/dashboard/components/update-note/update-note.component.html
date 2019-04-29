@@ -8,6 +8,26 @@
       <div class="edi1" aria-label="Created yesterday, 10:25 AM">Edited yesterday, 10:25 AM</div>
     </div> -->
   </div>
+  <div class="rembox" [ngStyle]="{'display': (data.reminder === '') ? 'none' : 'flex'}">
+    <div class="remboxc1">
+      <div class="remboxc11">
+        <div class="clk"></div>
+        <label class="time"
+          [ngStyle]="{'display': (d0|date:shortDate) === (data.reminder|date:shortDate) ? 'block' : 'none'}">Yesterday,
+          {{data.reminder | date:'h:mm a'}}</label>
+        <label class="time"
+          [ngStyle]="{'display': (d|date:shortDate) === (data.reminder|date:shortDate) ? 'block' : 'none'}">Today,
+          {{data.reminder | date:'h:mm a'}}</label>
+        <label class="time"
+          [ngStyle]="{'display': (d1|date:shortDate) === (data.reminder|date:shortDate) ? 'block' : 'none'}">Tommorrow,
+          {{data.reminder | date:'h:mm a'}}</label>
+        <label class="time"
+          [ngStyle]="{'display':  (data.reminder|date:shortDate) > (d1|date:shortDate) || (d0|date:shortDate) > (data.reminder|date:shortDate)  ? 'block' : 'none'}">{{data.reminder | date:'MMMM d, h:mm a'}}</label>
+      </div>
+      <div class="remove" (click)="remove()"></div>
+    </div>
+    <div class="edited" aria-label="Created yesterday, 10:25 AM">Edited {{data.updatedAt | date:'MMMM d, h:mm a'}}</div>
+  </div>
   <div class="iconbar">
     <app-icons-toolbar [card]="data" (click)="save($event)"></app-icons-toolbar>
     <button class="clo" mat-button [mat-dialog-close]="data">close</button>

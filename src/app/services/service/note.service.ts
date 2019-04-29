@@ -47,5 +47,10 @@ export class NoteService {
     return this.httpService.imgPost(environment.userProfile, this.data.token, body);
   }
 
-
+  updateFbToken(token: string) {
+    return this.httpService.userPost(environment.updateFbToken, this.data.token, {
+      userId: this.data.userId,
+      firebaseToken: token
+    });
+  }
 }

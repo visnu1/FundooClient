@@ -10,6 +10,10 @@ import { DialogData, UserNotesComponent } from '../user-notes/user-notes.compone
 export class UpdateNoteComponent implements OnInit {
 
 
+  d: Date = new Date();
+  d0 = new Date(this.d.getFullYear(), this.d.getMonth(), (this.d.getDate() - 1));
+  d1 = new Date(this.d.getFullYear(), this.d.getMonth(), (this.d.getDate() + 1));
+
 
   constructor(public dialogRef: MatDialogRef<UserNotesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }

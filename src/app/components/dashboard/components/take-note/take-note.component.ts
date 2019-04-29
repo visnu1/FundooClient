@@ -19,6 +19,7 @@ export class TakeNoteComponent implements OnInit {
   archive: boolean = false;
   trash: boolean = false;
   pinned: boolean = false;
+  rem: any = "";
   userNoteMsg = true;
   hide: boolean = false;
 
@@ -38,12 +39,14 @@ export class TakeNoteComponent implements OnInit {
         userId: this.data.userId,
         title: document.getElementById("title").innerText,
         description: document.getElementById("asas").innerText,
-        reminders: "",
+        reminder: this.rem,
         color: this.color,
         archive: this.archive,
         trash: this.trash,
         pinned: this.pinned
       }
+      console.log("??????????????????", body);
+
       this.service.createNote(body).subscribe(data => {
         console.log(data);
         this.addingNote.emit();
@@ -78,4 +81,7 @@ export class TakeNoteComponent implements OnInit {
     this.color = color
   }
 
+  reminder(date) {
+    this.rem = date;
+  }
 }

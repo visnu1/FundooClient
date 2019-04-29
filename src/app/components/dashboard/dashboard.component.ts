@@ -7,6 +7,8 @@ import { DataService } from "../../services/data-service/data.service";
 import { MatDialog } from '@angular/material';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { NoteService } from 'src/app/services/service/note.service';
+import { MessagingService } from '../../services/shared/messaging.service';
+import { LabelsComponent } from './components/labels/labels.component';
 
 
 @Component({
@@ -20,6 +22,7 @@ export class DashboardComponent implements OnInit {
   view: string = "listico";
   viewType: boolean = false;
   userAvatar: string;
+  message
 
   @Input() email: string;
   @Input() name: string;
@@ -33,7 +36,14 @@ export class DashboardComponent implements OnInit {
       map(result => result.matches)
     );
 
-  constructor(private router: Router, private data: DataService, private matDailog: MatDialog, private service: NoteService, private breakpointObserver: BreakpointObserver) {
+  constructor(
+    private router: Router,
+    private data: DataService,
+    private matDailog: MatDialog,
+    private service: NoteService,
+    private breakpointObserver: BreakpointObserver,
+    private messagingService: MessagingService,
+    private matdailog: MatDialog) {
 
     this.email = localStorage.getItem('email');
     this.name = localStorage.getItem('name');
@@ -45,6 +55,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.messagingService.requestPermission()
+    this.messagingService.receiveMessage()
+    this.message = this.messagingService.currentMessage
   }
 
   refresh() {
@@ -104,5 +117,9 @@ export class DashboardComponent implements OnInit {
 
   trash() {
     this.router.navigate(['dashboard/trash']);
+  }
+
+  editLabels() {
+    const dialogBox = this.matdailog.open(LabelsComponent)
   }
 }

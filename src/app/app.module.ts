@@ -46,7 +46,14 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { PinComponent } from './components/dashboard/components/pin/pin.component';
 import { UpdateNoteComponent } from './components/dashboard/components/update-note/update-note.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-
+import { AngularFireModule } from '@angular/fire';
+import { MessagingService } from './services/shared/messaging.service';
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AsyncPipe } from '../../node_modules/@angular/common';
+import { LabelsComponent } from './components/dashboard/components/labels/labels.component';
 
 
 @NgModule({
@@ -67,6 +74,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     PinComponent,
     UpdateNoteComponent,
     ImageUploadComponent,
+    LabelsComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,10 +99,14 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MatDatepickerModule,
     NativeDateModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
-  entryComponents: [UpdateNoteComponent, ImageUploadComponent],
-  providers: [],
+  entryComponents: [UpdateNoteComponent, ImageUploadComponent, LabelsComponent],
+  providers: [MessagingService, AsyncPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

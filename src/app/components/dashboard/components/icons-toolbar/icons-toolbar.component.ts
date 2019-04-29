@@ -4,7 +4,8 @@ import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { OnDestroy, AfterViewInit, ElementRef, ViewChild, ChangeDetectorRef, NgZone } from '@angular/core';
 import { DataService } from 'src/app/services/data-service/data.service';
 import { NoteService } from 'src/app/services/service/note.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -21,10 +22,16 @@ export class IconsToolbarComponent implements OnInit {
 
 
 
+
   constructor(private service: NoteService, private router: Router, private data: DataService, private _eref: ElementRef) {
   }
 
+
   date = new FormControl(new Date());
+  time = new FormControl('Set time', Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/));
+  // timeArray: any[];
+
+
   period = new FormControl('Does not repeat');
   pdt: boolean = false;
 
@@ -35,6 +42,8 @@ export class IconsToolbarComponent implements OnInit {
 
   archiveB: string = "on";
   unArchiveB: string = "off"
+
+
 
   // @ViewChild('element') element: ElementRef<HTMLElement>;
 
@@ -67,7 +76,7 @@ export class IconsToolbarComponent implements OnInit {
   //for delete forever and restore
   @Output() trashact = new EventEmitter();
   @Output() archiveAct = new EventEmitter();
-
+  @Output() reminderCard = new EventEmitter();
 
   colorbox = [
     { color: "#fff", title: "Default" },
@@ -86,6 +95,7 @@ export class IconsToolbarComponent implements OnInit {
 
 
   ngOnInit() {
+
     if (this.router.url == '/dashboard/trash') {
       this.url = false;
       this.menuStyle = "menui"
@@ -209,19 +219,47 @@ export class IconsToolbarComponent implements OnInit {
     } else if (when.toLowerCase().trim() == 'mon') {
       date = new Date(d.getFullYear(), d.getMonth(), (d.getDate() + 7), 8);
     }
-    let data = {
-      cardId: card._id,
-      reminder: date
-    }
-    this.service.reminderService(data).subscribe(res => {
-      console.log(res);
-      this.action.emit();
-      this.archiveAct.emit();
-    }, err => {
-      console.warn("Unable to set reminder");
-    })
+    this.reminderService(card, date);
+  }
 
-    //heart is here
+
+  customReminder(card) {
+    if (this.time.hasError('pattern')) {
+      return
+    }
+    else {
+      var d = new Date(this.date.value);
+      d.setHours(parseInt(this.time.value.substr(0, 2)));
+      d.setMinutes(parseInt(this.time.value.substr(3)));
+      d.setSeconds(0);
+      d.setMilliseconds(0);
+      this.reminderService(card, d);
+    }
+  }
+
+  reminderService(card, date) {
+    if (card == undefined) {
+      this.reminderCard.emit(date.toISOString());
+    } else {
+      card.reminder = date;
+      let data = {
+        cardId: card._id,
+        reminder: date
+      }
+      this.service.reminderService(data).subscribe(res => {
+        console.log(res);
+        this.action.emit();
+        this.archiveAct.emit();
+      }, err => {
+        console.warn("Unable to set reminder", err);
+      })
+    }
+  }
+
+}
+
+
+  //heart is here
     // var f = new Date()
     // var d1 = new Date(f.getFullYear(), f.getMonth(), (f.getDate() + 1), 8);
     // console.log(d1.toLocaleString('en-US', { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }));
@@ -230,9 +268,6 @@ export class IconsToolbarComponent implements OnInit {
     //   cardId: card._id,
     //   reminders: d1
     // }
-  }
-}
-
 
  // $(document.body).click( function() {
   //   closeMenu();

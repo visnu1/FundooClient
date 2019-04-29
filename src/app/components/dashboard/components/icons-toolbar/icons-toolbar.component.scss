@@ -260,27 +260,78 @@
 
 .opt {
   border: 0;
-  padding: 8px 15px;
+  padding: 8px 10px 8px 5px;
+  cursor: pointer;
+}
+
+.opt:hover {
+  background-color: #e9e8e886;
 }
 
 .opele {
   display: flex;
-  height: 30px;
+  height: 20px;
+  font-size: 0.85rem;
 }
 
 .day {
   flex: 1 1 auto;
   margin-right: 10px;
   color: #3c4043;
-  padding: 13px 13px 13px 0px;
+  opacity: 0.85;
+  // padding: 13px 13px 13px 0px;
+}
+
+.dyti {
+  float: right;
 }
 
 .tim {
   color: #5f6368;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 1 auto;
   flex: 1 1 auto;
   text-align: right;
+}
+
+.sa {
+  box-sizing: border-box;
+  padding: 5px 5px 10px 5px;
+  text-align: right;
+  width: 100%;
+}
+
+.sa1 {
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.87);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0.01785714em;
+  font-family: "google-sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  height: 36px;
+  padding: 8px 24px;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.sa1:hover {
+  background-color: rgba(214, 210, 210, 0.418);
+}
+
+.dpa {
+  width: 10px !important;
+  height: 30px !important;
+  font-size: 14px !important;
+}
+
+.dpb {
+  float: right;
+  height: 18px !important;
+  width: 16px !important;
+  min-width: 0px !important;
 }
 
 .on {

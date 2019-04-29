@@ -22,10 +22,8 @@ export class UserNotesComponent implements OnInit {
   viewType: boolean;
 
   d: Date = new Date();
-  date0 = new Date(this.d.getFullYear(), this.d.getMonth(), (this.d.getDate() - 1), 8).toISOString();;
-  date1 = new Date(this.d.getFullYear(), this.d.getMonth(), this.d.getDate(), 20).toISOString();
-  date2 = new Date(this.d.getFullYear(), this.d.getMonth(), (this.d.getDate() + 1), 8).toISOString();
-  date3 = new Date(this.d.getFullYear(), this.d.getMonth(), (this.d.getDate() + 2), 8).toISOString();
+  d0 = new Date(this.d.getFullYear(), this.d.getMonth(), (this.d.getDate() - 1));
+  d1 = new Date(this.d.getFullYear(), this.d.getMonth(), (this.d.getDate() + 1));
 
   @Input() getCards;
 

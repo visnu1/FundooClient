@@ -16,7 +16,7 @@
 
     </div>
     <app-icons-toolbar *ngIf=hide [undo]="userNoteMsg" (archiveCard)="userArchive($event)"
-      (colorCard)="noteColor($event)">
+      (colorCard)="noteColor($event)" (reminderCard)="reminder($event)">
     </app-icons-toolbar>
     <div role="button" class="clo" *ngIf=hide (click)="send()">Close</div>
 
