@@ -16,7 +16,7 @@
 <div class="menu" *ngIf="pop" [ngClass]="menuStyle">
   <div class="menu1">
     <div (click)=trash(card)>Delete Note</div>
-    <div (click)=addLabel()>Add label</div>
+    <div [matMenuTriggerFor]="lmenu">Add label</div>
     <div>Copy to Google Docs</div>
   </div>
   <div class="menu2">
@@ -25,7 +25,8 @@
   </div>
 </div>
 
-<mat-menu class="colri" #colri="matMenu" yPosition="above">
+<mat-menu class="colri" #colri="matMenu" yPosition="above" [overlapTrigger]="false" (menuClosed)="isOpened($event)"
+  panelClass="custom">
   <div class=colorbox>
     <div (click)="color(obj,card)" *ngFor="let obj of colorbox" [attr.title]="obj.title"
       [ngStyle]="{'background-color':obj.color}"></div>
@@ -144,4 +145,22 @@
     </div>
   </div>
   <!-- <mat-option value="option">Custom</mat-option> -->
+</mat-menu>
+
+
+<mat-menu class="lmenu" #lmenu="matMenu">
+  <div class="txt1">
+    Label note
+  </div>
+  <div class="sea">
+    <input class="inp" type="text" placeholder="Enter label name">
+    <div class="srch"></div>
+  </div>
+  <div class="lcon">
+    <div (click)="onAdd(card,l); $event.stopPropagation()" class="lcon1" *ngFor="let l of labels">
+      <div class="img cb" *ngIf="!(card.labels).includes(l)"></div>
+      <div class="img cb1" *ngIf="(card.labels).includes(l)"></div>
+      <div class="txt2">{{l}}</div>
+    </div>
+  </div>
 </mat-menu>

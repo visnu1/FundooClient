@@ -22,6 +22,7 @@ export class TakeNoteComponent implements OnInit {
   rem: any = "";
   userNoteMsg = true;
   hide: boolean = false;
+  labels: string[] = [];
 
   constructor(private service: NoteService, private router: Router, private data: DataService) {
   }
@@ -43,10 +44,9 @@ export class TakeNoteComponent implements OnInit {
         color: this.color,
         archive: this.archive,
         trash: this.trash,
-        pinned: this.pinned
+        pinned: this.pinned,
+        labels: this.labels
       }
-      console.log("??????????????????", body);
-
       this.service.createNote(body).subscribe(data => {
         console.log(data);
         this.addingNote.emit();

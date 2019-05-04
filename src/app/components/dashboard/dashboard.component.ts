@@ -11,6 +11,14 @@ import { MessagingService } from '../../services/shared/messaging.service';
 import { LabelsComponent } from './components/labels/labels.component';
 
 
+export interface LabelData {
+  labels: string[],
+  addLabels: string[],
+  deleteLabels: string[],
+  renameLabels: any[]
+}
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -23,6 +31,10 @@ export class DashboardComponent implements OnInit {
   viewType: boolean = false;
   userAvatar: string;
   message
+  labels: string[] = [];
+  aLabels: string[] = [];
+  dLabels: string[] = [];
+  rLabels: any[] = [];
 
   @Input() email: string;
   @Input() name: string;
@@ -51,13 +63,55 @@ export class DashboardComponent implements OnInit {
     this.token = localStorage.getItem('token');
     this.data.onTokenInitialize(this.token);
     this.data.onUserIdInitialize(this.userid);
+    this.getLabels();
     // localStorage.clear();
   }
 
   ngOnInit() {
-    this.messagingService.requestPermission()
-    this.messagingService.receiveMessage()
-    this.message = this.messagingService.currentMessage
+    // this.messagingService.requestPermission()
+    // this.messagingService.receiveMessage()
+    // this.message = this.messagingService.currentMessage
+  }
+
+
+  getLabels() {
+    this.service.getLabels().subscribe((result: string[]) => {
+      this.labels = result;
+      this.data.onSetLabels(result);
+    }, err => {
+      console.error(err);
+    })
+  }
+
+  addLabels() {
+    let data = {
+      labelArr: this.aLabels
+    }
+    this.service.addLabels(data).subscribe(result => {
+      console.log(result);
+    }, err => {
+      console.error(err);
+    })
+  }
+
+  deleteLabels() {
+    let data = {
+      labelArr: this.dLabels
+    }
+    this.service.deleteLabels(data).subscribe(result => {
+      console.log(result);
+    }, err => {
+      console.error(err);
+    })
+  }
+
+  renameLabels() {
+
+    // this.service.renameLabels(data).subscribe(result => {
+    //   console.log(result);
+    // }, err => {
+    //   console.error(err);
+    // })
   }
 
   refresh() {
@@ -120,6 +174,25 @@ export class DashboardComponent implements OnInit {
   }
 
   editLabels() {
-    const dialogBox = this.matdailog.open(LabelsComponent)
+    let temp: LabelData = {
+      labels: this.labels,
+      addLabels: this.aLabels,
+      deleteLabels: this.dLabels,
+      renameLabels: this.rLabels
+    }
+    const dialogBox = this.matdailog.open(LabelsComponent, {
+      data: temp
+    })
+    dialogBox.afterClosed().subscribe(data => {
+      if (this.aLabels.length > 0) {
+        this.addLabels();
+      }
+      if (this.dLabels.length > 0) {
+        this.deleteLabels();
+      }
+      if (this.rLabels.length > 0) {
+        this.renameLabels();
+      }
+    });
   }
 }

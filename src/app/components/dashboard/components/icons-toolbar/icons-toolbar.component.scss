@@ -341,3 +341,91 @@
 .off {
   display: none;
 }
+
+//labels menu
+
+.lmenu {
+  padding-top: 11px;
+  width: 225px;
+  border-radius: 2px;
+  // position: fixed;
+  font-size: 13px;
+  max-width: 225px;
+  position: absolute;
+  top: -77px;
+  width: 225px;
+  z-index: 5003;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 2px 6px 2px rgba(60, 64, 67, 0.149);
+  background-color: #fff;
+}
+
+.txt1 {
+  padding: 0px 12px;
+  font-size: 14px;
+}
+
+.srch {
+  background: url("../../../../../assets/minisearch.svg") no-repeat center;
+  background-size: 14px 14px;
+  opacity: 0.35;
+  position: absolute;
+  right: 13px;
+  top: 36px;
+  width: 18px;
+  height: 18px;
+  padding: 0px;
+}
+
+.inp {
+  outline: 0;
+  border: 0;
+  padding: 2px 22px 2px 2px;
+}
+
+.sea {
+  padding: 8px 12px;
+}
+
+.lcon {
+  padding: 6px 0px;
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+.lcon1:hover {
+  background-color: #f3f0f0c4;
+}
+
+.lcon1 {
+  padding: 5px 10px 3px;
+  display: block;
+  cursor: pointer;
+}
+
+.img {
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  display: inline-block;
+  height: 18px;
+  opacity: 0.54;
+  width: 18px;
+  margin-top: 2px;
+  background-position: center;
+}
+
+.cb {
+  background-image: url("../../../../../assets/cb2.svg");
+}
+
+.cb1 {
+  background-image: url("../../../../../assets/cb1.svg");
+}
+
+.txt2 {
+  vertical-align: top;
+  max-width: 165px;
+  margin-left: 7px;
+  padding-top: 4px;
+  display: inline-block;
+  word-wrap: break-word;
+}

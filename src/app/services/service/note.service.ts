@@ -11,6 +11,22 @@ export class NoteService {
   constructor(private httpService: HttpService, private data: DataService) { }
 
 
+  getLabels() {
+    return this.httpService.userPost(environment.userLabels, this.data.token)
+  }
+
+  deleteLabels(body: { labelArr: string[] }) {
+    return this.httpService.userPut(environment.deleteLabels, this.data.token, body);
+  }
+
+  renameLabels(body) {
+    return this.httpService.userPut(environment.deleteLabels, this.data.token, body);
+  }
+
+  addLabels(body: { labelArr: string[] }) {
+    return this.httpService.userPut(environment.addLabels, this.data.token, body);
+  }
+
   createNote(body: any) {
     return this.httpService.post(body, environment.createNote);
   }

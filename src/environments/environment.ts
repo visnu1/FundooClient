@@ -30,6 +30,9 @@ export const environment = {
   reminder: url + `reminderService`,
   userProfile: url + `userProfile`,
   updateFbToken: url + `notificationToken`,
+  userLabels: url + `getLabels`,
+  deleteLabels: url + 'deleteLabels',
+  addLabels: url + `addLabels`
 };
 
 /*

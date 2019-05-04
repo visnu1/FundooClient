@@ -5,7 +5,6 @@ import { OnDestroy, AfterViewInit, ElementRef, ViewChild, ChangeDetectorRef, NgZ
 import { DataService } from 'src/app/services/data-service/data.service';
 import { NoteService } from 'src/app/services/service/note.service';
 import { FormControl, Validators } from '@angular/forms';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -19,9 +18,6 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   encapsulation: ViewEncapsulation.None
 })
 export class IconsToolbarComponent implements OnInit {
-
-
-
 
   constructor(private service: NoteService, private router: Router, private data: DataService, private _eref: ElementRef) {
   }
@@ -43,6 +39,8 @@ export class IconsToolbarComponent implements OnInit {
   archiveB: string = "on";
   unArchiveB: string = "off"
 
+
+  labels: string[] = this.data.onGetLabels();
 
 
   // @ViewChild('element') element: ElementRef<HTMLElement>;
@@ -77,6 +75,7 @@ export class IconsToolbarComponent implements OnInit {
   @Output() trashact = new EventEmitter();
   @Output() archiveAct = new EventEmitter();
   @Output() reminderCard = new EventEmitter();
+  @Output() menuClosed = new EventEmitter();
 
   colorbox = [
     { color: "#fff", title: "Default" },
@@ -237,7 +236,7 @@ export class IconsToolbarComponent implements OnInit {
     }
   }
 
-  reminderService(card, date) {
+  reminderService(card, date: any = '') {
     if (card == undefined) {
       this.reminderCard.emit(date.toISOString());
     } else {
@@ -256,6 +255,29 @@ export class IconsToolbarComponent implements OnInit {
     }
   }
 
+  onAdd(card, l) {
+    console.log(card);
+    console.log(l);
+    if ((card.labels).includes(l)) {
+
+    } else {
+
+    }
+    card.labels.push(l);
+    let plab = [];
+    let dlab = [];
+
+  }
+
+  isOpened(e) {
+    console.log("working");
+
+  }
+
+  // marked = false;
+  // toggleVisibility(e) {
+  //   this.marked = e.target.checked;
+  // }
 }
 
 

@@ -10,10 +10,10 @@ export class DataService {
   token: string;
   userId: string;
   avatar: string;
+  labels: any;
 
   private messageSource = new BehaviorSubject(false);
   currentMessage = this.messageSource.asObservable();
-
 
   constructor() { }
 
@@ -33,6 +33,14 @@ export class DataService {
 
   onSetAvatar(pic) {
     this.avatar = pic;
+  }
+
+  onSetLabels(labels) {
+    this.labels = labels
+  }
+
+  onGetLabels() {
+    return this.labels;
   }
 
 }
