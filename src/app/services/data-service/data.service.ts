@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 
@@ -11,6 +11,7 @@ export class DataService {
   userId: string;
   avatar: string;
   labels: any;
+  currentLabel = new EventEmitter();
 
   private messageSource = new BehaviorSubject(false);
   currentMessage = this.messageSource.asObservable();
@@ -41,6 +42,10 @@ export class DataService {
 
   onGetLabels() {
     return this.labels;
+  }
+
+  onEmitCurrentLabel(name) {
+    this.currentLabel.emit(name);
   }
 
 }

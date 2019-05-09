@@ -3,7 +3,7 @@ import { DataService } from "../../../../services/data-service/data.service";
 import { MatDialog } from '@angular/material';
 import { UpdateNoteComponent } from '../update-note/update-note.component';
 import { NoteService } from 'src/app/services/service/note.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 export interface DialogData {
   data: string;
@@ -41,28 +41,12 @@ export class UserNotesComponent implements OnInit {
     })
   }
 
-  movies = [
-    {
-      title: "hello",
-      description: "working3"
-    },
-    {
-      title: "hello1",
-      description: "working2"
-    },
-    {
-      title: "hello2",
-      description: "working1"
-    }
-  ]
-
   updateNote(card) {
     const dialogBox = this.matdailog.open(UpdateNoteComponent, {
       data: card
     });
     dialogBox.afterClosed().subscribe(result => {
       if (result == undefined) {
-        console.log("woking undefined");
         return;
       }
       else if (result == "archive") {
@@ -95,20 +79,38 @@ export class UserNotesComponent implements OnInit {
     this.archiveAction.emit();
   }
 
-  // drop(event: CdkDragDrop<{
-  //   archive: boolean
-  //   color: string
-  //   createdAt: string
-  //   description: string
-  //   pinned: boolean
-  //   title: string
-  //   trash: boolean
-  //   updatedAt: string
-  //   userId: string
-  //   __v: number
-  //   _id: string
-  // }[]>) {
-  //   moveItemInArray(this.getCards.cards, event.previousIndex, event.currentIndex);
-  // }
+  drop(event: CdkDragDrop<any[]>) {
+    moveItemInArray(this.getCards.cards, event.previousIndex, event.currentIndex);
+    console.log("ITEM", event.item);
+    console.log("CURRENT INDEX", event.currentIndex);
+    console.log("PREVIOUS INDEX", event.previousIndex);
+    // console.log("",event.);
+
+
+
+
+  }
 
 }
+
+
+
+  //error fall here tuple error
+
+  // drop2(event: CdkDragDrop<any[]>) {
+  //   if (event.previousContainer === event.container) {
+  //     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  //   } else {
+  //     transferArrayItem(event.previousContainer.data,
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.currentIndex);
+  //   }
+  // }
+
+
+  // <div cdkDropList #gridList2="cdkDropList" [cdkDropListData]="getCards.gridCards2"
+  // [cdkDropListConnectedTo]="[gridList1,gridList3]" class="example-list" (cdkDropListDropped)="drop2($event)">
+
+  // <div class="gridele example-box" *ngFor='let card of getCards.gridCards2' [style.background-color]="card.color"
+  //   cdkDrag>

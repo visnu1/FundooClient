@@ -8,9 +8,9 @@
       <div class="edi1" aria-label="Created yesterday, 10:25 AM">Edited yesterday, 10:25 AM</div>
     </div> -->
   </div>
-  <div class="rembox" [ngStyle]="{'display': (data.reminder === '') ? 'none' : 'flex'}">
+  <div class="rembox">
     <div class="remboxc1">
-      <div class="remboxc11">
+      <div class="remboxc11" [ngStyle]="{'display': (data.reminder === '') ? 'none' : 'flex'}">
         <div class="clk"></div>
         <label class="time"
           [ngStyle]="{'display': (d0|date:shortDate) === (data.reminder|date:shortDate) ? 'block' : 'none'}">Yesterday,

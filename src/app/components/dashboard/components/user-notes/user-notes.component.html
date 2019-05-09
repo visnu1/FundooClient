@@ -22,44 +22,43 @@
   <div class="fullii">
     <!-- <div class="pinned">PINNED</div>
     <div class="pinned">OTHERS</div> -->
-    <div *ngFor='let card of getCards.cards' class="child edit" [style.background-color]="card.color">
-      <div class="ele1" (click)="updateNote(card)">
-        <div class="app-pin" [card]="card">
-        </div>
-        <div class="title">{{card.title}}</div>
-        <div class="descr">{{card.description}}</div>
-        <!-- <div class="edited" style="display: none">
-            <div class="edi1" aria-label="Created yesterday, 10:25 AM">Edited yesterday, 10:25 AM</div>
-          </div> -->
-      </div>
-      <div class="rembox">
-        <div class="remboxc1">
-          <div class="remboxc11" [ngStyle]="{'display': (card.reminder === '') ? 'none' : 'flex'}">
-            <div class="clk"></div>
-            <label class="time"
-              [ngStyle]="{'display': (d0|date:shortDate) === (card.reminder|date:shortDate) ? 'block' : 'none'}">Yesterday,
-              {{card.reminder | date:'h:mm a'}}</label>
-            <label class="time"
-              [ngStyle]="{'display': (d|date:shortDate) === (card.reminder|date:shortDate) ? 'block' : 'none'}">Today,
-              {{card.reminder | date:'h:mm a'}}</label>
-            <label class="time"
-              [ngStyle]="{'display': (d1|date:shortDate) === (card.reminder|date:shortDate) ? 'block' : 'none'}">Tommorrow,
-              {{card.reminder | date:'h:mm a'}}</label>
-            <label class="time"
-              [ngStyle]="{'display':  (d0|date:shortDate) != (card.reminder|date:shortDate) && (d|date:shortDate) != (card.reminder|date:shortDate) && (d1|date:shortDate) != (card.reminder|date:shortDate) ? 'block' : 'none'}">{{card.reminder | date:'MMMM d, h:mm a'}}</label>
+    <div cdkDropList class="example-list" (cdkDropListDropped)=" drop($event)">
+      <div class="child edit" [style.background-color]="card.color" *ngFor="let card of getCards.cards" cdkDrag>
+        <div class="ele1">
+          <div class="app-pin" [card]="card">
           </div>
-          <div class="dfds" (click)="remove()"></div>
+          <div class="title" (click)="updateNote(card)">{{card.title}}</div>
+          <div class="descr" (click)="updateNote(card)">{{card.description}}</div>
         </div>
-        <div class="remboxc1" *ngFor="let l of card.labels">
-          <div class="remboxc11">
-            <label style="font-size: 12px" class="time">{{l}}</label>
+        <div class="rembox" [ngStyle]="{'display': card.reminder != '' || card.labels.length ? 'flex' : 'none'}">
+          <div class="remboxc1">
+            <div class="remboxc11" [ngStyle]="{'display': (card.reminder === '') ? 'none' : 'flex'}">
+              <div class="clk"></div>
+              <label class="time"
+                [ngStyle]="{'display': (d0|date:shortDate) === (card.reminder|date:shortDate) ? 'block' : 'none'}">Yesterday,
+                {{card.reminder | date:'h:mm a'}}</label>
+              <label class="time"
+                [ngStyle]="{'display': (d|date:shortDate) === (card.reminder|date:shortDate) ? 'block' : 'none'}">Today,
+                {{card.reminder | date:'h:mm a'}}</label>
+              <label class="time"
+                [ngStyle]="{'display': (d1|date:shortDate) === (card.reminder|date:shortDate) ? 'block' : 'none'}">Tommorrow,
+                {{card.reminder | date:'h:mm a'}}</label>
+              <label class="time"
+                [ngStyle]="{'display':  (d0|date:shortDate) != (card.reminder|date:shortDate) && (d|date:shortDate) != (card.reminder|date:shortDate) && (d1|date:shortDate) != (card.reminder|date:shortDate) ? 'block' : 'none'}">{{card.reminder | date:'MMMM d, h:mm a'}}</label>
+            </div>
+            <div class="dfds" (click)="remove()"></div>
+          </div>
+          <div class="remboxc1" *ngFor="let l of card.labels">
+            <div class="remboxc11">
+              <label style="font-size: 12px" class="time">{{l}}</label>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="iconbar">
-        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
-          (archiveAct)="archiveCall()">
-        </app-icons-toolbar>
+        <div class="iconbar">
+          <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
+            (archiveAct)="archiveCall()">
+          </app-icons-toolbar>
+        </div>
       </div>
     </div>
   </div>
@@ -79,7 +78,7 @@
           {{card.description}}
         </div>
       </div>
-      <div class="rembox">
+      <div class="rembox" [ngStyle]="{'display': card.reminder != '' || card.labels.length ? 'flex' : 'none'}">
         <div class="remboxc1">
           <div class="remboxc11" [ngStyle]="{'display': (card.reminder === '') ? 'none' : 'flex'}">
             <div class="clk"></div>
@@ -119,7 +118,7 @@
           {{card.description}}
         </div>
       </div>
-      <div class="rembox">
+      <div class="rembox" [ngStyle]="{'display': card.reminder != '' || card.labels.length ? 'flex' : 'none'}">
         <div class="remboxc1">
           <div class="remboxc11" [ngStyle]="{'display': (card.reminder === '') ? 'none' : 'flex'}">
             <div class="clk"></div>
@@ -159,7 +158,7 @@
           {{card.description}}
         </div>
       </div>
-      <div class="rembox">
+      <div class="rembox" [ngStyle]="{'display': card.reminder != '' || card.labels.length ? 'flex' : 'none'}">
         <div class="remboxc1">
           <div class="remboxc11" [ngStyle]="{'display': (card.reminder === '') ? 'none' : 'flex'}">
             <div class="clk"></div>

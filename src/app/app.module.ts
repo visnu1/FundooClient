@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 //we have to import this module for taking form inputs froms
 import { ReactiveFormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -33,8 +34,6 @@ import { NativeDateModule } from '@angular/material';
 import { MatNativeDateModule, MatSliderModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 
-
-
 import { HttpClientModule } from '@angular/common/http';
 import { RemindersComponent } from './components/dashboard/components/reminders/reminders.component';
 import { ArchiveComponent } from './components/dashboard/components/archive/archive.component';
@@ -54,6 +53,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import { LabelsComponent } from './components/dashboard/components/labels/labels.component';
+import { EditLabelsComponent } from './components/dashboard/components/edit-labels/edit-labels.component';
 
 
 @NgModule({
@@ -75,8 +75,10 @@ import { LabelsComponent } from './components/dashboard/components/labels/labels
     UpdateNoteComponent,
     ImageUploadComponent,
     LabelsComponent,
+    EditLabelsComponent,
   ],
   imports: [
+    DragDropModule,
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
@@ -105,7 +107,7 @@ import { LabelsComponent } from './components/dashboard/components/labels/labels
     AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  entryComponents: [UpdateNoteComponent, ImageUploadComponent, LabelsComponent],
+  entryComponents: [UpdateNoteComponent, ImageUploadComponent, EditLabelsComponent],
   providers: [MessagingService, AsyncPipe],
   bootstrap: [AppComponent]
 })

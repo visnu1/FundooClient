@@ -14,8 +14,10 @@
           <img class="k21" src="../../../assets/keep_big_logo.png">
           <span class="k22">Keep</span>
         </div>
-        <div class='k3' *ngIf="router.url != '/dashboard/note'">
-          <span class="k22">{{router.url | slice:11 | titlecase}}</span>
+        <div class='k3' *ngIf="router.url !== '/dashboard/note'">
+          <span class="k22"
+            *ngIf="router.url == '/dashboard/reminders' || router.url == '/dashboard/archive' || router.url == '/dashboard/trash' ; else elseBlock">{{router.url | slice:11 | titlecase}}</span>
+          <ng-template class="k22" #elseBlock>{{router.url | slice:18 }}</ng-template>
         </div>
       </div>
       <div class="all">
@@ -98,8 +100,9 @@
           <ul class="sul">
             <div class="qwer">LABELS</div>
 
-            <li class="sli" *ngFor="let l of labels.sort()">
-              <a>
+            <li class="sli" *ngFor="let l of labels.sort()" [routerLinkActive]="['active']"
+              [routerLink]="['labels', l]">
+              <a (click)=labelsPage(l)>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_jc">
                   <path
                     d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16zM16 17H5V7h11l3.55 5L16 17z">

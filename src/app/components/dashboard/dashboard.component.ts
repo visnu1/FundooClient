@@ -2,13 +2,13 @@ import { Component, OnInit, ViewEncapsulation, Input, ViewChild } from '@angular
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DataService } from "../../services/data-service/data.service";
 import { MatDialog } from '@angular/material';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { NoteService } from 'src/app/services/service/note.service';
 import { MessagingService } from '../../services/shared/messaging.service';
-import { LabelsComponent } from './components/labels/labels.component';
+import { EditLabelsComponent } from './components/edit-labels/edit-labels.component';
 
 
 export interface LabelData {
@@ -55,8 +55,8 @@ export class DashboardComponent implements OnInit {
     private service: NoteService,
     private breakpointObserver: BreakpointObserver,
     private messagingService: MessagingService,
-    private matdailog: MatDialog) {
-
+    private matdailog: MatDialog,
+    private route: ActivatedRoute) {
     this.email = localStorage.getItem('email');
     this.name = localStorage.getItem('name');
     this.userid = localStorage.getItem('userid');
@@ -68,6 +68,8 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     // this.messagingService.requestPermission()
     // this.messagingService.receiveMessage()
     // this.message = this.messagingService.currentMessage
@@ -173,6 +175,11 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['dashboard/trash']);
   }
 
+  labelsPage(l) {
+    this.router.navigate(['dashboard/labels', l]);
+    this.data.onEmitCurrentLabel(l);
+  }
+
   editLabels() {
     let temp: LabelData = {
       labels: this.labels,
@@ -180,7 +187,7 @@ export class DashboardComponent implements OnInit {
       deleteLabels: this.dLabels,
       renameLabels: this.rLabels
     }
-    const dialogBox = this.matdailog.open(LabelsComponent, {
+    const dialogBox = this.matdailog.open(EditLabelsComponent, {
       data: temp
     })
     dialogBox.afterClosed().subscribe(data => {

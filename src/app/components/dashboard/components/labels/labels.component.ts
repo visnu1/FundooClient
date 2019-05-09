@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { DashboardComponent, LabelData } from '../../dashboard.component';
-import { FormControl, FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+
+
 import { NoteService } from 'src/app/services/service/note.service';
+import { DataService } from 'src/app/services/data-service/data.service';
 
 @Component({
   selector: 'app-labels',
@@ -11,49 +11,67 @@ import { NoteService } from 'src/app/services/service/note.service';
 })
 export class LabelsComponent implements OnInit {
 
+  allCards = {
+    cards: [],
+    gridCards1: [],
+    gridCards2: [],
+    gridCards3: [],
+  }
+  label: string;
 
-  label = new FormControl("")
-  editedLabel = new FormControl('');
-  exits: boolean = false;
-  pen: string;
-  done: string;
+  constructor(private service: NoteService, private data: DataService) { }
 
-  constructor(public dialogRef: MatDialogRef<DashboardComponent>, private service: NoteService,
-    @Inject(MAT_DIALOG_DATA) public data: LabelData) { }
 
   ngOnInit() {
+    this.data.currentLabel.subscribe(name => {
+      this.label = name;
+      this.getCards();
+    })
   }
 
-  onAdd() {
-    if (this.data.labels.indexOf((this.label.value).toLowerCase()) === -1) {
-      this.data.labels.push(this.label.value);
-      this.data.addLabels.push(this.label.value);
-      this.exits = false
-    } else {
-      this.exits = true;
+  getCards() {
+    this.service.getNotes(this.data.token).subscribe(data => {
+      this.segregate(data['result']);
+    })
+  }
+
+
+  segregate(data) {
+    let temp = [];
+    let tempo = [];
+    let temp1 = [];
+    let temp2 = [];
+    let temp3 = [];
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].trash == false && data[i].archive == false && data[i].labels.includes(this.label)) {
+        data[i].labels = [this.label];
+        temp.push(data[i]);
+        tempo.push(data[i]);
+      }
     }
-    this.label.reset();
-  }
+    this.allCards.cards = temp.reverse();
 
-  onRemove(label) {
-    var del = this.data.labels.splice(this.data.labels.indexOf(label), 1);
-    this.data.deleteLabels.push(del.pop());
-  }
-
-  onRename(label, index) {
-    var ren = {
-      old: label,
-      new: this.editedLabel.value
+    while (tempo.length > 0) {
+      temp1.push(tempo.pop());
+      if (tempo.length == 0) {
+        break;
+      } else {
+        temp2.push(tempo.pop());
+        if (tempo.length == 0) {
+          break;
+        } else {
+          temp3.push(tempo.pop());
+        }
+      }
     }
-    this.data.renameLabels.push(ren);
-    this.data.labels[index] = this.editedLabel.value;
+    this.allCards.gridCards1 = temp1;
+    this.allCards.gridCards2 = temp2;
+    this.allCards.gridCards3 = temp3;
   }
 
-  close() {
-    console.log(this.data.labels);
-    console.log(this.editedLabel.value);
-
-    this.dialogRef.close()
+  userinteract() {
+    this.ngOnInit();
   }
 
 }

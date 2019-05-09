@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation, } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation, DoCheck, } from '@angular/core';
 import { Router } from '@angular/router';
 import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
 import { OnDestroy, AfterViewInit, ElementRef, ViewChild, ChangeDetectorRef, NgZone } from '@angular/core';
@@ -18,6 +18,8 @@ import { FormControl, Validators } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class IconsToolbarComponent implements OnInit {
+  pLabels: string[] = [];
+  dLabels: string[] = [];
 
   constructor(private service: NoteService, private router: Router, private data: DataService, private _eref: ElementRef) {
   }
@@ -256,22 +258,44 @@ export class IconsToolbarComponent implements OnInit {
   }
 
   onAdd(card, l) {
-    console.log(card);
-    console.log(l);
+    let temp = card.labels.splice();
     if ((card.labels).includes(l)) {
-
+      card.labels.splice(card.labels.indexOf(l), 1);
+      this.dLabels.push(l);
+      if (this.pLabels.includes(l)) {
+        this.pLabels.splice(this.pLabels.indexOf(l), 1);
+      }
     } else {
-
+      card.labels.push(l);
+      this.pLabels.push(l);
+      if (this.dLabels.includes(l)) {
+        this.dLabels.splice(this.dLabels.indexOf(l), 1);
+      }
     }
-    card.labels.push(l);
-    let plab = [];
-    let dlab = [];
-
   }
 
-  isOpened(e) {
-    console.log("working");
+  isClosed(card) {
 
+    if (this.pLabels.length > 0) {
+      let data = {
+        cardId: card._id,
+        plabels: this.pLabels
+      }
+      this.service.patchLabels(data).subscribe(result => {
+        console.log(result);
+        this.pLabels = [];
+      });
+    }
+    if (this.dLabels.length > 0) {
+      let data = {
+        cardId: card._id,
+        dlabels: this.dLabels
+      }
+      this.service.chipLabels(data).subscribe(result => {
+        console.log(result);
+        this.dLabels = [];
+      });
+    }
   }
 
   // marked = false;

@@ -20,7 +20,15 @@ export class NoteService {
   }
 
   renameLabels(body) {
-    return this.httpService.userPut(environment.deleteLabels, this.data.token, body);
+    return this.httpService.userPut(environment.renameLabels, this.data.token, body);
+  }
+
+  patchLabels(body) {
+    return this.httpService.userPut(environment.patchLabels, this.data.token, body);
+  }
+
+  chipLabels(body) {
+    return this.httpService.userPut(environment.chipLabels, this.data.token, body);
   }
 
   addLabels(body: { labelArr: string[] }) {

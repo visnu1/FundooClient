@@ -32,7 +32,10 @@ export const environment = {
   updateFbToken: url + `notificationToken`,
   userLabels: url + `getLabels`,
   deleteLabels: url + 'deleteLabels',
-  addLabels: url + `addLabels`
+  addLabels: url + `addLabels`,
+  patchLabels: url + `patchLabels`,
+  chipLabels: url + `chipLabels`,
+  renameLabels: url + `renameLabels`
 };
 
 /*
