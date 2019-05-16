@@ -42,7 +42,7 @@ export class TrashComponent implements OnInit {
         tempo.push(data[i]);
       }
     }
-    this.trashCards.cards = temp.reverse();
+    this.trashCards.cards = temp.slice();
     while (tempo.length > 0) {
       temp1.push(tempo.pop());
       if (tempo.length == 0) {

@@ -99,7 +99,6 @@
           </ul>
           <ul class="sul">
             <div class="qwer">LABELS</div>
-
             <li class="sli" *ngFor="let l of labels.sort()" [routerLinkActive]="['active']"
               [routerLink]="['labels', l]">
               <a (click)=labelsPage(l)>

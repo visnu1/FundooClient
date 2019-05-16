@@ -81,16 +81,28 @@ export class UserNotesComponent implements OnInit {
 
   drop(event: CdkDragDrop<any[]>) {
     moveItemInArray(this.getCards.cards, event.previousIndex, event.currentIndex);
-    console.log("ITEM", event.item);
-    console.log("CURRENT INDEX", event.currentIndex);
-    console.log("PREVIOUS INDEX", event.previousIndex);
-    // console.log("",event.);
-
-
-
-
+    let index;
+    if (event.currentIndex == 0) {
+      let frontIndex = this.getCards.cards[event.currentIndex + 1]['index'];
+      index = frontIndex + 0.0001;
+    } else if (event.currentIndex == this.getCards.cards.length - 1) {
+      let prevIndex = this.getCards.cards[event.currentIndex - 1]['index']
+      index = prevIndex - 0.0001;
+    } else {
+      let prevIndex = this.getCards.cards[event.currentIndex - 1]['index']
+      let frontIndex = this.getCards.cards[event.currentIndex + 1]['index'];
+      index = (prevIndex + frontIndex) / 2
+    }
+    this.getCards.cards[event.currentIndex]["index"] = index;
+    let card = this.getCards.cards[event.currentIndex];
+    let data = {
+      cardId: card._id,
+      index: card.index
+    }
+    this.service.updateIndex(data).subscribe(res => {
+      console.log(res);
+    });
   }
-
 }
 
 

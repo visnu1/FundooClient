@@ -44,7 +44,7 @@ export class RemindersComponent implements OnInit {
         tempo.push(data[i]);
       }
     }
-    this.allCards.cards = temp.reverse();
+    this.allCards.cards = temp.slice();
 
     while (tempo.length > 0) {
       temp1.push(tempo.pop());

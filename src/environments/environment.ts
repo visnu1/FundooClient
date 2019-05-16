@@ -35,7 +35,8 @@ export const environment = {
   addLabels: url + `addLabels`,
   patchLabels: url + `patchLabels`,
   chipLabels: url + `chipLabels`,
-  renameLabels: url + `renameLabels`
+  renameLabels: url + `renameLabels`,
+  updateIndex: url + `updateIndex`
 };
 
 /*

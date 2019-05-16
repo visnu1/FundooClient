@@ -77,4 +77,9 @@ export class NoteService {
       firebaseToken: token
     });
   }
+
+  updateIndex(body: { cardId; index; }) {
+    return this.httpService.userPut(environment.updateIndex, this.data.token, body);
+  }
+
 }

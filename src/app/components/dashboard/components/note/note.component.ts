@@ -26,7 +26,6 @@ export class NoteComponent implements OnInit {
     //console.log(this.data.token);
     this.service.getNotes(this.data.token).subscribe(data => {
       this.segregate(data['result']);
-      // console.log(this.cards);
     })
   }
 
@@ -43,8 +42,7 @@ export class NoteComponent implements OnInit {
         tempo.push(data[i]);
       }
     }
-    this.allCards.cards = temp.reverse();
-
+    this.allCards.cards = temp
     while (tempo.length > 0) {
       temp1.push(tempo.pop());
       if (tempo.length == 0) {

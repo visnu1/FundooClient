@@ -35,8 +35,7 @@ export class ImageUploadComponent implements OnInit {
 
   imageCropped(event) {
     this.croppedImg = event.file;
-    console.log(event.file);
-
+    // console.log(event.file);
   }
 
   submit() {
