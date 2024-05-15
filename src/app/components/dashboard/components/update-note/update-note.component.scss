@@ -55,7 +55,7 @@
   position: absolute;
   right: 0%;
 }
-/deep/ .mat-dialog-container,
+::ng-deep .mat-dialog-container,
 .edit {
   padding: 0px;
   border: 1px solid inherit;

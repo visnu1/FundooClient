@@ -13,15 +13,15 @@
   src: url("../fonts/roboto-regular.ttf");
 }
 
-/deep/ .material-icons {
+::ng-deep .material-icons {
   color: rgba(0, 0, 0, 0.54);
 }
 
-/deep/ .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
   color: rgba(0, 0, 0, 0.08);
 }
 
-/deep/ .error-snackbar {
+::ng-deep .error-snackbar {
   background: rgba(252, 252, 252, 0.658);
   color: rgb(207, 30, 30);
   // height: 500px;
