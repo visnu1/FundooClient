@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatCard } from '@angular/material';
+
 import { DialogData, UserNotesComponent } from '../user-notes/user-notes.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-update-note',

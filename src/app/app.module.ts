@@ -25,13 +25,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSnackBarModule } from '@angular/material'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { NativeDateModule } from '@angular/material';
-import { MatNativeDateModule, MatSliderModule } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -44,17 +44,22 @@ import { UserNotesComponent } from './components/dashboard/components/user-notes
 import { A11yModule } from '@angular/cdk/a11y';
 import { PinComponent } from './components/dashboard/components/pin/pin.component';
 import { UpdateNoteComponent } from './components/dashboard/components/update-note/update-note.component';
-import { ImageCropperModule } from 'ngx-image-cropper';
-import { AngularFireModule } from '@angular/fire';
+
 import { MessagingService } from './services/shared/messaging.service';
-import { environment } from '../environments/environment';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireMessagingModule } from '@angular/fire/messaging';
+
+
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import { LabelsComponent } from './components/dashboard/components/labels/labels.component';
 import { EditLabelsComponent } from './components/dashboard/components/edit-labels/edit-labels.component';
 
+// import { AngularFireModule } from '@angular/fire';
+// import { AngularFireDatabaseModule } from '@angular/fire/database';
+// import { AngularFireAuthModule } from '@angular/fire/auth';
+// import { AngularFireMessagingModule } from '@angular/fire/messaging';
+
+
+
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -97,17 +102,16 @@ import { EditLabelsComponent } from './components/dashboard/components/edit-labe
     MatMenuModule,
     MatDialogModule,
     A11yModule,
-    ImageCropperModule,
     MatDatepickerModule,
-    NativeDateModule,
+    MatNativeDateModule,
     MatNativeDateModule,
     MatSelectModule,
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    AngularFireMessagingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireDatabaseModule,
+    // AngularFireAuthModule,
+    // AngularFireMessagingModule,
+    // AngularFireModule.initializeApp(environment.firebase),
   ],
-  entryComponents: [UpdateNoteComponent, ImageUploadComponent, EditLabelsComponent],
+  // entryComponents: [UpdateNoteComponent, ImageUploadComponent, EditLabelsComponent],
   providers: [MessagingService, AsyncPipe],
   bootstrap: [AppComponent]
 })

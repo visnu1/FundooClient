@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 import { DashboardComponent } from '../../dashboard.component';
 import { DialogData } from '../user-notes/user-notes.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 //to select and drop files
 
 @Component({

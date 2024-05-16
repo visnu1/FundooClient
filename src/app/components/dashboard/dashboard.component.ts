@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DataService } from "../../services/data-service/data.service";
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
-import { NoteService } from 'src/app/services/service/note.service';
 import { MessagingService } from '../../services/shared/messaging.service';
 import { EditLabelsComponent } from './components/edit-labels/edit-labels.component';
+import { NoteService } from '../../services/service/note.service';
 
 
 export interface LabelData {

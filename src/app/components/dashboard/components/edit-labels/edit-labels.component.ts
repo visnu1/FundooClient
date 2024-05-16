@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DashboardComponent, LabelData } from '../../dashboard.component';
 import { FormControl, FormsModule } from '@angular/forms';
-import { NoteService } from 'src/app/services/service/note.service';
+import { NoteService } from '../../../../services/service/note.service';
+
 
 @Component({
   selector: 'app-edit-labels',

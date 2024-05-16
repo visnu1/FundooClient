@@ -5,9 +5,9 @@ import { FormBuilder } from '@angular/forms';
 //Reactive forms include a set of validator functions for common use cases
 import { Validators } from '@angular/forms';
 import { CValidators } from '../../customValidations'
-import { MatSnackBar } from '@angular/material'
 import { Router } from '@angular/router'
 import { UserService } from '../../services/service/user.service'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({

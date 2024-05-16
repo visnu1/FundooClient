@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatCard } from '@angular/material';
+import { MatCard } from '@angular/material/card';
 
 @Component({
   selector: '.app-pin',
