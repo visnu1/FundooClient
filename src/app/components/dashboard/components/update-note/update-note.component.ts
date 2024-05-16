@@ -2,13 +2,17 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogData, UserNotesComponent } from '../user-notes/user-notes.component';
 
+
+
 @Component({
   selector: 'app-update-note',
   templateUrl: './update-note.component.html',
   styleUrls: ['./update-note.component.scss']
 })
 export class UpdateNoteComponent implements OnInit {
+
   
+
   d = new Date();
   d0 = new Date(this.d.getFullYear(), this.d.getMonth(), this.d.getDate() - 1);
   d1 = new Date(this.d.getFullYear(), this.d.getMonth(), this.d.getDate() + 1);

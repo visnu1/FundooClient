@@ -16,7 +16,9 @@
       </div>
       <div class="remove" (click)="removeReminder()"></div>
     </div>
-    <div class="edited" aria-label="Created {{ data?.updatedAt | date: 'MMMM d, h:mm a' }}">Edited {{ data?.updatedAt | date: 'MMMM d, h:mm a' }}</div>
+    <div class="edited" [attr.aria-label]="'Created ' + (data?.updatedAt | date: 'MMMM d, h:mm a')">
+      Edited {{ data?.updatedAt | date: 'MMMM d, h:mm a' }}
+    </div>
   </div>
   <div class="iconbar">
     <app-icons-toolbar [card]="data" (click)="save($event)"></app-icons-toolbar>

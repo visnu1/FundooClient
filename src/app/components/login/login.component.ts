@@ -20,6 +20,9 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]/)]);
   password = new FormControl('', [Validators.required]);
   response: any;
+  hide = true;
+
+
   constructor(private router: Router, private service: UserService, private snackbar: MatSnackBar) { }
 
   ngOnInit() {

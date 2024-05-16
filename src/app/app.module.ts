@@ -52,14 +52,14 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
 import { LabelsComponent } from './components/dashboard/components/labels/labels.component';
 import { EditLabelsComponent } from './components/dashboard/components/edit-labels/edit-labels.component';
 
-// import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth/';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 // import { AngularFireDatabaseModule } from '@angular/fire/database';
-// import { AngularFireAuthModule } from '@angular/fire/auth';
-// import { AngularFireMessagingModule } from '@angular/fire/messaging';
 
 
 
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.development';
 
 @NgModule({
   declarations: [
@@ -107,9 +107,9 @@ import { environment } from '../environments/environment';
     MatNativeDateModule,
     MatSelectModule,
     // AngularFireDatabaseModule,
-    // AngularFireAuthModule,
-    // AngularFireMessagingModule,
-    // AngularFireModule.initializeApp(environment.firebase),
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
   ],
   // entryComponents: [UpdateNoteComponent, ImageUploadComponent, EditLabelsComponent],
   providers: [MessagingService, AsyncPipe],

@@ -6,6 +6,11 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { NoteService } from '../../../../services/service/note.service';
 
 export interface DialogData {
+  color?: string;
+  title?: string;
+  description?: string;
+  reminder?: Date;
+  updatedAt?: Date;
   data: string;
 }
 
@@ -102,6 +107,11 @@ export class UserNotesComponent implements OnInit {
     this.service.updateIndex(data).subscribe(res => {
       console.log(res);
     });
+  }
+
+
+  remove(){
+    alert("not implemented")
   }
 }
 

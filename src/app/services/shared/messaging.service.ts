@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireMessaging } from '@angular/fire/messaging'
+
 import { take } from 'rxjs/operators';
 import { NoteService } from '../service/note.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +14,15 @@ export class MessagingService {
   currentMessage = new BehaviorSubject(null);
 
   constructor(
-    private fireDB: AngularFireDatabase,
     private fireAuth: AngularFireAuth,
     private fireMsging: AngularFireMessaging,
     private service: NoteService
   ) {
-    this.fireMsging.messaging.subscribe((_messaging) => {
-      _messaging.onMessage = _messaging.onMessage.bind(_messaging);
-      _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
+    this.fireMsging.messages.subscribe((_messaging) => {
+      console.log(_messaging);
+      
+      // _messaging.onMessage = _messaging.onMessage.bind(_messaging);
+      // _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
     })
   }
 
@@ -84,7 +85,7 @@ export class MessagingService {
 
   deleteFirebaseToken = async () => {
     try {
-      await this.fireMsging.messaging.subscribe(data => {
+      await this.fireMsging.messages.subscribe((data:any) => {
         data.getToken()
           .then(token => {
             data.deleteToken(token)
