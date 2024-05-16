@@ -45,21 +45,12 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { PinComponent } from './components/dashboard/components/pin/pin.component';
 import { UpdateNoteComponent } from './components/dashboard/components/update-note/update-note.component';
 
-import { MessagingService } from './services/shared/messaging.service';
 
 
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import { LabelsComponent } from './components/dashboard/components/labels/labels.component';
 import { EditLabelsComponent } from './components/dashboard/components/edit-labels/edit-labels.component';
 
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth/';
-import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
-// import { AngularFireDatabaseModule } from '@angular/fire/database';
-
-
-
-import { environment } from '../environments/environment.development';
 
 @NgModule({
   declarations: [
@@ -106,13 +97,9 @@ import { environment } from '../environments/environment.development';
     MatNativeDateModule,
     MatNativeDateModule,
     MatSelectModule,
-    // AngularFireDatabaseModule,
-    AngularFireMessagingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
   ],
   // entryComponents: [UpdateNoteComponent, ImageUploadComponent, EditLabelsComponent],
-  providers: [MessagingService, AsyncPipe],
+  providers: [AsyncPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

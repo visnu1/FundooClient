@@ -6,7 +6,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DataService } from "../../services/data-service/data.service";
 import { MatDialog } from '@angular/material/dialog';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
-import { MessagingService } from '../../services/shared/messaging.service';
 import { EditLabelsComponent } from './components/edit-labels/edit-labels.component';
 import { NoteService } from '../../services/service/note.service';
 
@@ -54,7 +53,6 @@ export class DashboardComponent implements OnInit {
     private matDailog: MatDialog,
     private service: NoteService,
     private breakpointObserver: BreakpointObserver,
-    private messagingService: MessagingService,
     private matdailog: MatDialog,
     private route: ActivatedRoute) {
     this.email = localStorage.getItem('email');
