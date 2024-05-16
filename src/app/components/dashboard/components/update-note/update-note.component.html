@@ -1,29 +1,22 @@
 <div class="edit" [style.background-color]="data?.color">
   <div class="tit-des">
-    <div id="title1" contenteditable="true" [textContent]="data?.title" (input)="data.title = $event.target.textContent">
+    <div id="title1" contenteditable="true" [textContent]="data?.title" (input)="updateTitle($event)">
     </div>
-    <div class="descrp" contenteditable="true" [textContent]="data?.description"
-      (input)="data.description = $event.target.textContent"></div>
+    <div class="descrp" contenteditable="true" [textContent]="data?.description" (input)="updateDescription($event)">
+    </div>
   </div>
   <div class="rembox">
     <div class="remboxc1">
-      <div class="remboxc11" [ngStyle]="{'display': (data?.reminder ? 'flex' : 'none')}">
+      <div class="remboxc11" [ngStyle]="{ 'display': data?.reminder ? 'flex' : 'none' }">
         <div class="clk"></div>
-        <label class="time"
-          [ngStyle]="{'display': isSameDay(d0, data?.reminder) ? 'block' : 'none'}">Yesterday,
-          {{ data?.reminder | date:'h:mm a' }}</label>
-        <label class="time"
-          [ngStyle]="{'display': isSameDay(d, data?.reminder) ? 'block' : 'none'}">Today,
-          {{ data?.reminder | date:'h:mm a' }}</label>
-        <label class="time"
-          [ngStyle]="{'display': isSameDay(d1, data?.reminder) ? 'block' : 'none'}">Tomorrow,
-          {{ data?.reminder | date:'h:mm a' }}</label>
-        <label class="time"
-          [ngStyle]="{'display': isOutsideRange(d0, d1, data?.reminder) ? 'block' : 'none'}">{{ data?.reminder | date:'MMMM d, h:mm a' }}</label>
+        <label class="time" *ngIf="isSameDay(d0, data?.reminder)">Yesterday, {{ data?.reminder | date: 'h:mm a' }}</label>
+        <label class="time" *ngIf="isSameDay(d, data?.reminder)">Today, {{ data?.reminder | date: 'h:mm a' }}</label>
+        <label class="time" *ngIf="isSameDay(d1, data?.reminder)">Tomorrow, {{ data?.reminder | date: 'h:mm a' }}</label>
+        <label class="time" *ngIf="isOutsideRange(d0, d1, data?.reminder)">{{ data?.reminder | date: 'MMMM d, h:mm a' }}</label>
       </div>
-      <div class="remove" (click)="remove()"></div>
+      <div class="remove" (click)="removeReminder()"></div>
     </div>
-    <div class="edited" aria-label="Created {{ data.updatedAt | date:'MMMM d, h:mm a' }}">Edited {{ data?.updatedAt | date:'MMMM d, h:mm a' }}</div>
+    <div class="edited" aria-label="Created {{ data?.updatedAt | date: 'MMMM d, h:mm a' }}">Edited {{ data?.updatedAt | date: 'MMMM d, h:mm a' }}</div>
   </div>
   <div class="iconbar">
     <app-icons-toolbar [card]="data" (click)="save($event)"></app-icons-toolbar>

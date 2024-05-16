@@ -19,7 +19,7 @@
             <input matInput placeholder type="email" [formControl]="email">
           </mat-form-field>
           <mat-error *ngIf="email.errors && click">
-            {{email.errors.userError}}
+            {{email.errors?.userError}}
           </mat-error>
         </div>
         <div>

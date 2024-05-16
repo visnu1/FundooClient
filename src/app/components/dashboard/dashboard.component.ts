@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
     );
 
   constructor(
-    private router: Router,
+    public router: Router,
     private data: DataService,
     private matDailog: MatDialog,
     private service: NoteService,

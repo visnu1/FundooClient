@@ -299,6 +299,10 @@ export class IconsToolbarComponent implements OnInit {
     }
   }
 
+  isOpened(event){
+    alert("Implement icons-toolbar component")
+  }
+
   // marked = false;
   // toggleVisibility(e) {
   //   this.marked = e.target.checked;

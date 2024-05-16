@@ -9,10 +9,16 @@
       Choose file
     </div>
   </div>
-  <image-cropper [ngClass]="imgDisplay" [imageChangedEvent]="imgData" [maintainAspectRatio]="true"
+  <!-- <image-cropper 
+  [ngClass]="imgDisplay" 
+  [imageChangedEvent]="imgData" 
+  [maintainAspectRatio]="true"
     [aspectRatio]="4 / 3"
     [imageQuality]="92"
-    [resizeToWidth]="0" format="jpg" (imageCropped)="imageCropped($event)"></image-cropper>
+    [resizeToWidth]="0" 
+    format="jpg" 
+    (imageCropped)="imageCropped($event)"
+    ></image-cropper> -->
 </div>
 <input style="display: none" type="file" (change)=fileAdded($event) #image>
 

@@ -17,6 +17,7 @@ export class EditLabelsComponent implements OnInit {
   exits: boolean = false;
   pen: string;
   done: string;
+  show = false;
 
   constructor(public dialogRef: MatDialogRef<DashboardComponent>, private service: NoteService,
     @Inject(MAT_DIALOG_DATA) public data: LabelData) { }
