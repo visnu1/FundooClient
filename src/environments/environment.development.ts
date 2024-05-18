@@ -1,5 +1,5 @@
-var url = `http://localhost:5000/`;
-// var url = `http://18.188.137.21:5000/`
+var url = `http://localhost:3000/`;
+// var url = `http://18.188.137.21:3000/`
 
 export const environment = {
   production: false,
