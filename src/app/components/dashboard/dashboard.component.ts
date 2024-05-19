@@ -84,8 +84,8 @@ export class DashboardComponent implements OnInit {
   }
 
   addLabels() {
-    let data = {
-      labelArr: this.aLabels
+    const data = {
+      labels: this.aLabels
     }
     this.service.addLabels(data).subscribe(result => {
       console.log(result);

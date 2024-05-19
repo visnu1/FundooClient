@@ -17,43 +17,48 @@ export class EditLabelsComponent implements OnInit {
   exits: boolean = false;
   pen: string;
   done: string;
-  show = false;
+  show = true;
 
-  constructor(public dialogRef: MatDialogRef<DashboardComponent>, private service: NoteService,
-    @Inject(MAT_DIALOG_DATA) public data: LabelData) { }
+  constructor(
+    public dialogRef: MatDialogRef<DashboardComponent>,
+    private service: NoteService,
+    @Inject(MAT_DIALOG_DATA) public data: LabelData
+  ) { }
 
   ngOnInit() {
   }
 
+
+  public get labels(): string[] {
+    return this.data.labels.sort();
+  }
+
   onAdd() {
-    if (this.data.labels.indexOf((this.label.value).toLowerCase()) === -1) {
-      this.data.labels.push(this.label.value);
-      this.data.addLabels.push(this.label.value);
-      this.exits = false
-    } else {
+    if (!this.label.value) return;
+    if (this.data.labels.indexOf((this.label.value).toLowerCase()) != -1)
       this.exits = true;
-    }
+
+    this.data.labels.push(this.label.value);
+    this.data.addLabels.push(this.label.value);
+    this.exits = false;
     this.label.reset();
   }
 
-  onRemove(label) {
+  onRemove(label: string) {
     var del = this.data.labels.splice(this.data.labels.indexOf(label), 1);
     this.data.deleteLabels.push(del.pop());
   }
 
-  onRename(label, index) {
-    var ren = {
+  onRename(label: string, newLabel: string, index: number) {
+    const ren = {
       old: label,
-      new: this.editedLabel.value
+      new: newLabel
     }
     this.data.renameLabels.push(ren);
-    this.data.labels[index] = this.editedLabel.value;
+    this.data.labels[index] = newLabel;
   }
 
   close() {
-    console.log(this.data.labels);
-    console.log(this.editedLabel.value);
-
     this.dialogRef.close()
   }
 

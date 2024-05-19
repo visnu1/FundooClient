@@ -31,7 +31,7 @@ export class NoteService {
     return this.httpService.userPut(environment.chipLabels, this.data.token, body);
   }
 
-  addLabels(body: { labelArr: string[] }) {
+  addLabels(body: { labels: string[] }) {
     return this.httpService.userPut(environment.addLabels, this.data.token, body);
   }
 

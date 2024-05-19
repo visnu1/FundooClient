@@ -17,7 +17,7 @@ export class PinComponent implements OnInit {
   ngOnInit() {
   }
 
-  pinned(card) {
+  pinNote(card) {
     console.log(card);
   }
 
