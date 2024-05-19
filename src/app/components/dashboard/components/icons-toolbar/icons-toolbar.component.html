@@ -25,10 +25,11 @@
   </div>
 </div>
 
+<!-- colors -->
 <mat-menu class="colri" #colri="matMenu" yPosition="above" [overlapTrigger]="false" (menuClosed)="isOpened($event)"
   panelClass="custom">
   <div class=colorbox>
-    <div (click)="color(obj,card)" *ngFor="let obj of colorbox" [attr.title]="obj.title"
+    <div *ngFor="let obj of colorbox" [attr.title]="obj.title" (click)="color(obj,card)"
       [ngStyle]="{'background-color':obj.color}"></div>
   </div>
 </mat-menu>
@@ -71,7 +72,7 @@
     </div>
     <div class="remcom">
       <div class="ch">
-        <div class="text clk" (click)="$event.stopPropagation(); pdt = !pdt">
+        <div class="text clk pos" (click)="$event.stopPropagation(); pdt = !pdt">
           Pick date & time
         </div>
       </div>

@@ -6,13 +6,13 @@
       <input class="default" type="text" placeholder="Create new label" [formControl]="label">
       <div class="sty done" (click)="onAdd()"></div>
     </div>
-    <mat-error [ngStyle]="{display: exits ? 'block':'none'}">label already exists</mat-error>
-    <div class="edb12" *ngFor='let label of data.labels.sort(); let i = index;' (click)="show = !show">
+    <mat-error [ngStyle]="{display: exits ? 'block':'none'}">Label already exists</mat-error>
+    <div class="edb12" *ngFor='let label of labels; let i = index;'>
       <div class="sty label"></div>
       <div class="sty bin" (click)="onRemove(label)"></div>
-      <input type="text" [value]=label [formControl]="editedLabel">
+      <input type="text" [value]=label #labelInput>
       <!-- <div class="sty rename" (click)="onRename(i)" #pen></div> -->
-      <div class="sty done tla" (click)="onRename(label,i)"></div>
+      <div class="sty done tla" (click)="onRename(label, labelInput.value, i)"></div>
     </div>
   </div>
   <div class="edb2">

@@ -103,28 +103,15 @@
 //////////
 .grid {
   //here
-  width: 784px;
+  width: 100%;
   margin: 0px auto 0px auto;
   position: relative;
   background-color: #fff;
   border-color: #e0e0e0;
   border-width: 1px 1px 1px 6px;
-  // display: block;
-
-  // display: -webkit-box;
-  // display: -moz-box;
-  // display: -webkit-flex;
-  // display: -ms-flexbox;
   display: flex;
-  // -webkit-flex-direction: row-reverse;
-  // flex-direction: column-reverse;
-  // -webkit-flex-wrap: wrap-reverse;
-  // flex-wrap: wrap;
+  max-width: calc(100% - 200px);
 }
-
-// .grid * {
-//   flex: 1 0 auto;
-// }
 
 .gridele {
   width: 240px;
@@ -167,7 +154,8 @@
   letter-spacing: 0.00625em;
   font-family: "google-sans", Roboto, Arial, sans-serif;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: bold !important;
+  color: black;
   line-height: 1.5rem;
 }
 
@@ -236,12 +224,12 @@
 }
 
 .remboxc11 {
-  justify-content: center;
   min-width: 30px;
   padding: 3px 5px;
   height: 18px;
   display: flex;
-  // width: 134px;
+  align-items: center;
+  justify-content: center;
 }
 
 .clk {
