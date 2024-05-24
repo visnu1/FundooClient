@@ -50,6 +50,7 @@ import { UpdateNoteComponent } from './components/dashboard/components/update-no
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import { LabelsComponent } from './components/dashboard/components/labels/labels.component';
 import { EditLabelsComponent } from './components/dashboard/components/edit-labels/edit-labels.component';
+import { NoteLabelsComponent } from './components/dashboard/components/note-labels/note-labels.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { EditLabelsComponent } from './components/dashboard/components/edit-labe
     ImageUploadComponent,
     LabelsComponent,
     EditLabelsComponent,
+    NoteLabelsComponent,
   ],
   imports: [
     DragDropModule,

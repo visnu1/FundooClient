@@ -6,6 +6,7 @@ import { OnDestroy, AfterViewInit, ElementRef, ViewChild, ChangeDetectorRef, NgZ
 import { FormControl, Validators } from '@angular/forms';
 import { NoteService } from '../../../../services/service/note.service';
 import { DataService } from '../../../../services/data-service/data.service';
+import { Note } from '../../../../Models/note';
 
 
 
@@ -39,11 +40,91 @@ export class IconsToolbarComponent implements OnInit {
   //to apply styles
   menuStyle: string = "menue";
 
-  archiveB: string = "on";
-  unArchiveB: string = "off"
+  archiveIco = true;
 
 
   labels: string[] = this.data.onGetLabels();
+
+  // noteCtrls = [
+  //   {
+  //     title: 'Remind me',
+  //     icon: {
+  //       src: 'material',
+  //       name: 'add_alert'
+  //     },
+  //     render: false,
+  //     menuTrigger: 'reminderMenu',
+  //     action: ''
+  //   },
+  //   {
+  //     title: 'Collaborator',
+  //     icon: {
+  //       src: 'material',
+  //       name: 'person_add'
+  //     },
+  //     render: false,
+  //     menuTrigger: '',
+  //     action: ''
+  //   },
+  //   {
+  //     title: 'Background options',
+  //     icon: {
+  //       src: 'material',
+  //       name: 'palette'
+  //     },
+  //     render: false,
+  //     menuTrigger: 'paletteMenu'
+  //   },
+  //   {
+  //     title: 'Add image',
+  //     icon: {
+  //       src: 'material',
+  //       name: 'image'
+  //     },
+  //     render: false,
+  //     menuTrigger: 'reminderMenu'
+  //   },
+  //   {
+  //     title: 'Archive',
+  //     icon: {
+  //       src: 'material',
+  //       name: 'archive'
+  //     },
+  //     render: false,
+  //     menuTrigger: 'reminderMenu'
+  //   },
+  //   {
+  //     title: 'Unarchive',
+  //     icon: {
+  //       src: 'material',
+  //       name: 'unarchive'
+  //     },
+  //     render: false,
+  //     menuTrigger: 'reminderMenu'
+  //   },
+  //   {
+  //     title: 'Undo',
+  //     icon: {
+  //       src: 'material',
+  //       name: 'undo'
+  //     },
+  //     render: false,
+  //     menuTrigger: 'reminderMenu'
+  //   },
+  //   {
+  //     title: 'More',
+  //     icon: {
+  //       src: 'material',
+  //       name: 'more'
+  //     },
+  //     render: false,
+  //     menuTrigger: 'reminderMenu'
+  //   }
+  // ];
+  
+
+
+
 
 
   // @ViewChild('element') element: ElementRef<HTMLElement>;
@@ -103,8 +184,7 @@ export class IconsToolbarComponent implements OnInit {
       this.menuStyle = "menui"
     }
     if (this.router.url == '/dashboard/archive') {
-      this.archiveB = "off";
-      this.unArchiveB = "on"
+      this.archiveIco = false;
     }
     document.body.click()
   }
@@ -136,77 +216,82 @@ export class IconsToolbarComponent implements OnInit {
     }
   }
 
-  updateColour(color, card) {
-    let obj = {
+  updateColour(color: string, card: Note): void {
+    const obj = {
       "cardId": card._id,
       "color": color
     }
-    this.service.colorService(obj).subscribe(data => {
-      console.log("card set for your choice");
-    }, error => {
-      console.error("unable to color your card:", error);
+    this.service.updateNote(obj).subscribe({
+      next: (v) => console.log(v),
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
     })
   }
 
-  archive(card) {
+  archive(card: Note): void {
     if (card == undefined) {
       //take a note event emitter
       this.archiveCard.emit(true);
-    } else {
-      // card.archive = true;
-      console.log(card);
-      console.log(card._id);
-      var obj = {
-        "cardId": card._id,
-        "archive": !card.archive,
-      }
-      this.service.archiveService(obj, this.data.token).subscribe(data => {
+      return;
+    }
+    const obj = {
+      "cardId": card._id,
+      "archive": !card.archive,
+    }
+    this.service.updateNote(obj).subscribe({
+      next: (v) => {
+        console.log(v);
         this.action.emit();
         this.archiveAct.emit();
-      }, error => {
-        console.error("failed to initiate a user service:", error);
-      })
-    }
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    });
   }
 
-  trash(card) {
-    console.log(card);
-    var obj = {
+  trash(card: Note): void {
+    const obj = {
       "cardId": card._id,
       "trash": true,
     }
-    this.service.trashService(obj).subscribe(data => {
-      console.log(data);
-      this.action.emit();
-      this.archiveAct.emit();
-    }, error => {
-      console.error("failed to initiate a user service:", error);
-    })
+    this.service.updateNote(obj).subscribe({
+      next: (v) => {
+        console.log(v);
+        this.action.emit();
+        this.archiveAct.emit();
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    });
   }
 
-  restore(card) {
-    var obj = {
+  restore(card: Note): void {
+    const obj = {
       "cardId": card._id,
       "trash": false
     }
-    this.service.trashService(obj).subscribe(data => {
-      this.trashact.emit(card);
-    }, error => {
-      console.error("unable to restore the card:", error)
-    })
+    this.service.updateNote(obj).subscribe({
+      next: (v) => {
+        console.log(v);
+        this.trashact.emit(card);
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    });
   }
 
-  delete(card) {
-    console.log(card);
-    var obj = {
+  delete(card: Note): void {
+    const obj = {
       "cardId": card._id
     }
-    this.service.deleteService(obj).subscribe(data => {
-      console.log(data);
-      this.trashact.emit(card);
-    }, error => {
-      console.error("unable to delete note:", error)
-    })
+    this.service.deleteService(obj).subscribe({
+      next: (v) => {
+        console.log(v);
+        this.trashact.emit(card);
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    });
   }
 
 
@@ -239,23 +324,26 @@ export class IconsToolbarComponent implements OnInit {
     }
   }
 
-  reminderService(card, date: any = '') {
+  reminderService(card: Note, date: any = '') {
     if (card == undefined) {
       this.reminderCard.emit(date.toISOString());
-    } else {
-      card.reminder = date;
-      let data = {
-        cardId: card._id,
-        reminder: date
-      }
-      this.service.reminderService(data).subscribe(res => {
-        console.log(res);
+      return;
+    }
+    card.reminder = date;
+    const obj = {
+      cardId: card._id,
+      reminder: date
+    }
+
+    this.service.updateNote(obj).subscribe({
+      next: (v) => {
+        console.log(v);
         this.action.emit();
         this.archiveAct.emit();
-      }, err => {
-        console.warn("Unable to set reminder", err);
-      })
-    }
+      },
+      error: (e) => console.error('Unable to set reminder:', e),
+      complete: () => console.info('complete')
+    });
   }
 
   onAdd(card, l) {
@@ -299,7 +387,7 @@ export class IconsToolbarComponent implements OnInit {
     }
   }
 
-  isOpened(event){
+  isOpened(event) {
     alert("Implement icons-toolbar component")
   }
 
@@ -310,20 +398,20 @@ export class IconsToolbarComponent implements OnInit {
 }
 
 
-  //heart is here
-    // var f = new Date()
-    // var d1 = new Date(f.getFullYear(), f.getMonth(), (f.getDate() + 1), 8);
-    // console.log(d1.toLocaleString('en-US', { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }));
+//heart is here
+// var f = new Date()
+// var d1 = new Date(f.getFullYear(), f.getMonth(), (f.getDate() + 1), 8);
+// console.log(d1.toLocaleString('en-US', { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }));
 
-    // let obj = {
-    //   cardId: card._id,
-    //   reminders: d1
-    // }
+// let obj = {
+//   cardId: card._id,
+//   reminders: d1
+// }
 
- // $(document.body).click( function() {
-  //   closeMenu();
-  // });
+// $(document.body).click( function() {
+//   closeMenu();
+// });
 
-  // $(".dialog").click( function(e) {
-  //   e.stopPropagation(); // this stops the event from bubbling up to the body
-  // });
+// $(".dialog").click( function(e) {
+//   e.stopPropagation(); // this stops the event from bubbling up to the body
+// });

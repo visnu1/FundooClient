@@ -33,38 +33,6 @@
   opacity: 0.7;
 }
 
-.rem {
-  background-image: url(../../../../../assets/bell.svg);
-}
-
-.collaborator {
-  background-image: url(../../../../../assets/user.svg);
-}
-
-.color {
-  background-image: url(../../../../../assets/color.svg);
-}
-
-.img {
-  background-image: url(../../../../../assets/image.svg);
-}
-
-.archive {
-  background-image: url(../../../../../assets/archieve.svg);
-}
-
-.unarchive {
-  background-image: url(../../../../../assets/unachive.svg);
-}
-
-.more {
-  background-image: url(../../../../../assets/more.svg);
-}
-
-.undo {
-  background-image: url(../../../../../assets/undo.svg);
-}
-
 .toolbar div:hover {
   opacity: 1;
 }
@@ -117,13 +85,30 @@
   }
 }
 
+.note-ctrls {
+  height: 32px !important;
+  margin: 0 8px;
+  width: 32px !important;
+  padding: 0 !important;
+
+  .small-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    color: black;
+  }
+  
+}
+
+
 .colorbox {
   width: 450px;
   background-color: #fff;
   z-index: 10;
   padding: 0px 5px;
 
-  & > div {
+  &>div {
     border: 0.5px solid transparent;
     border-radius: 50%;
     box-sizing: border-box;
@@ -211,7 +196,7 @@
   height: 18px;
 }
 
-.pos{
+.pos {
   display: flex;
   justify-content: flex-start;
   align-items: center;

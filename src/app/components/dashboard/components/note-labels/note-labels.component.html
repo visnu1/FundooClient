@@ -1,0 +1,15 @@
+<div class="lbls">
+    <div class="lbl-stl" *ngFor="let label of labels">
+        <div class="lbl-dim">
+            <span class="material-symbols-outlined schedule-ico" *ngIf="label?.reminder">
+                schedule
+            </span>
+            <label class="lbl-txt">{{label.name}}</label>
+            <button class="rmv-lbl" mat-icon-button (click)="removeLabel(card, label, label.reminder)">
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+            </button>
+        </div>
+    </div>
+</div>

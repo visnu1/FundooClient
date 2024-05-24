@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatCard } from '@angular/material/card';
+import { Note } from '../../../../Models/note';
+import { NoteService } from '../../../../services/service/note.service';
 
 @Component({
   selector: '.app-pin',
@@ -7,18 +8,24 @@ import { MatCard } from '@angular/material/card';
   styleUrls: ['./pin.component.scss']
 })
 export class PinComponent implements OnInit {
+  @Input() card!: Note;
 
-  constructor() { }
+  constructor(private _noteService: NoteService) { }
 
-  pin: boolean
+  ngOnInit(): void { }
 
-  @Input() card;
+  updatePin(state: boolean): void {
+    const updatePayload = {
+      cardId: this.card._id,
+      pinned: state
+    };
 
-  ngOnInit() {
+    this._noteService.updateNote(updatePayload).subscribe({
+      next: () => {
+        this.card['pinned'] = state;
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    });
   }
-
-  pinNote(card) {
-    console.log(card);
-  }
-
 }

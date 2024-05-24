@@ -9,6 +9,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
+
   post(body: any, url) {
     //creat HTTP headers which allow the client and the server to pass additional information with the request or the response.
     return this.http.post(url, body, {
@@ -16,7 +17,7 @@ export class HttpService {
     })
   }
 
-  userPost(url, token: string, body: any = null) {
+  userPost(url:string, token: string, body: any = null) {
     return this.http.post(url, body, {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -24,6 +25,17 @@ export class HttpService {
       })
     })
   }
+
+  userDelete(url: string, token: string, body: any = null) {
+    return this.http.delete(url, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        'token': token
+      }),
+      body
+    });
+  }
+  
 
   userPut(url, token: string, body: any = null) {
     return this.http.put(url, body, {

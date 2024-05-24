@@ -58,11 +58,11 @@ title {
 .k2 {
   padding-left: 0;
   padding-right: 16px;
-  top: 2px;
   align-items: center;
   display: flex;
   height: 44px;
   width: 101px;
+  user-select: none;
 
   // position: relative;
   .k22 {
@@ -174,20 +174,15 @@ title {
 //problem with this
 .input {
   overflow: hidden;
-  padding: 11px 16px;
+  padding: 10px 15px;
   border: none;
   box-sizing: border-box;
-  font-size: 15px;
+  font-size: 16px;
   font-family: sans-serif;
   background: none;
-  // this is the evil, deadly important
   outline: none;
-  /** here the responsive game begins**/
-  // width: 100%;
-  // max-width: 1000px
   width: 100%;
-  // min-width: 100px;
-  // max-width: 700px;
+  padding-left: 0px;
 }
 
 @media (max-width: 775px) {

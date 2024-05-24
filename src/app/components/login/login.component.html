@@ -26,7 +26,7 @@
           <mat-form-field appearance="outline" class="psw">
             <mat-label>Password</mat-label>
             <input matInput placeholder [type]="hide ?'text':'password'" [formControl]="password">
-            <mat-icon matSuffix (click)="hide = !hide">{{
+            <mat-icon matSuffix class="material-symbols-outlined" (click)="hide = !hide">{{
               hide ? "visibility" : "visibility_off"
             }}</mat-icon>
           </mat-form-field>

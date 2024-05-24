@@ -12,18 +12,18 @@ export const environment = {
     messagingSenderId: "922374463864"
   },
 
-  signUp: url + `registerService`,
-  signIn: url + `loginService`,
-  forgotPassword: url + `forgotPswService`,
-  resetPassword: url + `resetService/token`,
-  createNote: url + `createNote`,
-  userNotes: url + `userNotes`,
-  archive: url + `archiveNote`,
-  trash: url + `trashNote`,
-  delete: url + `deleteService`,
-  color: url + `colorService`,
-  updateNote: url + `updateNote`,
-  reminder: url + `reminderService`,
+  signUp: url + `register`,
+  signIn: url + `login`,
+  forgotPassword: url + `forgot_password`,
+  resetPassword: url + `reset_password/token`,
+  createNote: url + `create/note`,
+  userNotes: url + `notes`,
+  updateNote: url + `update/note`,
+  removeNoteLabel: url + `remove/note/label`,
+
+
+  delete: url + `delete/note`,
+  
   userProfile: url + `userProfile`,
   updateFbToken: url + `notificationToken`,
   userLabels: url + `getLabels`,

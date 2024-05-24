@@ -10,7 +10,6 @@ export class NoteService {
 
   constructor(private httpService: HttpService, private data: DataService) { }
 
-
   getLabels() {
     return this.httpService.userPost(environment.userLabels, this.data.token)
   }
@@ -43,28 +42,17 @@ export class NoteService {
     return this.httpService.userPost(environment.userNotes, token);
   }
 
-  archiveService(body: any, token: string) {
-    return this.httpService.userPut(environment.archive, token, body);
-  }
-
-  trashService(body: any) {
-    return this.httpService.userPut(environment.trash, this.data.token, body);
-  }
 
   deleteService(body: any) {
-    return this.httpService.userPost(environment.delete, this.data.token, body);
-  }
-
-  colorService(body: any) {
-    return this.httpService.userPut(environment.color, this.data.token, body);
-  }
-
-  reminderService(body: any) {
-    return this.httpService.userPut(environment.reminder, this.data.token, body);
+    return this.httpService.userDelete(environment.delete, this.data.token, body);
   }
 
   updateNote(body: any) {
     return this.httpService.userPost(environment.updateNote, this.data.token, body);
+  }
+
+  removeNoteLabel(body: any){
+    return this.httpService.userPost(environment.removeNoteLabel, this.data.token, body);
   }
 
   userProfile(body: any) {

@@ -1,0 +1,83 @@
+.lbls {
+    display: flex;
+    padding: 5px 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.lbl-stl {
+    position: relative;
+    margin: 6px 6px 0 0;
+    max-width: 100%;
+    background-color: rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px transparent;
+    box-sizing: border-box;
+    letter-spacing: 0.01785714em;
+    font-family: "google-sans", Roboto, Arial, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+}
+
+.lbl-dim {
+    min-width: 40px;
+    padding: 3px 5px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.material-symbols-outlined{
+    font-size: 16px;
+}
+
+.schedule-ico {
+    flex: 0 0 auto;
+    // padding-left: 18px;
+    opacity: 0.65;
+    margin-right: 4px;
+}
+
+.lbl-txt {
+    text-align: left;
+    color: #3c4043;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 11px;
+}
+
+.rmv-lbl {
+    height: 18px;
+    width: 18px;
+    color: black;
+    padding: 0px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    position: absolute;
+    right: 4px;
+    margin-left: 4px;
+
+    .material-symbols-outlined {
+        font-size: 14px;
+    }
+}
+
+.lbl-stl:hover {
+
+    .lbl-dim{
+        justify-content: flex-start;
+    }
+
+    .rmv-lbl {
+        display: flex;
+    }
+
+    .lbl-txt {
+        width: calc(100% - 30px);
+    }
+}
