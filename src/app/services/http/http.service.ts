@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class HttpService {
     })
   }
 
-  userPost(url:string, token: string, body: any = null) {
+  userPost(url: string, token: string, body: any = null): Observable<any> {
     return this.http.post(url, body, {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -35,7 +36,7 @@ export class HttpService {
       body
     });
   }
-  
+
 
   userPut(url, token: string, body: any = null) {
     return this.http.put(url, body, {

@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { NoteLabel } from '../../Models/note';
 
 
 @Injectable({
@@ -10,13 +11,21 @@ export class DataService {
   token: string;
   userId: string;
   avatar: string;
-  labels: any;
   currentLabel = new EventEmitter();
+
+  labels: NoteLabel[];
+  labels$ = new EventEmitter<NoteLabel[]>;
+
 
   private messageSource = new BehaviorSubject(false);
   currentMessage = this.messageSource.asObservable();
 
   constructor() { }
+
+  public initLabels(labels: NoteLabel[]) {
+    this.labels = labels;
+    this.labels$.emit(labels);
+  }
 
 
   //To change the view style of cards
@@ -34,14 +43,6 @@ export class DataService {
 
   onSetAvatar(pic) {
     this.avatar = pic;
-  }
-
-  onSetLabels(labels) {
-    this.labels = labels
-  }
-
-  onGetLabels() {
-    return this.labels;
   }
 
   onEmitCurrentLabel(name) {

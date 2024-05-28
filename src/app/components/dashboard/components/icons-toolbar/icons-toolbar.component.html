@@ -188,11 +188,12 @@
     <input class="inp" type="text" placeholder="Enter label name">
     <div class="srch"></div>
   </div>
-  <div class="lcon">
-    <div (click)="onAdd(card,l); $event.stopPropagation()" class="lcon1" *ngFor="let l of labels">
-      <div class="img cb" *ngIf="card != undefined  &&  !(card.labels).includes(l)"></div>
-      <div class="img cb1" *ngIf="card != undefined && (card.labels).includes(l)"></div>
-      <div class="txt2">{{l}}</div>
+  <div class="lbl-items">
+    <div class="lbl-item" (click)="onAdd(l); $event.stopPropagation()"  *ngFor="let l of labels">
+      <span class="material-symbols-outlined check-ico">
+        {{ l.active ?'check_box' : 'check_box_outline_blank'}}
+      </span>
+      <div class="lbl-txt">{{l.name}}</div>
     </div>
   </div>
 </mat-menu>

@@ -2,37 +2,41 @@ import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
 import { DataService } from '../data-service/data.service';
 import { environment } from '../../../environments/environment.development';
+import { Observable, map } from 'rxjs';
+import { NoteLabel } from '../../Models/note';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
 
-  constructor(private httpService: HttpService, private data: DataService) { }
+  constructor(private httpService: HttpService, private dataService: DataService) { }
 
-  getLabels() {
-    return this.httpService.userPost(environment.userLabels, this.data.token)
+
+  //labels
+
+  fetchLabels(): void {
+    this.httpService.userPost(environment.userLabels, this.dataService.token).pipe(
+      map((labels: any[]) => labels.sort((a, b) => a.name.localeCompare(b.name)))
+    ).subscribe({
+      next: (labels: NoteLabel[]) => this.dataService.initLabels(labels),
+      error: (err) => console.error(err)
+    });
   }
 
-  deleteLabels(body: { labelArr: string[] }) {
-    return this.httpService.userPut(environment.deleteLabels, this.data.token, body);
+  addLabels(payload: any): Observable<any> {
+    return this.httpService.userPut(environment.addLabels, this.dataService.token, payload);
   }
 
-  renameLabels(body) {
-    return this.httpService.userPut(environment.renameLabels, this.data.token, body);
+  renameLabels(updatePayload: any): Observable<any> {
+    return this.httpService.userPut(environment.renameLabels, this.dataService.token, updatePayload);
   }
 
-  patchLabels(body) {
-    return this.httpService.userPut(environment.patchLabels, this.data.token, body);
+  removeLabels(deletePayload: any): Observable<any> {
+    return this.httpService.userPut(environment.deleteLabels, this.dataService.token, deletePayload);
   }
 
-  chipLabels(body) {
-    return this.httpService.userPut(environment.chipLabels, this.data.token, body);
-  }
 
-  addLabels(body: { labels: string[] }) {
-    return this.httpService.userPut(environment.addLabels, this.data.token, body);
-  }
 
   createNote(body: any) {
     return this.httpService.post(body, environment.createNote);
@@ -44,30 +48,36 @@ export class NoteService {
 
 
   deleteService(body: any) {
-    return this.httpService.userDelete(environment.delete, this.data.token, body);
+    return this.httpService.userDelete(environment.delete, this.dataService.token, body);
   }
 
   updateNote(body: any) {
-    return this.httpService.userPost(environment.updateNote, this.data.token, body);
+    return this.httpService.userPost(environment.updateNote, this.dataService.token, body);
   }
 
-  removeNoteLabel(body: any){
-    return this.httpService.userPost(environment.removeNoteLabel, this.data.token, body);
+  removeNoteLabel(body: any) {
+    body = { ...body, removeLabels: true };
+    return this.httpService.userPut(environment.updateNoteLabel, this.dataService.token, body);
+  }
+
+  addNoteLabel(body: any) {
+    body = { ...body, removeLabels: false };
+    return this.httpService.userPut(environment.updateNoteLabel, this.dataService.token, body);
   }
 
   userProfile(body: any) {
-    return this.httpService.imgPost(environment.userProfile, this.data.token, body);
+    return this.httpService.imgPost(environment.userProfile, this.dataService.token, body);
   }
 
   updateFbToken(token: string) {
-    return this.httpService.userPost(environment.updateFbToken, this.data.token, {
-      userId: this.data.userId,
+    return this.httpService.userPost(environment.updateFbToken, this.dataService.token, {
+      userId: this.dataService.userId,
       firebaseToken: token
     });
   }
 
   updateIndex(body: { cardId; index; }) {
-    return this.httpService.userPut(environment.updateIndex, this.data.token, body);
+    return this.httpService.userPut(environment.updateIndex, this.dataService.token, body);
   }
 
 }

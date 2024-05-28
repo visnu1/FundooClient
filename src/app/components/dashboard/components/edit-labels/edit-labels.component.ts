@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DashboardComponent, LabelData } from '../../dashboard.component';
-import { FormControl, FormsModule } from '@angular/forms';
+import { DashboardComponent } from '../../dashboard.component';
+import { FormControl } from '@angular/forms';
 import { NoteService } from '../../../../services/service/note.service';
-
+import { Observable, finalize, forkJoin, of } from 'rxjs';
 
 @Component({
   selector: 'app-edit-labels',
@@ -12,54 +12,125 @@ import { NoteService } from '../../../../services/service/note.service';
 })
 export class EditLabelsComponent implements OnInit {
 
-  label = new FormControl("")
-  editedLabel = new FormControl('');
-  exits: boolean = false;
-  pen: string;
-  done: string;
-  show = true;
+  label = new FormControl("");
+  exists = false;
+  labelData: any[];
+
+  newLabels = [];
+  updatedLabels = [];
+  deletedLabels = [];
 
   constructor(
+    private cdr: ChangeDetectorRef,
     public dialogRef: MatDialogRef<DashboardComponent>,
     private service: NoteService,
-    @Inject(MAT_DIALOG_DATA) public data: LabelData
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.labelData = data || [];
+  }
 
   ngOnInit() {
+    this.labelData.forEach(item => {
+      item['dirty'] = false;
+      item['newItem'] = false;
+    });
   }
 
 
-  public get labels(): string[] {
-    return this.data.labels.sort();
+  addLabel(name: string) {
+    const labelObj = {
+      name, newItem: true, dirty: false
+    };
+
+    if (this.labelData.length === 0) {
+      this.labelData.push(labelObj);
+      return;
+    }
+
+    let start = 0;
+    let mid = 0;
+    let end = this.labelData.length - 1;
+
+    while (start <= end) {
+      mid = Math.floor((start + end) / 2);
+      const labelName = this.labelData[mid].name;
+      const comparison = labelName.localeCompare(name);
+      if (comparison < 0) {
+        start = mid + 1;
+      } else {
+        end = mid - 1;
+      }
+    }
+    this.labelData.splice(start, 0, labelObj);
   }
 
-  onAdd() {
-    if (!this.label.value) return;
-    if (this.data.labels.indexOf((this.label.value).toLowerCase()) != -1)
-      this.exits = true;
+  onAddLabel() {
+    this.exists = false;
+    const labelVal = this.label.value;
+    if (!labelVal) return;
 
-    this.data.labels.push(this.label.value);
-    this.data.addLabels.push(this.label.value);
-    this.exits = false;
+    if (this.labelData.some(({ name }) => name.toLowerCase() === labelVal.toLowerCase())) {
+      this.exists = true;
+      return;
+    }
+
+    this.addLabel(labelVal);
+    this.newLabels.push(labelVal);
+
     this.label.reset();
   }
 
-  onRemove(label: string) {
-    var del = this.data.labels.splice(this.data.labels.indexOf(label), 1);
-    this.data.deleteLabels.push(del.pop());
-  }
-
-  onRename(label: string, newLabel: string, index: number) {
-    const ren = {
-      old: label,
-      new: newLabel
+  onRemoveLabel(index: number) {
+    const deleteItem = this.labelData.splice(index, 1).pop();
+    if (!deleteItem['newItem']) {
+      this.deletedLabels.push(deleteItem);
     }
-    this.data.renameLabels.push(ren);
-    this.data.labels[index] = newLabel;
   }
 
-  close() {
-    this.dialogRef.close()
+  onRenameLabel(label: any, newName: string) {
+    label['name'] = newName;
+    label['dirty'] = true;
   }
 
+  createLabels(labels: string[]): Observable<any> | null {
+    if (!labels.length) return null;
+    return this.service.addLabels({ labels });
+  }
+
+  renameLabels(labels: any[]): Observable<any> | null {
+    if (!labels.length) return null;
+    return this.service.renameLabels({ labels });
+  }
+
+  removeLabels(labels: any[]): Observable<any> | null {
+    if (!labels.length) return null;
+    return this.service.removeLabels({ labels }); //returns obervabale
+  }
+
+  async closeDialog() {
+    const newLabels = [];
+    const updatedLabels = [];
+    this.labelData.forEach(item => {
+      if (item.newItem) {
+        newLabels.push(item.name);
+        return;
+      }
+      if (item.dirty) {
+        updatedLabels.push(item);
+        return;
+      }
+    });
+    const createObs = this.createLabels(newLabels);
+    const renameObs = this.renameLabels(updatedLabels);
+    const removeObs = this.removeLabels(this.deletedLabels);
+    forkJoin([createObs, renameObs, removeObs].filter(obs => obs !== null))
+      .pipe(
+        finalize(() => this.dialogRef.close())
+      )
+      .subscribe({
+        next: (response) => console.log(response),
+        error: (err) => console.error(err),
+        complete: () => console.log('Labels API complete')
+      })
+  }
 }

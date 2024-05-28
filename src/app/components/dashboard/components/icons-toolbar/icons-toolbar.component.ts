@@ -6,7 +6,8 @@ import { OnDestroy, AfterViewInit, ElementRef, ViewChild, ChangeDetectorRef, NgZ
 import { FormControl, Validators } from '@angular/forms';
 import { NoteService } from '../../../../services/service/note.service';
 import { DataService } from '../../../../services/data-service/data.service';
-import { Note } from '../../../../Models/note';
+import { Note, NoteLabel } from '../../../../Models/note';
+import { Observable, Subscription } from 'rxjs';
 
 
 
@@ -23,7 +24,11 @@ export class IconsToolbarComponent implements OnInit {
   pLabels: string[] = [];
   dLabels: string[] = [];
 
-  constructor(private service: NoteService, private router: Router, private data: DataService, private _eref: ElementRef) {
+  constructor(
+    private service: NoteService,
+    private router: Router,
+    public dataService: DataService,
+    private _eref: ElementRef) {
   }
 
 
@@ -43,111 +48,10 @@ export class IconsToolbarComponent implements OnInit {
   archiveIco = true;
 
 
-  labels: string[] = this.data.onGetLabels();
-
-  // noteCtrls = [
-  //   {
-  //     title: 'Remind me',
-  //     icon: {
-  //       src: 'material',
-  //       name: 'add_alert'
-  //     },
-  //     render: false,
-  //     menuTrigger: 'reminderMenu',
-  //     action: ''
-  //   },
-  //   {
-  //     title: 'Collaborator',
-  //     icon: {
-  //       src: 'material',
-  //       name: 'person_add'
-  //     },
-  //     render: false,
-  //     menuTrigger: '',
-  //     action: ''
-  //   },
-  //   {
-  //     title: 'Background options',
-  //     icon: {
-  //       src: 'material',
-  //       name: 'palette'
-  //     },
-  //     render: false,
-  //     menuTrigger: 'paletteMenu'
-  //   },
-  //   {
-  //     title: 'Add image',
-  //     icon: {
-  //       src: 'material',
-  //       name: 'image'
-  //     },
-  //     render: false,
-  //     menuTrigger: 'reminderMenu'
-  //   },
-  //   {
-  //     title: 'Archive',
-  //     icon: {
-  //       src: 'material',
-  //       name: 'archive'
-  //     },
-  //     render: false,
-  //     menuTrigger: 'reminderMenu'
-  //   },
-  //   {
-  //     title: 'Unarchive',
-  //     icon: {
-  //       src: 'material',
-  //       name: 'unarchive'
-  //     },
-  //     render: false,
-  //     menuTrigger: 'reminderMenu'
-  //   },
-  //   {
-  //     title: 'Undo',
-  //     icon: {
-  //       src: 'material',
-  //       name: 'undo'
-  //     },
-  //     render: false,
-  //     menuTrigger: 'reminderMenu'
-  //   },
-  //   {
-  //     title: 'More',
-  //     icon: {
-  //       src: 'material',
-  //       name: 'more'
-  //     },
-  //     render: false,
-  //     menuTrigger: 'reminderMenu'
-  //   }
-  // ];
-  
-
-
-
-
-
-  // @ViewChild('element') element: ElementRef<HTMLElement>;
-
-
-  // ngAfterViewInit() {
-  //   this.focusMonitor.monitor(this.element)
-  //     .subscribe(origin => this.ngZone.run(() => {
-  //       this.more();
-  //     }));
-  // }
-
-  // ngOnDestroy() {
-  //   this.focusMonitor.stopMonitoring(this.element);
-  // }
-
-  ///////////////////////////////////
-
-
   //To hide the icon
   @Input() undo: boolean;
   //To recieve the card details from the user notes on which the user poke
-  @Input() card: any
+  @Input() card: Note | any
 
   // @Input() upDateCard
 
@@ -176,9 +80,7 @@ export class IconsToolbarComponent implements OnInit {
     { color: "#e0e0e0", title: "Gray" }
   ]
 
-
   ngOnInit() {
-
     if (this.router.url == '/dashboard/trash') {
       this.url = false;
       this.menuStyle = "menui"
@@ -186,8 +88,17 @@ export class IconsToolbarComponent implements OnInit {
     if (this.router.url == '/dashboard/archive') {
       this.archiveIco = false;
     }
-    document.body.click()
+    document.body.click();
   }
+
+
+  public get labels(): any[] {
+    return this.dataService.labels.map((label: NoteLabel) => ({
+      ...label,
+      active: this.card.labels.some((noteLabel: NoteLabel) => noteLabel._id == label._id)
+    }));
+  }
+
 
   closeMenu() {
 
@@ -196,12 +107,6 @@ export class IconsToolbarComponent implements OnInit {
   more() {
     this.pop = !this.pop;
   }
-
-  // onClick(event) {
-  //   if (!this._eref.nativeElement.contains(event.target)) {
-  //     console.log(this._eref.nativeElement.contains(event.target));
-  //   } // or some similar check
-  // }
 
 
   color(colorObj, card) {
@@ -346,55 +251,47 @@ export class IconsToolbarComponent implements OnInit {
     });
   }
 
-  onAdd(card, l) {
-    let temp = card.labels.splice();
-    if ((card.labels).includes(l)) {
-      card.labels.splice(card.labels.indexOf(l), 1);
-      this.dLabels.push(l);
-      if (this.pLabels.includes(l)) {
-        this.pLabels.splice(this.pLabels.indexOf(l), 1);
-      }
-    } else {
-      card.labels.push(l);
-      this.pLabels.push(l);
-      if (this.dLabels.includes(l)) {
-        this.dLabels.splice(this.dLabels.indexOf(l), 1);
-      }
+  async onAdd(l: any) {
+    const active: boolean = l['active'];
+    if (active) {
+      const label = this.card.labels.filter((lbl: NoteLabel) => lbl._id == l._id).pop();
+      this.service.removeNoteLabel({ cardId: this.card._id, labelId: label._id }).subscribe({
+        next: () => l['active'] = false
+      });
+      return;
     }
+    this.card.labels.unshift(l);
+    this.service.addNoteLabel({ cardId: this.card._id, labelId: l._id }).subscribe({
+      next: () => l['active'] = true
+    });
   }
 
   isClosed(card) {
-
-    if (this.pLabels.length > 0) {
-      let data = {
-        cardId: card._id,
-        plabels: this.pLabels
-      }
-      this.service.patchLabels(data).subscribe(result => {
-        console.log(result);
-        this.pLabels = [];
-      });
-    }
-    if (this.dLabels.length > 0) {
-      let data = {
-        cardId: card._id,
-        dlabels: this.dLabels
-      }
-      this.service.chipLabels(data).subscribe(result => {
-        console.log(result);
-        this.dLabels = [];
-      });
-    }
+    // if (this.pLabels.length > 0) {
+    //   let data = {
+    //     cardId: card._id,
+    //     plabels: this.pLabels
+    //   }
+    //   this.service.patchLabels(data).subscribe(result => {
+    //     console.log(result);
+    //     this.pLabels = [];
+    //   });
+    // }
+    // if (this.dLabels.length > 0) {
+    //   let data = {
+    //     cardId: card._id,
+    //     dlabels: this.dLabels
+    //   }
+    //   this.service.chipLabels(data).subscribe(result => {
+    //     console.log(result);
+    //     this.dLabels = [];
+    //   });
+    // }
   }
 
   isOpened(event) {
     alert("Implement icons-toolbar component")
   }
-
-  // marked = false;
-  // toggleVisibility(e) {
-  //   this.marked = e.target.checked;
-  // }
 }
 
 
@@ -415,3 +312,112 @@ export class IconsToolbarComponent implements OnInit {
 // $(".dialog").click( function(e) {
 //   e.stopPropagation(); // this stops the event from bubbling up to the body
 // });
+
+
+
+// noteCtrls = [
+//   {
+//     title: 'Remind me',
+//     icon: {
+//       src: 'material',
+//       name: 'add_alert'
+//     },
+//     render: false,
+//     menuTrigger: 'reminderMenu',
+//     action: ''
+//   },
+//   {
+//     title: 'Collaborator',
+//     icon: {
+//       src: 'material',
+//       name: 'person_add'
+//     },
+//     render: false,
+//     menuTrigger: '',
+//     action: ''
+//   },
+//   {
+//     title: 'Background options',
+//     icon: {
+//       src: 'material',
+//       name: 'palette'
+//     },
+//     render: false,
+//     menuTrigger: 'paletteMenu'
+//   },
+//   {
+//     title: 'Add image',
+//     icon: {
+//       src: 'material',
+//       name: 'image'
+//     },
+//     render: false,
+//     menuTrigger: 'reminderMenu'
+//   },
+//   {
+//     title: 'Archive',
+//     icon: {
+//       src: 'material',
+//       name: 'archive'
+//     },
+//     render: false,
+//     menuTrigger: 'reminderMenu'
+//   },
+//   {
+//     title: 'Unarchive',
+//     icon: {
+//       src: 'material',
+//       name: 'unarchive'
+//     },
+//     render: false,
+//     menuTrigger: 'reminderMenu'
+//   },
+//   {
+//     title: 'Undo',
+//     icon: {
+//       src: 'material',
+//       name: 'undo'
+//     },
+//     render: false,
+//     menuTrigger: 'reminderMenu'
+//   },
+//   {
+//     title: 'More',
+//     icon: {
+//       src: 'material',
+//       name: 'more'
+//     },
+//     render: false,
+//     menuTrigger: 'reminderMenu'
+//   }
+// ];
+
+
+
+
+
+
+// @ViewChild('element') element: ElementRef<HTMLElement>;
+
+
+// ngAfterViewInit() {
+//   this.focusMonitor.monitor(this.element)
+//     .subscribe(origin => this.ngZone.run(() => {
+//       this.more();
+//     }));
+// }
+
+// ngOnDestroy() {
+//   this.focusMonitor.stopMonitoring(this.element);
+// }
+
+///////////////////////////////////
+
+
+
+// onClick(event) {
+//   if (!this._eref.nativeElement.contains(event.target)) {
+//     console.log(this._eref.nativeElement.contains(event.target));
+//   } // or some similar check
+// }
+

@@ -19,18 +19,23 @@ export const environment = {
   createNote: url + `create/note`,
   userNotes: url + `notes`,
   updateNote: url + `update/note`,
-  removeNoteLabel: url + `remove/note/label`,
 
-
-  delete: url + `delete/note`,
   
+  delete: url + `delete/note`,
+  userLabels: url + `getLabels`,
+
+  deleteLabels: url + 'delete/labels',
+  renameLabels: url + `rename/labels`,
+
+  updateNoteLabel: url + `update/note/labels`,
+  
+
+  //not updated
   userProfile: url + `userProfile`,
   updateFbToken: url + `notificationToken`,
-  userLabels: url + `getLabels`,
-  deleteLabels: url + 'deleteLabels',
+  updateIndex: url + `updateIndex`,
+
   addLabels: url + `addLabels`,
-  patchLabels: url + `patchLabels`,
-  chipLabels: url + `chipLabels`,
-  renameLabels: url + `renameLabels`,
-  updateIndex: url + `updateIndex`
+
+
 };

@@ -1,3 +1,10 @@
+export interface NoteLabel {
+    _id: string;
+    name: string;
+    useriD?: string;
+}
+
+
 export interface Note {
     _id: string;
     title: string;
@@ -6,9 +13,9 @@ export interface Note {
     archive: boolean;
     pinned: boolean;
     trash: boolean;
-    labels: string[];  
-    updatedAt: Date;  
-    reminder: Date;  
+    labels: NoteLabel[];
+    updatedAt: Date;
+    reminder: Date;
     index: number;
     __v: number;
 }

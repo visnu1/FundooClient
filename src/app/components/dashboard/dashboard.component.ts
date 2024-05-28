@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Input, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DataService } from "../../services/data-service/data.service";
@@ -8,10 +8,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { EditLabelsComponent } from './components/edit-labels/edit-labels.component';
 import { NoteService } from '../../services/service/note.service';
+import { NoteLabel } from '../../Models/note';
 
 
 export interface LabelData {
-  labels: string[],
+  labels: any[],
   addLabels: string[],
   deleteLabels: string[],
   renameLabels: any[]
@@ -30,10 +31,7 @@ export class DashboardComponent implements OnInit {
   viewType: boolean = false;
   userAvatar: string;
   message
-  labels: string[] = [];
-  aLabels: string[] = [];
-  dLabels: string[] = [];
-  rLabels: any[] = [];
+  labels: any[];
 
   @Input() email: string;
   @Input() name: string;
@@ -49,7 +47,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     public router: Router,
-    private data: DataService,
+    private dataService: DataService,
     private matDailog: MatDialog,
     private service: NoteService,
     private breakpointObserver: BreakpointObserver,
@@ -59,63 +57,18 @@ export class DashboardComponent implements OnInit {
     this.name = localStorage.getItem('name');
     this.userid = localStorage.getItem('userid');
     this.token = localStorage.getItem('token');
-    this.data.onTokenInitialize(this.token);
-    this.data.onUserIdInitialize(this.userid);
-    this.getLabels();
+    this.dataService.onTokenInitialize(this.token);
+    this.dataService.onUserIdInitialize(this.userid);
     // localStorage.clear();
   }
 
-  ngOnInit() {
-
-
-    // this.messagingService.requestPermission()
-    // this.messagingService.receiveMessage()
-    // this.message = this.messagingService.currentMessage
+  async ngOnInit() {
+    this.service.fetchLabels();
+    this.dataService.labels$.subscribe((labels: NoteLabel[]) => {
+      this.labels = labels;
+    });
   }
 
-
-  getLabels() {
-    this.service.getLabels().subscribe((result: string[]) => {
-      this.labels = result;
-      this.data.onSetLabels(result);
-    }, err => {
-      console.error(err);
-    })
-  }
-
-  addLabels() {
-    const data = {
-      labels: this.aLabels
-    }
-    this.service.addLabels(data).subscribe(result => {
-      console.log(result);
-    }, err => {
-      console.error(err);
-    })
-  }
-
-  deleteLabels() {
-    let data = {
-      labelArr: this.dLabels
-    }
-    this.service.deleteLabels(data).subscribe(result => {
-      console.log(result);
-    }, err => {
-      console.error(err);
-    })
-  }
-
-  renameLabels() {
-
-    // this.service.renameLabels(data).subscribe(result => {
-    //   console.log(result);
-    // }, err => {
-    //   console.error(err);
-    // })
-  }
-
-  refresh() {
-  }
 
   //To change the note style view
   onViewChange() {
@@ -125,7 +78,7 @@ export class DashboardComponent implements OnInit {
       this.view = "gridico";
     }
     this.viewType = !this.viewType;
-    this.data.onViewChange(this.viewType);
+    this.dataService.onViewChange(this.viewType);
 
   }
 
@@ -175,29 +128,15 @@ export class DashboardComponent implements OnInit {
 
   labelsPage(l) {
     this.router.navigate(['dashboard/labels', l]);
-    this.data.onEmitCurrentLabel(l);
+    this.dataService.onEmitCurrentLabel(l);
   }
 
+
   editLabels() {
-    let temp: LabelData = {
-      labels: this.labels,
-      addLabels: this.aLabels,
-      deleteLabels: this.dLabels,
-      renameLabels: this.rLabels
-    }
-    const dialogBox = this.matdailog.open(EditLabelsComponent, {
-      data: temp
-    })
-    dialogBox.afterClosed().subscribe(data => {
-      if (this.aLabels.length > 0) {
-        this.addLabels();
-      }
-      if (this.dLabels.length > 0) {
-        this.deleteLabels();
-      }
-      if (this.rLabels.length > 0) {
-        this.renameLabels();
-      }
-    });
+    this.matdailog.open(EditLabelsComponent, { data: this.labels });
+  }
+
+
+  refresh() {
   }
 }

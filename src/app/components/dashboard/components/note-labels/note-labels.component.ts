@@ -23,7 +23,7 @@ export class NoteLabelsComponent {
 
   ngOnInit(): void {
     this.processReminder();
-    this.card.labels.map(name => this.labels.push({ name, reminder: false }));
+    this.card.labels.map(labelItem => this.labels.push({ ...labelItem, reminder: false }));
   }
 
 
@@ -52,20 +52,21 @@ export class NoteLabelsComponent {
   }
 
 
-  removeLabel(card: Note, label: any, reminder = false): void {
+  removeLabel(card: Note, label: any, labelIndex: number, reminder = false): void {
     const obj = {
       cardId: card._id
     }
 
     if (reminder)
-      obj['reminder'] = null;
+      obj['reminder'] = false;
     else
-      obj['label'] = label._id;
+      obj['labelId'] = label._id;
 
 
     this._service.removeNoteLabel(obj).subscribe({
       next: (v) => {
         console.log(v);
+        this.labels.splice(labelIndex, 1);
       },
       error: (e) => console.error('Unable to set reminder:', e),
       complete: () => console.info('complete')
