@@ -62,6 +62,13 @@ export class DashboardComponent implements OnInit {
     // localStorage.clear();
   }
 
+
+
+  public get usernameFirstLetter(): string {
+    return this.name.substring(0, 1).toUpperCase();
+  }
+
+
   async ngOnInit() {
     this.service.fetchLabels();
     this.dataService.labels$.subscribe((labels: NoteLabel[]) => {
@@ -85,28 +92,25 @@ export class DashboardComponent implements OnInit {
   file() {
     const dialogBox = this.matDailog.open(ImageUploadComponent);
     dialogBox.afterClosed().subscribe(data => {
-      if (data == undefined) {
-        return;
-      } else {
-        var formData = new FormData();
-        formData.append('image', data);
-        this.service.userProfile(formData).subscribe(result => {
+      if (!data) return;
+      const formData = new FormData();
+      formData.append('image', data);
+      this.service.userProfile(formData).subscribe({
+        next: (result) => {
           console.log("Image has been updated");
           console.log(result);
           this.userAvatar = result['profile'];
-
         },
-          error => {
-            console.warn("Unable to save into the server");
-            console.error(error);
-          })
-      }
+        error: (error) => {
+          console.warn("Unable to save into the server");
+          console.error(error);
+        }
+      })
     })
   }
 
-  signIn() {
-    // console.clear();
-    // localStorage.clear();
+  onSignOut() {
+    localStorage.clear();
     this.router.navigate(['signin']);
   }
 

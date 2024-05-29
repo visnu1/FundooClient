@@ -16,7 +16,8 @@
         </div>
         <div class='k3' *ngIf="router.url !== '/dashboard/note'">
           <span class="k22"
-            *ngIf="router.url == '/dashboard/reminders' || router.url == '/dashboard/archive' || router.url == '/dashboard/trash' ; else elseBlock">{{router.url | slice:11 | titlecase}}</span>
+            *ngIf="router.url == '/dashboard/reminders' || router.url == '/dashboard/archive' || router.url == '/dashboard/trash' ; else elseBlock">{{router.url
+            | slice:11 | titlecase}}</span>
           <ng-template class="k22" #elseBlock>{{router.url | slice:18 }}</ng-template>
         </div>
       </div>
@@ -148,33 +149,32 @@
 
     <mat-menu class="prof" #profile="matMenu">
       <div>
-        <div class="pdet">
-          <span class="uball2">
-            <a class="tiny2" [ngStyle]="{ 'background-image': 'url('+userAvatar+')'}">{{name | slice:0:1}}</a>
-            <!-- <a class="bada"></a> -->
-            <div class="change" (click)="file()">change</div>
-          </span>
-          <span class="pdet2">
-            <div id=name>{{name | titlecase}}</div>
-            <div>{{email | titlecase}}</div>
-          </span>
+        <div class="wrapper" style="padding: 25px;">
+          <div class="prof-avatr">
+            <ng-container *ngIf="userAvatar; else defaultAvatar">
+              <img
+                src="https://plus.unsplash.com/premium_photo-1681488007344-c75b0cf8b0cd?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="">
+            </ng-container>
+            <ng-template #defaultAvatar>
+              <span>{{ usernameFirstLetter}}</span>
+            </ng-template>
+            <div class="edit-profile" (click)="$event.stopPropagation(); file()">
+              <button mat-icon-button>
+                <span class="material-symbols-outlined edit-ico">
+                  edit
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="usr-name">{{name | titlecase}}</div>
+          <div class="usr-email">{{email | lowercase}}</div>
         </div>
         <div class="pbtns">
-          <div>
-            <button class="h">Sign in</button>
-          </div>
-          <div>
-            <button (click)='signIn()'>Sign out</button>
-          </div>
+          <button mat-raised-button color="warn" (click)="onSignOut()">Sign Out</button>
         </div>
       </div>
     </mat-menu>
-
-    <!-- <div class="nbar">
-      <div class=nbar1>
-
-      </div>
-    </div> -->
 
     <router-outlet></router-outlet>
   </mat-drawer-container>
