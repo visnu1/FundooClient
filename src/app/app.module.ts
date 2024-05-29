@@ -51,6 +51,7 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
 import { LabelsComponent } from './components/dashboard/components/labels/labels.component';
 import { EditLabelsComponent } from './components/dashboard/components/edit-labels/edit-labels.component';
 import { NoteLabelsComponent } from './components/dashboard/components/note-labels/note-labels.component';
+import { ImageCropperComponent } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -99,6 +100,7 @@ import { NoteLabelsComponent } from './components/dashboard/components/note-labe
     MatNativeDateModule,
     MatNativeDateModule,
     MatSelectModule,
+    ImageCropperComponent
   ],
   // entryComponents: [UpdateNoteComponent, ImageUploadComponent, EditLabelsComponent],
   providers: [AsyncPipe],

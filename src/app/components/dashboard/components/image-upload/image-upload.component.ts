@@ -35,8 +35,8 @@ export class ImageUploadComponent implements OnInit {
   }
 
   imageCropped(event) {
-    this.croppedImg = event.file;
-    // console.log(event.file);
+    const file = new File([event.blob], 'user-profile', { type: 'image/png' })
+    this.croppedImg = file;
   }
 
   submit() {

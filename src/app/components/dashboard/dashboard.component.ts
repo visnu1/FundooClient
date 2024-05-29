@@ -70,6 +70,9 @@ export class DashboardComponent implements OnInit {
 
 
   async ngOnInit() {
+    this.userAvatar = this.dataService.avatar;
+    console.log(this.dataService.avatar);
+    
     this.service.fetchLabels();
     this.dataService.labels$.subscribe((labels: NoteLabel[]) => {
       this.labels = labels;
@@ -97,8 +100,6 @@ export class DashboardComponent implements OnInit {
       formData.append('image', data);
       this.service.userProfile(formData).subscribe({
         next: (result) => {
-          console.log("Image has been updated");
-          console.log(result);
           this.userAvatar = result['profile'];
         },
         error: (error) => {
