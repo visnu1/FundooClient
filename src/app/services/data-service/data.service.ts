@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { NoteLabel } from '../../Models/note';
+import { Note, NoteLabel } from '../../Models/note';
 
 
 @Injectable({
@@ -16,6 +16,8 @@ export class DataService {
   labels: NoteLabel[];
   labels$ = new EventEmitter<NoteLabel[]>;
 
+  private noteSubject = new BehaviorSubject<Note>(null);
+  note$ = this.noteSubject.asObservable();
 
   private messageSource = new BehaviorSubject(false);
   currentMessage = this.messageSource.asObservable();
@@ -27,6 +29,9 @@ export class DataService {
     this.labels$.emit(labels);
   }
 
+  public updateNote(note: Note) {
+    this.noteSubject.next(note);
+  }
 
   //To change the view style of cards
   onViewChange(message: boolean) {

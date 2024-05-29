@@ -42,9 +42,6 @@ export class IconsToolbarComponent implements OnInit {
 
   pop: boolean = false;
   url: boolean = true;
-  //to apply styles
-  menuStyle: string = "menue";
-
   archiveIco = true;
 
 
@@ -83,7 +80,6 @@ export class IconsToolbarComponent implements OnInit {
   ngOnInit() {
     if (this.router.url == '/dashboard/trash') {
       this.url = false;
-      this.menuStyle = "menui"
     }
     if (this.router.url == '/dashboard/archive') {
       this.archiveIco = false;
@@ -93,15 +89,11 @@ export class IconsToolbarComponent implements OnInit {
 
 
   public get labels(): any[] {
+    const noteLbs = this.card?.labels || [];
     return this.dataService.labels.map((label: NoteLabel) => ({
       ...label,
-      active: this.card.labels.some((noteLabel: NoteLabel) => noteLabel._id == label._id)
+      active: noteLbs.some((noteLabel: NoteLabel) => noteLabel._id == label._id)
     }));
-  }
-
-
-  closeMenu() {
-
   }
 
   more() {
@@ -264,6 +256,7 @@ export class IconsToolbarComponent implements OnInit {
     this.service.addNoteLabel({ cardId: this.card._id, labelId: l._id }).subscribe({
       next: () => l['active'] = true
     });
+    this.dataService.updateNote(this.card);
   }
 
   isClosed(card) {
@@ -288,136 +281,4 @@ export class IconsToolbarComponent implements OnInit {
     //   });
     // }
   }
-
-  isOpened(event) {
-    alert("Implement icons-toolbar component")
-  }
 }
-
-
-//heart is here
-// var f = new Date()
-// var d1 = new Date(f.getFullYear(), f.getMonth(), (f.getDate() + 1), 8);
-// console.log(d1.toLocaleString('en-US', { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }));
-
-// let obj = {
-//   cardId: card._id,
-//   reminders: d1
-// }
-
-// $(document.body).click( function() {
-//   closeMenu();
-// });
-
-// $(".dialog").click( function(e) {
-//   e.stopPropagation(); // this stops the event from bubbling up to the body
-// });
-
-
-
-// noteCtrls = [
-//   {
-//     title: 'Remind me',
-//     icon: {
-//       src: 'material',
-//       name: 'add_alert'
-//     },
-//     render: false,
-//     menuTrigger: 'reminderMenu',
-//     action: ''
-//   },
-//   {
-//     title: 'Collaborator',
-//     icon: {
-//       src: 'material',
-//       name: 'person_add'
-//     },
-//     render: false,
-//     menuTrigger: '',
-//     action: ''
-//   },
-//   {
-//     title: 'Background options',
-//     icon: {
-//       src: 'material',
-//       name: 'palette'
-//     },
-//     render: false,
-//     menuTrigger: 'paletteMenu'
-//   },
-//   {
-//     title: 'Add image',
-//     icon: {
-//       src: 'material',
-//       name: 'image'
-//     },
-//     render: false,
-//     menuTrigger: 'reminderMenu'
-//   },
-//   {
-//     title: 'Archive',
-//     icon: {
-//       src: 'material',
-//       name: 'archive'
-//     },
-//     render: false,
-//     menuTrigger: 'reminderMenu'
-//   },
-//   {
-//     title: 'Unarchive',
-//     icon: {
-//       src: 'material',
-//       name: 'unarchive'
-//     },
-//     render: false,
-//     menuTrigger: 'reminderMenu'
-//   },
-//   {
-//     title: 'Undo',
-//     icon: {
-//       src: 'material',
-//       name: 'undo'
-//     },
-//     render: false,
-//     menuTrigger: 'reminderMenu'
-//   },
-//   {
-//     title: 'More',
-//     icon: {
-//       src: 'material',
-//       name: 'more'
-//     },
-//     render: false,
-//     menuTrigger: 'reminderMenu'
-//   }
-// ];
-
-
-
-
-
-
-// @ViewChild('element') element: ElementRef<HTMLElement>;
-
-
-// ngAfterViewInit() {
-//   this.focusMonitor.monitor(this.element)
-//     .subscribe(origin => this.ngZone.run(() => {
-//       this.more();
-//     }));
-// }
-
-// ngOnDestroy() {
-//   this.focusMonitor.stopMonitoring(this.element);
-// }
-
-///////////////////////////////////
-
-
-
-// onClick(event) {
-//   if (!this._eref.nativeElement.contains(event.target)) {
-//     console.log(this._eref.nativeElement.contains(event.target));
-//   } // or some similar check
-// }
-

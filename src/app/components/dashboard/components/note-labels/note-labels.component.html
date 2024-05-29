@@ -1,4 +1,4 @@
-<div class="lbls">
+<div class="lbls" *ngIf="labels.length">
     <div class="lbl-stl" *ngFor="let label of labels; let i = index">
         <div class="lbl-dim">
             <span class="material-symbols-outlined schedule-ico" *ngIf="label?.reminder">
