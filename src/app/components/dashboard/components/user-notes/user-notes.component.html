@@ -1,7 +1,5 @@
 <div class="container" *ngIf="!viewType" style="height: 200px;">
   <div class="fullii">
-    <!-- <div class="pinned">PINNED</div>
-    <div class="pinned">OTHERS</div> -->
     <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
       <div class="child edit" [style.background-color]="card.color" *ngFor="let card of getCards.cards" cdkDrag>
         <div class="ele1">
@@ -13,8 +11,6 @@
         </div>
 
         <app-note-labels [card]="card"></app-note-labels>
-       
-
         <div class="iconbar">
           <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
             (archiveAct)="archiveCall()">
@@ -26,3 +22,59 @@
 </div>
 
 <!-- ----------------------------------------------------------------------------------------------- -->
+
+
+<div class="grid container" *ngIf="viewType">
+  <div class=contain>
+    <div class="gridele" *ngFor='let card of getCards.gridCards1' [style.background-color]="card.color">
+      <div class="ele" (click)="updateNote(card)">
+        <div class="titlee">
+          {{card.title}}
+        </div>
+        <div class="descrr">
+          {{card.description}}
+        </div>
+      </div>
+      <app-note-labels [card]="card"></app-note-labels>
+      <div class="iconbar">
+        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()">
+        </app-icons-toolbar>
+      </div>
+    </div>
+  </div>
+  <div class=contain>
+    <div class="gridele" *ngFor='let card of getCards.gridCards2' [style.background-color]="card.color">
+      <div class="ele" (click)="updateNote(card)">
+        <div class="titlee">
+          {{card.title}}
+        </div>
+        <div class="descrr">
+          {{card.description}}
+        </div>
+      </div>
+      <app-note-labels [card]="card"></app-note-labels>
+      <div class="iconbar">
+        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()">
+        </app-icons-toolbar>
+      </div>
+    </div>
+  </div>
+  <div class=contain>
+    <div class="gridele" *ngFor='let card of getCards.gridCards3' [style.background-color]="card.color">
+      <div class="ele" (click)="updateNote(card)">
+        <div class="titlee">
+          {{card.title}}
+        </div>
+        <div class="descrr">
+          {{card.description}}
+        </div>
+      </div>
+      <app-note-labels [card]="card"></app-note-labels>
+      <div class="iconbar">
+        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
+          (archiveAct)="archiveCall()">
+        </app-icons-toolbar>
+      </div>
+    </div>
+  </div>
+</div>

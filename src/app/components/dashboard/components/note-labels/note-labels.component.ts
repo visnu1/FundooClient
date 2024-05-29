@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Note } from '../../../../Models/note';
 import { isValidDate } from '../../../../utils/date-utils';
 import { NoteService } from '../../../../services/service/note.service';
+import { DataService } from '../../../../services/data-service/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-note-labels',
@@ -12,16 +14,31 @@ import { NoteService } from '../../../../services/service/note.service';
 })
 export class NoteLabelsComponent {
 
+  private subscription: Subscription;
+
   @Input() card: Note;
+
   labels = [];
+
 
   constructor(
     private _datePipe: DatePipe,
-    private _service: NoteService
+    private _service: NoteService,
+    private _dataService: DataService
   ) { }
 
 
   ngOnInit(): void {
+    this.initData();
+    this.subscription = this._dataService.note$.subscribe(updatedNote => {
+      if (updatedNote && updatedNote._id === this.card._id) {
+        this.initData()
+      }
+    });
+  }
+
+  initData() {
+    this.labels = [];
     this.processReminder();
     this.card.labels.map(labelItem => this.labels.push({ ...labelItem, reminder: false }));
   }
@@ -58,7 +75,7 @@ export class NoteLabelsComponent {
     }
 
     if (reminder)
-      obj['reminder'] = false;
+      obj['reminder'] = null;
     else
       obj['labelId'] = label._id;
 
@@ -71,6 +88,12 @@ export class NoteLabelsComponent {
       error: (e) => console.error('Unable to set reminder:', e),
       complete: () => console.info('complete')
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }
