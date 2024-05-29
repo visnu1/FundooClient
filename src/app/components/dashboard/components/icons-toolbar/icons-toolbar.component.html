@@ -1,50 +1,50 @@
 <!-- make it a seperate component -->
 <div class="iconlist">
   <div class="toolbar">
-
-    <button class="note-ctrls" mat-icon-button *ngIf=!url (click)="delete(card)">
-      <span class="material-symbols-outlined small-icon">
+    <button title="Delete forever" class="note-ctrls" mat-icon-button *ngIf=!url (click)="delete(card)">
+      <span class="material-symbols-outlined small-icon" style="color: red;">
         delete_forever
       </span>
     </button>
 
-    <button class="note-ctrls" mat-icon-button *ngIf=!url (click)="restore(card)">
-      <span class="material-symbols-outlined small-icon">
+    <button title="Restore note" class="note-ctrls" mat-icon-button *ngIf=!url (click)="restore(card)">
+      <span class="material-symbols-outlined small-icon" style="color: green;">
         restore_from_trash
       </span>
     </button>
 
-    <button class="note-ctrls" mat-icon-button *ngIf=url [matMenuTriggerFor]="reminderMenu">
+    <button title="Remind me" class="note-ctrls" mat-icon-button *ngIf=url [matMenuTriggerFor]="reminderMenu">
       <span class="material-symbols-outlined small-icon">
         add_alert
       </span>
     </button>
 
-    <button class="note-ctrls" mat-icon-button *ngIf=url>
+    <button title="Collaborator" class="note-ctrls" mat-icon-button *ngIf=url>
       <span class="material-symbols-outlined small-icon">
         person_add
       </span>
     </button>
 
-    <button class="note-ctrls" mat-icon-button *ngIf=url [matMenuTriggerFor]="paletteMenu">
+    <button title="background options" class="note-ctrls" mat-icon-button *ngIf=url [matMenuTriggerFor]="paletteMenu">
       <span class="material-symbols-outlined small-icon">
         palette
       </span>
     </button>
 
-    <button class="note-ctrls" mat-icon-button *ngIf=url>
+    <button title="Add image" class="note-ctrls" mat-icon-button *ngIf=url>
       <span class="material-symbols-outlined small-icon">
         image
       </span>
     </button>
 
-    <button class="note-ctrls" mat-icon-button *ngIf=url (click)=archive(card)>
+    <button [title]="archiveIco ? 'Archive' : 'Unarchive'" class="note-ctrls" mat-icon-button *ngIf=url
+      (click)=archive(card)>
       <span class="material-symbols-outlined small-icon">
         {{archiveIco ? 'archive' : 'unarchive'}}
       </span>
     </button>
 
-    <button class="note-ctrls" *ngIf=url mat-icon-button (click)=more()>
+    <button title="More" class="note-ctrls" *ngIf=url mat-icon-button (click)=more()>
       <span class="material-symbols-outlined small-icon">
         more_vert
       </span>

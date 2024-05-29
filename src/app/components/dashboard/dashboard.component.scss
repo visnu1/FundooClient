@@ -163,15 +163,6 @@ title {
   // width: 60%
 }
 
-.button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  padding: 0 4px;
-  // line-height: 0;
-}
-
 //problem with this
 .input {
   overflow: hidden;
@@ -191,10 +182,6 @@ title {
     display: none;
   }
 
-  .close {
-    display: none;
-  }
-
   .se {
     float: right;
   }
@@ -210,31 +197,9 @@ title {
   }
 }
 
-.buttondiv {
-  display: inline-block;
-  border-radius: 50%;
-  padding: 7px;
-  margin: 4px;
-  overflow: hidden;
-  vertical-align: middle;
-  cursor: pointer;
-  height: 24px;
-  width: 24px;
-  flex: 0 0 auto;
-}
-
-.buttondiv:hover {
-  background-color: rgba(0, 0, 0, 0.06);
-  border-radius: 50%;
-}
-
 form svg {
   opacity: 0.54;
 }
-
-// .close{
-//   visibility: hidden;
-// }
 
 .icons3 {
   line-height: 0;
@@ -374,6 +339,11 @@ form svg {
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;
   outline: none;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 .sli:hover {
@@ -491,7 +461,6 @@ form svg {
       justify-content: center;
       align-items: center;
       display: flex;
-
     }
 
     .edit-ico {

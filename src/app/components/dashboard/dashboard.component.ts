@@ -115,22 +115,6 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['signin']);
   }
 
-  notes() {
-    this.router.navigate(['dashboard/note']);
-  }
-
-  reminders() {
-    this.router.navigate(['dashboard/reminders']);
-  }
-
-  archive() {
-    this.router.navigate(['dashboard/archive']);
-  }
-
-  trash() {
-    this.router.navigate(['dashboard/trash']);
-  }
-
   labelsPage(l) {
     this.router.navigate(['dashboard/labels', l]);
     this.dataService.onEmitCurrentLabel(l);
@@ -139,6 +123,10 @@ export class DashboardComponent implements OnInit {
 
   editLabels() {
     this.matdailog.open(EditLabelsComponent, { data: this.labels });
+  }
+
+  onClearSearch(){
+
   }
 
 
