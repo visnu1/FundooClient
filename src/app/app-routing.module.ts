@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+
+import { RegistrationComponent } from './auth/registration/registration.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {
   AuthGuardService
@@ -13,6 +13,7 @@ import { RemindersComponent } from './components/dashboard/components/reminders/
 import { ArchiveComponent } from './components/dashboard/components/archive/archive.component';
 import { TrashComponent } from './components/dashboard/components/trash/trash.component';
 import { LabelsComponent } from './components/dashboard/components/labels/labels.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   {

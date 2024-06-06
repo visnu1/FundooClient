@@ -12,17 +12,17 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { LoginComponent } from '../login/login.component';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { TakeNoteComponent } from '../dashboard/components/take-note/take-note.component';
-import { NoteComponent } from '../dashboard/components/note/note.component';
-import { IconsToolbarComponent } from '../dashboard/components/icons-toolbar/icons-toolbar.component';
-import { ArchiveComponent } from '../dashboard/components/archive/archive.component';
-import { TrashComponent } from '../dashboard/components/trash/trash.component';
-import { PinComponent } from '../dashboard/components/pin/pin.component';
-import { ImageUploadComponent } from '../dashboard/components/image-upload/image-upload.component';
-import { UpdateNoteComponent } from '../dashboard/components/update-note/update-note.component';
-import { UserNotesComponent } from '../dashboard/components/user-notes/user-notes.component';
-import { RemindersComponent } from '../dashboard/components/reminders/reminders.component';
+import { DashboardComponent } from '../../components/dashboard/dashboard.component';
+import { TakeNoteComponent } from '../../components/dashboard/components/take-note/take-note.component';
+import { NoteComponent } from '../../components/dashboard/components/note/note.component';
+import { IconsToolbarComponent } from '../../components/dashboard/components/icons-toolbar/icons-toolbar.component';
+import { ArchiveComponent } from '../../components/dashboard/components/archive/archive.component';
+import { TrashComponent } from '../../components/dashboard/components/trash/trash.component';
+import { PinComponent } from '../../components/dashboard/components/pin/pin.component';
+import { ImageUploadComponent } from '../../components/dashboard/components/image-upload/image-upload.component';
+import { UpdateNoteComponent } from '../../components/dashboard/components/update-note/update-note.component';
+import { UserNotesComponent } from '../../components/dashboard/components/user-notes/user-notes.component';
+import { RemindersComponent } from '../../components/dashboard/components/reminders/reminders.component';
 
 
 

@@ -8,10 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-import { LoginComponent } from './components/login/login.component';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TakeNoteComponent } from './components/dashboard/components/take-note/take-note.component'
 import { NoteComponent } from './components/dashboard/components/note/note.component';
@@ -25,7 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -52,6 +51,7 @@ import { LabelsComponent } from './components/dashboard/components/labels/labels
 import { EditLabelsComponent } from './components/dashboard/components/edit-labels/edit-labels.component';
 import { NoteLabelsComponent } from './components/dashboard/components/note-labels/note-labels.component';
 import { ImageCropperComponent } from 'ngx-image-cropper';
+import { LoginComponent } from './auth/login/login.component';
 
 
 @NgModule({

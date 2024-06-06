@@ -11,9 +11,9 @@ import { ArchiveComponent } from '../archive/archive.component';
 import { TrashComponent } from '../trash/trash.component';
 import { UserNotesComponent } from '../user-notes/user-notes.component';
 import { LoginComponent } from '../../../login/login.component';
-import { RegistrationComponent } from '../../../registration/registration.component';
-import { ForgotPasswordComponent } from '../../../forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from '../../../reset-password/reset-password.component';
+import { RegistrationComponent } from '../../../../auth/registration/registration.component';
+import { ForgotPasswordComponent } from '../../../../auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from '../../../../auth/reset-password/reset-password.component';
 
 describe('IconsToolbarComponent', () => {
   let component: IconsToolbarComponent;
