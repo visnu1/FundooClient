@@ -8,14 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-import { RegistrationComponent } from './auth/registration/registration.component';
-import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { TakeNoteComponent } from './components/dashboard/components/take-note/take-note.component'
-import { NoteComponent } from './components/dashboard/components/note/note.component';
-import { IconsToolbarComponent } from './components/dashboard/components/icons-toolbar/icons-toolbar.component';
-import { ImageUploadComponent } from './components/dashboard/components/image-upload/image-upload.component';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -30,28 +22,30 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
 
 import { HttpClientModule } from '@angular/common/http';
-import { RemindersComponent } from './components/dashboard/components/reminders/reminders.component';
-import { ArchiveComponent } from './components/dashboard/components/archive/archive.component';
-import { TrashComponent } from './components/dashboard/components/trash/trash.component';
-import { UserNotesComponent } from './components/dashboard/components/user-notes/user-notes.component';
-
-
 import { A11yModule } from '@angular/cdk/a11y';
-import { PinComponent } from './components/dashboard/components/pin/pin.component';
-import { UpdateNoteComponent } from './components/dashboard/components/update-note/update-note.component';
-
-
-
 import { AsyncPipe } from '../../node_modules/@angular/common';
-import { LabelsComponent } from './components/dashboard/components/labels/labels.component';
-import { EditLabelsComponent } from './components/dashboard/components/edit-labels/edit-labels.component';
-import { NoteLabelsComponent } from './components/dashboard/components/note-labels/note-labels.component';
 import { ImageCropperComponent } from 'ngx-image-cropper';
-import { LoginComponent } from './auth/login/login.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { RegistrationComponent } from './pages/auth/registration/registration.component';
+import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { TakeNoteComponent } from './pages/dashboard/components/take-note/take-note.component';
+import { NoteComponent } from './pages/dashboard/components/note/note.component';
+import { IconsToolbarComponent } from './pages/dashboard/components/icons-toolbar/icons-toolbar.component';
+import { RemindersComponent } from './pages/dashboard/components/reminders/reminders.component';
+import { ArchiveComponent } from './pages/dashboard/components/archive/archive.component';
+import { TrashComponent } from './pages/dashboard/components/trash/trash.component';
+import { UserNotesComponent } from './pages/dashboard/components/user-notes/user-notes.component';
+import { PinComponent } from './pages/dashboard/components/pin/pin.component';
+import { UpdateNoteComponent } from './pages/dashboard/components/update-note/update-note.component';
+import { ImageUploadComponent } from './pages/dashboard/components/image-upload/image-upload.component';
+import { LabelsComponent } from './pages/dashboard/components/labels/labels.component';
+import { EditLabelsComponent } from './pages/dashboard/components/edit-labels/edit-labels.component';
+import { NoteLabelsComponent } from './pages/dashboard/components/note-labels/note-labels.component';
 
 
 @NgModule({

@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { RegistrationComponent } from './pages/auth/registration/registration.component';
+import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NoteComponent } from './pages/dashboard/components/note/note.component';
+import { RemindersComponent } from './pages/dashboard/components/reminders/reminders.component';
+import { ArchiveComponent } from './pages/dashboard/components/archive/archive.component';
+import { TrashComponent } from './pages/dashboard/components/trash/trash.component';
+import { LabelsComponent } from './pages/dashboard/components/labels/labels.component';
 
-import { RegistrationComponent } from './auth/registration/registration.component';
-import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import {
-  AuthGuardService
-} from './services/authentication/auth-guard.service';
-import { NoteComponent } from './components/dashboard/components/note/note.component';
-import { RemindersComponent } from './components/dashboard/components/reminders/reminders.component';
-import { ArchiveComponent } from './components/dashboard/components/archive/archive.component';
-import { TrashComponent } from './components/dashboard/components/trash/trash.component';
-import { LabelsComponent } from './components/dashboard/components/labels/labels.component';
-import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'signin',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
   },
   {
