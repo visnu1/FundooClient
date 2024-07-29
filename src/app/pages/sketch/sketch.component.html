@@ -1,0 +1,232 @@
+<div>
+    <div class="toolbar">
+        <div class="flex-fill">
+            <ul class="list-unstyled items">
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">arrow_back</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">select</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">ink_eraser</span>
+                        </button>
+                        <button class="arrow_drop_down" mat-button>
+                            <span class="material-symbols-outlined">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <ng-container *ngTemplateOutlet="inkPen"></ng-container>
+                        </button>
+                        <button class="arrow_drop_down" mat-button>
+                            <span class="material-symbols-outlined">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <ng-container *ngTemplateOutlet="marker"></ng-container>
+                        </button>
+                        <button class="arrow_drop_down" mat-button>
+                            <span class="material-symbols-outlined">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <ng-container *ngTemplateOutlet="highlighter"></ng-container>
+                        </button>
+                        <button class="arrow_drop_down" mat-button>
+                            <span class="material-symbols-outlined">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <ng-container *ngTemplateOutlet="pageType"></ng-container>
+                        </button>
+                        <button class="arrow_drop_down" mat-button>
+                            <span class="material-symbols-outlined">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="list-unstyled items">
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">undo</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">redo</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">fullscreen_exit</span>
+                        </button>
+                    </div>
+                </li>
+                <li class="more-itm">
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">more_vert</span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #inkPen>
+    <svg fill="none" fill-rule="evenodd" height="24px" stroke="none" stroke-width="1" version="1.1" viewBox="0 0 24 24"
+        width="24px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <polygon fill="#424242" points="3 17.25 3 21 6.74 21 14.28 13.47 10.53 9.72"></polygon>
+        <path color="#000000" class="ink-icon-color"
+            d="M18.37,3.3 L20.71,5.63 C21.1,6.02 21.11,6.66 20.72,7.05 L15.35,12.41 L11.59,8.65 L14.12,6.12 L13.39,5.39 L7.73,11.05 L6.33,9.65 L12.7,3.29 C13.09,2.9 13.74,2.91 14.12,3.3 L15.54,4.71 L16.96,3.3 C17.34,2.91 17.98,2.91 18.37,3.3 L18.37,3.3 Z">
+        </path>
+        <path fill="#424242" class="ink-cap-border"
+            d="M17.7,4L20,6.3L15.4,11L13,8.6l1.8-1.8l0.7-0.7l-0.7-0.7l-0.2-0.2l0.2,0.2l0.7,0.7l0.7-0.7L17.7,4 M13.4,3 c-0.3,0-0.5,0.1-0.7,0.3L6.3,9.6l1.4,1.4l5.7-5.7l0.7,0.7l-2.5,2.5l3.8,3.8L20.7,7c0.4-0.4,0.4-1,0-1.4l-2.3-2.3 C18.2,3.1,17.9,3,17.7,3S17.2,3.1,17,3.3l-1.4,1.4l-1.4-1.4C13.9,3.1,13.7,3,13.4,3L13.4,3z">
+        </path>
+    </svg>
+</ng-template>
+
+<ng-template #marker>
+    <svg fill="none" fill-rule="evenodd" height="24px" stroke="none" stroke-width="1" version="1.1" viewBox="0 0 24 24"
+        width="24px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path fill="#424242"
+            d="M9.7,9.49 L13.99,13.79 L7.45,20.33 L6.73,19.61 L5.3,21.04 C4.51,21.83 3.23,21.83 2.44,21.04 C1.65,20.25 1.65,18.96 2.44,18.18 L3.87,16.75 L3.15,16.03 L9.7,9.49 L9.7,9.49 Z">
+        </path>
+        <path color="#ff5252" class="ink-icon-color"
+            d="M21.26,3.69 L19.8,2.22 C19.02,1.44 17.75,1.44 16.97,2.22 L10.76,8.43 L15.05,12.73 L21.26,6.52 C22.05,5.74 22.05,4.47 21.26,3.69 L21.26,3.69 Z">
+        </path>
+        <path fill="#424242" class="ink-cap-border"
+            d="M18.4,2.6c0.3,0,0.5,0.1,0.7,0.3l1.5,1.5c0.2,0.2,0.3,0.4,0.3,0.7s-0.1,0.5-0.3,0.7l-5.5,5.5l-2.9-2.9 l5.5-5.5C17.9,2.7,18.1,2.6,18.4,2.6 M18.4,1.6c-0.5,0-1,0.2-1.4,0.6l-6.2,6.2l4.3,4.3l6.2-6.2c0.8-0.8,0.8-2,0-2.8l-1.5-1.5 C19.4,1.8,18.9,1.6,18.4,1.6L18.4,1.6z">
+        </path>
+    </svg>
+</ng-template>
+
+<ng-template #highlighter>
+    <svg fill="none" fill-rule="evenodd" height="24px" stroke="none" stroke-width="1" version="1.1" viewBox="0 0 24 24"
+        width="24px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path fill="#424242"
+            d="M9.7,9.49 L13.99,13.79 L7.45,20.33 L6.73,19.61 L5.3,21.04 C4.51,21.83 3.23,21.83 2.44,21.04 C1.65,20.25 1.65,18.96 2.44,18.18 L3.87,16.75 L3.15,16.03 L9.7,9.49 L9.7,9.49 Z">
+        </path>
+        <path color="#ff5252" class="ink-icon-color"
+            d="M21.26,3.69 L19.8,2.22 C19.02,1.44 17.75,1.44 16.97,2.22 L10.76,8.43 L15.05,12.73 L21.26,6.52 C22.05,5.74 22.05,4.47 21.26,3.69 L21.26,3.69 Z">
+        </path>
+        <path fill="#424242" class="ink-cap-border"
+            d="M18.4,2.6c0.3,0,0.5,0.1,0.7,0.3l1.5,1.5c0.2,0.2,0.3,0.4,0.3,0.7s-0.1,0.5-0.3,0.7l-5.5,5.5l-2.9-2.9 l5.5-5.5C17.9,2.7,18.1,2.6,18.4,2.6 M18.4,1.6c-0.5,0-1,0.2-1.4,0.6l-6.2,6.2l4.3,4.3l6.2-6.2c0.8-0.8,0.8-2,0-2.8l-1.5-1.5 C19.4,1.8,18.9,1.6,18.4,1.6L18.4,1.6z">
+        </path>
+    </svg>
+</ng-template>
+
+<ng-template #pageType>
+    <svg class="ink-icon" height="24px" version="1.1" viewBox="0 0 24 24" width="24px"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M0 0h24v24H0z" fill="none"></path>
+        <path
+            d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 20H4v-4h4v4zm0-6H4v-4h4v4zm0-6H4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4z">
+        </path>
+    </svg>
+</ng-template>
+
+<ng-template #pgSquarePattern>
+    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_5" data-name="Layer 5" viewBox="0 0 48 48"
+        style="user-select: none;">
+        <circle class="n0tgWb-LkdAo" cx="24" cy="24" r="23.5" style="user-select: none;"></circle>
+        <g class="rTEl-NkY1gc" style="user-select: none;">
+            <line x1="12.33" y1="44.59" x2="12.33" y2="3.41" style="user-select: none;"></line>
+            <line x1="24" y1="48" x2="24" style="user-select: none;"></line>
+            <line x1="35.67" y1="44.59" x2="35.67" y2="3.41" style="user-select: none;"></line>
+            <line x1="3.56" y1="12.33" x2="44.44" y2="12.33" style="user-select: none;"></line>
+            <line y1="24" x2="48" y2="24" style="user-select: none;"></line>
+            <line x1="3.56" y1="35.67" x2="44.44" y2="35.67" style="user-select: none;"></line>
+        </g>
+        <g class="gvZm2b-uDEFge" style="user-select: none;">
+            <circle cx="8" cy="8" r="6.33" style="user-select: none;"></circle>
+            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.4,12l-4-4L3.53,6.87,6.4,9.74l6.07-6.08L13.6,4.8Z"
+                style="user-select: none;"></path>
+        </g>
+    </svg>
+</ng-template>
+
+<ng-template #pgDotsPattern>
+    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_5" data-name="Layer 5" viewBox="0 0 48 48"
+        style="user-select: none;">
+        <circle class="n0tgWb-LkdAo" cx="24" cy="24" r="23.5" style="user-select: none;"></circle>
+        <g class="rTEl-NkY1gc" style="user-select: none;">
+            <circle cx="11.37" cy="11.49" r="1.08" style="user-select: none;"></circle>
+            <circle cx="24" cy="11.49" r="1.08" style="user-select: none;"></circle>
+            <circle cx="36.63" cy="11.49" r="1.08" style="user-select: none;"></circle>
+            <circle cx="11.37" cy="24" r="1.08" style="user-select: none;"></circle>
+            <circle cx="24" cy="24" r="1.08" style="user-select: none;"></circle>
+            <circle cx="36.63" cy="24" r="1.08" style="user-select: none;"></circle>
+            <circle cx="24" cy="36.51" r="1.08" style="user-select: none;"></circle>
+            <circle cx="11.37" cy="36.51" r="1.08" style="user-select: none;"></circle>
+            <circle cx="36.63" cy="36.51" r="1.08" style="user-select: none;"></circle>
+        </g>
+        <g class="gvZm2b-uDEFge" style="user-select: none;">
+            <circle cx="8" cy="8" r="6.33" style="user-select: none;"></circle>
+            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.4,12l-4-4L3.53,6.87,6.4,9.74l6.07-6.08L13.6,4.8Z"
+                style="user-select: none;"></path>
+        </g>
+    </svg>
+</ng-template>
+
+<ng-template #pgRulesPattern>
+    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_5" data-name="Layer 5" viewBox="0 0 48 48"
+        style="user-select: none;">
+        <circle class="n0tgWb-LkdAo" cx="24" cy="24" r="23.5" style="user-select: none;"></circle>
+        <g class="rTEl-NkY1gc" style="user-select: none;">
+            <line x1="3.56" y1="12.33" x2="44.44" y2="12.33" style="user-select: none;"></line>
+            <line y1="24" x2="48" y2="24" style="user-select: none;"></line>
+            <line x1="3.56" y1="35.67" x2="44.44" y2="35.67" style="user-select: none;"></line>
+        </g>
+        <g class="gvZm2b-uDEFge" style="user-select: none;">
+            <circle cx="8" cy="8" r="6.33" style="user-select: none;"></circle>
+            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.4,12l-4-4L3.53,6.87,6.4,9.74l6.07-6.08L13.6,4.8Z"
+                style="user-select: none;"></path>
+        </g>
+    </svg>
+</ng-template>
+
+<ng-template #pgBlankPattern>
+    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_5" data-name="Layer 5" viewBox="0 0 48 48"
+        style="user-select: none;">
+        <circle class="n0tgWb-LkdAo" cx="24" cy="24" r="23.5" style="user-select: none;"></circle>
+        <g class="rTEl-NkY1gc" style="user-select: none;"></g>
+        <g class="gvZm2b-uDEFge" style="user-select: none;">
+            <circle cx="8" cy="8" r="6.33" style="user-select: none;"></circle>
+            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.4,12l-4-4L3.53,6.87,6.4,9.74l6.07-6.08L13.6,4.8Z"
+                style="user-select: none;"></path>
+        </g>
+    </svg>
+</ng-template>

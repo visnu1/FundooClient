@@ -1,0 +1,58 @@
+.toolbar {
+    padding: 8px 0px;
+    display: flex;
+    border-bottom: 1px solid silver;
+
+    .items {
+        margin: 0;
+        display: flex;
+
+        li {
+            margin-left: 18px;
+
+            &>div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &:hover {
+                outline: 1px solid #e5e5e5;
+
+                .arrow_drop_down {
+                    border-left: 1px solid #e5e5e5;
+                }
+            }
+        }
+
+        button {
+            border-radius: 0;
+            min-width: 24px;
+            padding: 8px 7px;
+
+            &:hover {
+                ::ng-deep .mat-mdc-button-persistent-ripple::before {
+                    opacity: 0 !important;
+                }
+            }
+        }
+
+        .more-itm{
+            margin-right: 18px;
+        }
+
+        .material-symbols-outlined {
+            opacity: 0.8;
+        }
+
+        .arrow_drop_down {
+            padding: 0px;
+            border-left: 1px solid white;
+
+            span {
+                font-size: 18px;
+            }
+        }
+
+    }
+}

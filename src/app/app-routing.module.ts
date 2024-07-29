@@ -10,6 +10,7 @@ import { RemindersComponent } from './pages/dashboard/components/reminders/remin
 import { ArchiveComponent } from './pages/dashboard/components/archive/archive.component';
 import { TrashComponent } from './pages/dashboard/components/trash/trash.component';
 import { LabelsComponent } from './pages/dashboard/components/labels/labels.component';
+import { SketchComponent } from './pages/sketch/sketch.component';
 
 
 const routes: Routes = [
@@ -65,6 +66,9 @@ const routes: Routes = [
         component: LabelsComponent
       }
     ]
+  }, {
+    path: 'sketch',
+    component: SketchComponent
   }
 ];
 

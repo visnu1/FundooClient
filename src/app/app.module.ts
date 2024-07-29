@@ -46,6 +46,7 @@ import { ImageUploadComponent } from './pages/dashboard/components/image-upload/
 import { LabelsComponent } from './pages/dashboard/components/labels/labels.component';
 import { EditLabelsComponent } from './pages/dashboard/components/edit-labels/edit-labels.component';
 import { NoteLabelsComponent } from './pages/dashboard/components/note-labels/note-labels.component';
+import { SketchComponent } from './pages/sketch/sketch.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { NoteLabelsComponent } from './pages/dashboard/components/note-labels/no
     LabelsComponent,
     EditLabelsComponent,
     NoteLabelsComponent,
+    SketchComponent
   ],
   imports: [
     DragDropModule,
