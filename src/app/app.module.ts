@@ -47,6 +47,8 @@ import { LabelsComponent } from './pages/dashboard/components/labels/labels.comp
 import { EditLabelsComponent } from './pages/dashboard/components/edit-labels/edit-labels.component';
 import { NoteLabelsComponent } from './pages/dashboard/components/note-labels/note-labels.component';
 import { SketchComponent } from './pages/sketch/sketch.component';
+import { PaintPaletteComponent } from './pages/sketch/paint-palette/paint-palette.component';
+import { SharedModule } from './core/shared/shared.module';
 
 
 @NgModule({
@@ -70,7 +72,8 @@ import { SketchComponent } from './pages/sketch/sketch.component';
     LabelsComponent,
     EditLabelsComponent,
     NoteLabelsComponent,
-    SketchComponent
+    SketchComponent,
+    PaintPaletteComponent
   ],
   imports: [
     DragDropModule,
@@ -96,7 +99,8 @@ import { SketchComponent } from './pages/sketch/sketch.component';
     MatNativeDateModule,
     MatNativeDateModule,
     MatSelectModule,
-    ImageCropperComponent
+    ImageCropperComponent,
+    SharedModule
   ],
   // entryComponents: [UpdateNoteComponent, ImageUploadComponent, EditLabelsComponent],
   providers: [AsyncPipe],

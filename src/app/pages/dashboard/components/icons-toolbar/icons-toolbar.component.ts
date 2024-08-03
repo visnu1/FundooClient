@@ -100,7 +100,6 @@ export class IconsToolbarComponent implements OnInit {
     this.pop = !this.pop;
   }
 
-
   color(colorObj, card) {
     console.log(colorObj.color);
     console.log(card);
