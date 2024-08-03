@@ -1,0 +1,31 @@
+<div class="palette" style="width: 344px;">
+    <div class="colors" [class.expand-cols]="expandPalette">
+        <div class="cols-row">
+            <button class="brush-color" [class.selected]="shade === color" *ngFor="let color of colors1"
+                [style.backgroundColor]="color"></button>
+            <button class="more-colors" (click)="onToggleMoreColors($event)">
+                <span class="material-symbols-outlined small-icon">
+                    {{expandPalette ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+                </span>
+            </button>
+        </div>
+        <div class="cols-row">
+            <button class="brush-color" [class.selected]="shade === color" *ngFor="let color of colors2"
+                [style.backgroundColor]="color"></button>
+        </div>
+        <div class="cols-row">
+            <button class="brush-color" [class.selected]="shade === color" *ngFor="let color of colors3"
+                [style.backgroundColor]="color"></button>
+        </div>
+        <div class="cols-row">
+            <button class="brush-color" [class.selected]="shade === color" *ngFor="let color of colors4"
+                [style.backgroundColor]="color"></button>
+        </div>
+    </div>
+    <div class="brush-ctrls">
+        <button *ngFor="let item of brushSizes" [class.selected]="brushSize == item.value"
+            [attr.aria-label]="item.label" (click)="onSelectSize(item.value, $event)">
+            <div [ngStyle]="{'width': item.dimension, 'height':item.dimension }"></div>
+        </button>
+    </div>
+</div>
