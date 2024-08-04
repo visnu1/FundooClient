@@ -1,0 +1,138 @@
+.toolbar {
+    padding: 8px 0px;
+    display: flex;
+    border-bottom: 1px solid silver;
+    background-color: white !important;
+
+    .items {
+        margin: 0;
+        display: flex;
+
+        li {
+            margin-left: 18px;
+
+            &>div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &:hover {
+                outline: 1px solid #e5e5e5;
+
+                .arrow_drop_down {
+                    border-left: 1px solid #e5e5e5;
+                }
+            }
+        }
+
+        button {
+            border-radius: 0;
+            min-width: 24px;
+            padding: 8px 7px;
+
+            &:hover {
+                ::ng-deep .mat-mdc-button-persistent-ripple::before {
+                    opacity: 0 !important;
+                }
+            }
+        }
+
+        .more-itm {
+            margin-right: 18px;
+        }
+
+        .material-symbols-outlined {
+            opacity: 0.8;
+        }
+
+        .arrow_drop_down {
+            padding: 0px;
+            border-left: 1px solid white;
+
+            span {
+                font-size: 18px;
+            }
+        }
+
+    }
+}
+
+.page-ctrls {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px;
+
+    &>button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 8px;
+        padding: 10px 15px;
+        background-color: transparent;
+        border: none;
+        min-width: 78px;
+        border-radius: 4px;
+        font-weight: 500;
+        cursor: pointer;
+
+        &>svg {
+            margin-bottom: 15px;
+
+            .out-cir {
+                stroke: rgba(0, 0, 0, 0.54);
+            }
+        }
+
+        &:hover {
+            background-color: rgb(244, 242, 242);
+
+            label {
+                font-weight: 600;
+            }
+
+            .out-cir {
+                stroke: #4081f5 !important;
+            }
+        }
+    }
+}
+
+.more-opts {
+    margin: 0;
+
+    li {
+        padding: 0;
+
+        button {
+            padding: 8px 12px;
+            font-weight: 400;
+            line-height: 1.25rem;
+            display: block;
+            letter-spacing: .015em;
+            font-size: .88rem;
+        }
+
+        &:hover {
+            background-color: rgba(0, 0, 0, .08);
+        }
+    }
+}
+
+.clear-btn {
+    display: block;
+    padding: 8px 12px;
+    font-weight: 400;
+    line-height: 1.25rem;
+    display: block;
+    letter-spacing: 0.015em;
+    font-size: 0.88rem;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, .08);
+    }
+}
+
+::ng-deep .mat-mdc-menu-panel {
+    max-width: 600px !important;
+}

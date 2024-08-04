@@ -49,6 +49,7 @@ import { NoteLabelsComponent } from './pages/dashboard/components/note-labels/no
 import { SketchComponent } from './pages/sketch/sketch.component';
 import { PaintPaletteComponent } from './pages/sketch/paint-palette/paint-palette.component';
 import { SharedModule } from './core/shared/shared.module';
+import { PaintToolbarComponent } from './pages/sketch/paint-toolbar/paint-toolbar.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { SharedModule } from './core/shared/shared.module';
     EditLabelsComponent,
     NoteLabelsComponent,
     SketchComponent,
-    PaintPaletteComponent
+    PaintPaletteComponent,
+    PaintToolbarComponent
   ],
   imports: [
     DragDropModule,

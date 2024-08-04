@@ -15,14 +15,5 @@ export class SketchComponent {
   highlighterShade?: string = 'black';
   highlighterSize?: number = 0.5657;
 
-  debug() {
-    console.log("this.activeColor", this.penShade);
-    console.log("this.activeBrushSize", this.penSize);
-    console.log("this.activeBrushSize", this.markerShade);
-    console.log("this.activeBrushSize", this.markerSize);
-    console.log("this.activeBrushSize", this.highlighterShade);
-    console.log("this.activeBrushSize", this.highlighterSize);
-  }
-
 
 }

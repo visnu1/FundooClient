@@ -1,0 +1,211 @@
+<div>
+    <div class="toolbar">
+        <div class="flex-fill">
+            <ul class="list-unstyled items">
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">arrow_back</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">select</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">ink_eraser</span>
+                        </button>
+                        <button class="arrow_drop_down" mat-button [matMenuTriggerFor]="eraseOptions">
+                            <span class="material-symbols-outlined">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <app-svg-icon src="assets/icons/sketch-pen.svg"></app-svg-icon>
+                        </button>
+                        <button class="arrow_drop_down" mat-button [matMenuTriggerFor]="penOpts">
+                            <span class="material-symbols-outlined">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <app-svg-icon src="assets/icons/sketch-marker.svg"></app-svg-icon>
+                        </button>
+                        <button class="arrow_drop_down" mat-button [matMenuTriggerFor]="markerOpts">
+                            <span class="material-symbols-outlined">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <app-svg-icon src="assets/icons/sketch-highlighter.svg"></app-svg-icon>
+                        </button>
+                        <button class="arrow_drop_down" mat-button [matMenuTriggerFor]="highlighterOpts">
+                            <span class="material-symbols-outlined">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <app-svg-icon src="assets/icons/page-type.svg"></app-svg-icon>
+                        </button>
+                        <button class="arrow_drop_down" mat-button>
+                            <span class="material-symbols-outlined"
+                                [matMenuTriggerFor]="pageOptions">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="list-unstyled items">
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">undo</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">redo</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <button mat-button>
+                            <span class="material-symbols-outlined">fullscreen_exit</span>
+                        </button>
+                    </div>
+                </li>
+                <li class="more-itm">
+                    <div>
+                        <button mat-button [matMenuTriggerFor]="moreMenu">
+                            <span class="material-symbols-outlined">more_vert</span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<mat-menu #penOpts="matMenu">
+    <app-paint-palette [(shade)]="penShade" [(brushSize)]="penSize"></app-paint-palette>
+</mat-menu>
+
+<mat-menu #markerOpts="matMenu">
+    <app-paint-palette [(shade)]="markerShade" [(brushSize)]="markerSize"></app-paint-palette>
+</mat-menu>
+
+<mat-menu #highlighterOpts="matMenu">
+    <app-paint-palette [(shade)]="highlighterShade" [(brushSize)]="highlighterSize"></app-paint-palette>
+</mat-menu>
+
+<mat-menu #eraseOptions="matMenu">
+    <div>
+        <button class="basic-btn clear-btn">Clear Page</button>
+    </div>
+</mat-menu>
+
+<mat-menu #moreMenu="matMenu">
+    <ul class="list-unstyled more-opts">
+        <li>
+            <button class="basic-btn">New drawing</button>
+        </li>
+        <li>
+            <button class="basic-btn">Export as image</button>
+        </li>
+        <li>
+            <button class="basic-btn">Delete current drawing</button>
+        </li>
+    </ul>
+</mat-menu>
+
+<mat-menu class="page-menu" #pageOptions="matMenu" xPosition="before">
+    <div class="page-ctrls">
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" id="squareType" viewBox="0 0 48 48" width="48" height="48">
+                <circle class="out-cir" fill="#fff" cx="24" cy="24" r="23.5"></circle>
+                <g stroke="rgba(0,0,0,0.45)">
+                    <line x1="12.33" y1="44.59" x2="12.33" y2="3.41"></line>
+                    <line x1="24" y1="48" x2="24"></line>
+                    <line x1="35.67" y1="44.59" x2="35.67" y2="3.41"></line>
+                    <line x1="3.56" y1="12.33" x2="44.44" y2="12.33"></line>
+                    <line y1="24" x2="48" y2="24"></line>
+                    <line x1="3.56" y1="35.67" x2="44.44" y2="35.67"></line>
+                </g>
+                <g *ngIf="">
+                    <circle cx="8" cy="8" r="6.33" fill="#fff"></circle>
+                    <path fill="blue"
+                        d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.4,12l-4-4L3.53,6.87,6.4,9.74l6.07-6.08L13.6,4.8Z">
+                    </path>
+                </g>
+            </svg>
+            <label for="squareType">Square</label>
+        </button>
+
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" id="dotsType" viewBox="0 0 48 48" width="48" height="48">
+                <circle class="out-cir" fill="#fff" cx="24" cy="24" r="23.5"></circle>
+                <g>
+                    <circle cx="11.37" cy="11.49" r="1.08"></circle>
+                    <circle cx="24" cy="11.49" r="1.08"></circle>
+                    <circle cx="36.63" cy="11.49" r="1.08"></circle>
+                    <circle cx="11.37" cy="24" r="1.08"></circle>
+                    <circle cx="24" cy="24" r="1.08"></circle>
+                    <circle cx="36.63" cy="24" r="1.08"></circle>
+                    <circle cx="11.37" cy="36.51" r="1.08"></circle>
+                    <circle cx="24" cy="36.51" r="1.08"></circle>
+                    <circle cx="36.63" cy="36.51" r="1.08"></circle>
+                </g>
+                <g *ngIf="">
+                    <circle cx="8" cy="8" r="6.33" fill="#fff"></circle>
+                    <path fill="blue"
+                        d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.4,12l-4-4L3.53,6.87,6.4,9.74l6.07-6.08L13.6,4.8Z">
+                    </path>
+                </g>
+            </svg>
+            <label for="dotsType">Dots</label>
+        </button>
+
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" id="dotsType" viewBox="0 0 48 48" width="48" height="48">
+                <circle class="out-cir" fill="#fff" cx="24" cy="24" r="23.5"></circle>
+                <g stroke="rgba(0,0,0,0.45)">
+                    <line x1="3.56" y1="12.33" x2="44.44" y2="12.33"></line>
+                    <line y1="24" x2="48" y2="24"></line>
+                    <line x1="3.56" y1="35.67" x2="44.44" y2="35.67"></line>
+                </g>
+                <g *ngIf="">
+                    <circle cx="8" cy="8" r="6.33" fill="#fff"></circle>
+                    <path fill="blue"
+                        d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.4,12l-4-4L3.53,6.87,6.4,9.74l6.07-6.08L13.6,4.8Z">
+                    </path>
+                </g>
+            </svg>
+            <label for="rulesType">Rules</label>
+        </button>
+
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" id="dotsType" viewBox="0 0 48 48" width="48" height="48">
+                <circle class="out-cir" fill="#fff" cx="24" cy="24" r="23.5"></circle>
+            </svg>
+            <label for="noneType">None</label>
+        </button>
+    </div>
+</mat-menu>
