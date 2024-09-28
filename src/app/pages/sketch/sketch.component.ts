@@ -1,19 +1,36 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, viewChild } from '@angular/core';
+import * as fabric from 'fabric';
 
 @Component({
   selector: 'app-sketch',
   templateUrl: './sketch.component.html',
-  styleUrls: ['./sketch.component.scss'],
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./sketch.component.scss']
 })
-export class SketchComponent {
+export class SketchComponent implements OnInit, AfterViewInit {
 
-  penShade?: string = '#ff5252';
-  penSize?: number = 0.5657;
-  markerShade?: string = '#d500f9';
-  markerSize?: number = 0.5657;
-  highlighterShade?: string = 'black';
-  highlighterSize?: number = 0.5657;
+  canvasEle = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
+  canvas: fabric.Canvas;
 
+  ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit(): void {
+    if (this.canvasEle() && this.canvasEle().nativeElement.getContext)
+      this.initFabricJS();
+  }
+
+  initFabricJS() {
+    // this.canvas = new fabric.Canvas('canvas', {
+    //   // width: 700,
+    //   height: 900,
+    //   backgroundColor: 'azure',
+    // });
+    // this.canvas.isDrawingMode = true;
+  }
+
+  adjustCanvasDimensions() {
+
+  }
 
 }

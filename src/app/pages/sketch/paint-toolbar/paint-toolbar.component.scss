@@ -2,7 +2,7 @@
     padding: 8px 0px;
     display: flex;
     border-bottom: 1px solid silver;
-    background-color: white !important;
+    background-color: var(--child-component-toolbar-background, white) !important;
 
     .items {
         margin: 0;
