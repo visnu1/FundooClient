@@ -20,21 +20,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'signin',
-    component: LoginComponent,
-    children: []
-  },
-  {
-    path: 'signup',
-    component: RegistrationComponent
-  },
-  {
-    path: 'forgotPassword',
-    component: ForgotPasswordComponent
-  },
-  {
-    path: 'resetPassword',
-    component: ResetPasswordComponent
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'dashboard',

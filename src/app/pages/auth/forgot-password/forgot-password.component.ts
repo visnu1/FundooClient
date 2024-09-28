@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, viewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from '../../../core/services/service/user.service';
+import { UserService } from '../../../core/services/user/user.service';
 
 @Component({
   selector: 'app-forgot-password',

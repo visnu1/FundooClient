@@ -7,7 +7,7 @@ import { Validators } from '@angular/forms';
 import { Router } from '@angular/router'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CValidators } from '../../../customValidations';
-import { UserService } from '../../../core/services/service/user.service';
+import { UserService } from '../../../core/services/user/user.service';
 
 
 @Component({

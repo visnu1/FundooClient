@@ -8,7 +8,7 @@ import { ImageUploadComponent } from './components/image-upload/image-upload.com
 import { EditLabelsComponent } from './components/edit-labels/edit-labels.component';
 import { NoteLabel } from '../../core/Models/note';
 import { DataService } from '../../core/services/data-service/data.service';
-import { NoteService } from '../../core/services/service/note.service';
+import { NoteService } from '../../core/services/note/note.service';
 
 
 export interface LabelData {

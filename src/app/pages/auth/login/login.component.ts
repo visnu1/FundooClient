@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from '../../../core/services/service/user.service';
+import { UserService } from '../../../core/services/user/user.service';
 import { DataService } from '../../../core/services/data-service/data.service';
 
 

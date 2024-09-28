@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { Note } from '../../../../core/Models/note';
 import { isValidDate } from '../../../../core/utils/date-utils';
 import { Subscription } from 'rxjs';
-import { NoteService } from '../../../../core/services/service/note.service';
+import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
 
 @Component({

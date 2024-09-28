@@ -6,7 +6,7 @@ import { OnDestroy, AfterViewInit, ElementRef, ViewChild, ChangeDetectorRef, NgZ
 import { FormControl, Validators } from '@angular/forms';
 import { Note, NoteLabel } from '../../../../core/Models/note';
 import { Observable, Subscription } from 'rxjs';
-import { NoteService } from '../../../../core/services/service/note.service';
+import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
 
 

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateNoteComponent } from '../update-note/update-note.component';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';import { DataService } from '../../../../core/services/data-service/data.service';
-import { NoteService } from '../../../../core/services/service/note.service';
+import { NoteService } from '../../../../core/services/note/note.service';
 
 export interface DialogData {
   color?: string;

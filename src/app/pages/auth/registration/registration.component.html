@@ -41,11 +41,11 @@
             <mat-form-field appearance="outline" class="uname">
               <mat-label>Username</mat-label>
               <input matInput placeholder type="text" formControlName="email">
+              <mat-hint *ngIf="!formErrors.email">
+                You can use letters, numbers &amp; periods
+              </mat-hint>
             </mat-form-field>
-            <div class="ovnfwe" *ngIf="!formErrors.email">You can use letters, numbers &amp; periods</div>
-            <mat-error *ngIf="formErrors.email">
-              {{formErrors.email}}
-            </mat-error>
+            <mat-error class="email-err" *ngIf="formErrors.email"> {{formErrors.email}} </mat-error>
           </div>
           <div class="c33">
             <span>
@@ -60,9 +60,9 @@
                 <input matInput placeholder [type]="hide ?'text':'password'" formControlName="cpsw">
               </mat-form-field>
             </span>
-            <mat-icon id="eye" (click)="hide = !hide">{{
-            hide ? "visibility" : "visibility_off"
-          }}</mat-icon>
+            <mat-icon class="material-symbols-outlined" (click)="hide = !hide">
+              {{ !hide ? "visibility" : "visibility_off" }}
+            </mat-icon>
             <mat-error *ngIf="formErrors.psw">
               {{formErrors.psw}}
             </mat-error>
@@ -74,8 +74,8 @@
             </mat-error>
           </div>
           <div id="qwsqw">
-            <button class="createAcc" (click)= signin()>Signin instead</button>
-            <button mat-button class="button" [ngClass]="'btn btn-primary'" (click)= signup()>Next</button>
+            <button class="createAcc" (click)=signin()>Signin instead</button>
+            <button mat-button class="button" [ngClass]="'btn btn-primary'" (click)=signup()>Next</button>
           </div>
         </div>
       </div>

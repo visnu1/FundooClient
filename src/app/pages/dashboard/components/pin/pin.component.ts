@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Note } from '../../../../core/Models/note';
-import { NoteService } from '../../../../core/services/service/note.service';
+import { NoteService } from '../../../../core/services/note/note.service';
 
 @Component({
   selector: '.app-pin',

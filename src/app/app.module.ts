@@ -28,10 +28,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { A11yModule } from '@angular/cdk/a11y';
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import { ImageCropperComponent } from 'ngx-image-cropper';
-import { LoginComponent } from './pages/auth/login/login.component';
-import { RegistrationComponent } from './pages/auth/registration/registration.component';
-import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TakeNoteComponent } from './pages/dashboard/components/take-note/take-note.component';
 import { NoteComponent } from './pages/dashboard/components/note/note.component';
@@ -50,15 +46,12 @@ import { SketchComponent } from './pages/sketch/sketch.component';
 import { PaintPaletteComponent } from './pages/sketch/paint-palette/paint-palette.component';
 import { SharedModule } from './core/shared/shared.module';
 import { PaintToolbarComponent } from './pages/sketch/paint-toolbar/paint-toolbar.component';
+import { AuthModule } from './pages/auth/auth.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegistrationComponent,
-    ForgotPasswordComponent,
-    ResetPasswordComponent,
     DashboardComponent,
     TakeNoteComponent,
     NoteComponent,
@@ -78,21 +71,25 @@ import { PaintToolbarComponent } from './pages/sketch/paint-toolbar/paint-toolba
     PaintToolbarComponent
   ],
   imports: [
-    DragDropModule,
     BrowserModule,
-    AppRoutingModule,
-    MatInputModule,
     BrowserAnimationsModule,
-    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
+    //repeated
+    MatInputModule,
     MatFormFieldModule,
     MatIconModule,
     MatButtonModule,
-    ReactiveFormsModule,
+    ////
+    AppRoutingModule,
+    DragDropModule,
+    MatCardModule,
     MatSnackBarModule,
     HttpClientModule,
     MatToolbarModule,
     MatTooltipModule,
-    FormsModule,
+    
     MatSidenavModule,
     MatMenuModule,
     MatDialogModule,
@@ -102,7 +99,8 @@ import { PaintToolbarComponent } from './pages/sketch/paint-toolbar/paint-toolba
     MatNativeDateModule,
     MatSelectModule,
     ImageCropperComponent,
-    SharedModule
+    SharedModule,
+    AuthModule
   ],
   // entryComponents: [UpdateNoteComponent, ImageUploadComponent, EditLabelsComponent],
   providers: [AsyncPipe],

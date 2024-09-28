@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
-import { NoteService } from '../../../../core/services/service/note.service';
+import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
 
 

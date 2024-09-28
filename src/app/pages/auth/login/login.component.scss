@@ -2,6 +2,7 @@
   font-family: googleR;
   src: url("../../../../assets/fonts/GoogleSans-Regular.ttf");
 }
+
 @font-face {
   font-family: googleB;
   src: url("../../../../assets/fonts/GoogleSans-Bold.ttf");
@@ -136,6 +137,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
 .content div {
   font-size: 16px;
   font-weight: 400;
@@ -154,7 +156,7 @@ h1 {
 
 #forgotpsw {
   padding-bottom: 3px;
-  padding-top: 9px;
+  padding-top: 5px;
 }
 
 #forgotpsw button {
@@ -175,25 +177,8 @@ h1 {
   // text-align: left;
 }
 
-.createAcc {
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  color: #1a73e8;
-  // display: inline-block;
-  font-weight: 500;
-  letter-spacing: 0.25px;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  font-size: inherit;
-  outline: 0;
-  padding: 0;
-  left: 10%;
-  font-family: "googleR", arial, sans-serif;
-}
-
 .button {
-  color: #fff;
+  color: #fff !important;
   background-color: #1a73e8;
   float: right;
   padding: 0 10px;
@@ -202,6 +187,24 @@ h1 {
 
 #qwsqw {
   padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .createAcc {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    color: #1a73e8;
+    // display: inline-block;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: inherit;
+    outline: 0;
+    padding: 0;
+    left: 10%;
+    font-family: "googleR", arial, sans-serif;
+  }
 }
-
-

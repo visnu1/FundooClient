@@ -172,11 +172,14 @@ h1 {
 .c31,
 .c33 {
   // height: 60px;
-  margin-bottom: 10px
+  position: relative;
+  margin-bottom: 10px;
 }
 
 .c32 {
+  position: relative;
   height: 80px;
+  margin-bottom: 15px;
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
@@ -214,7 +217,7 @@ h1 {
 }
 
 .button {
-  color: #fff;
+  color: #fff !important;
   background-color: #1a73e8;
   float: right;
   padding: 0 10px;
@@ -240,4 +243,13 @@ h1 {
   padding: 0;
   left: 10%;
   font-family: "googleR", arial, sans-serif;
+}
+
+.email-err {
+  position: absolute;
+  top: 58px;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  margin-bottom: -1.25em;
 }

@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DashboardComponent } from '../../dashboard.component';
 import { FormControl } from '@angular/forms';
 import { Observable, finalize, forkJoin, of } from 'rxjs';
-import { NoteService } from '../../../../core/services/service/note.service';
+import { NoteService } from '../../../../core/services/note/note.service';
 
 @Component({
   selector: 'app-edit-labels',
