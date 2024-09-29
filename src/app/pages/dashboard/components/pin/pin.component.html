@@ -1,5 +1,5 @@
 <ng-container *ngIf="!card?.pinned; else pinned">
-    <button class="pin-btn" mat-icon-button title="Pin note" (click)="updatePin(true)">
+    <button class="pin-btn" mat-icon-button matTooltip="Pin note" (click)="updatePin(true)">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path fill="none" d="M0 0h24v24H0z" />
             <path fill="#202124"
@@ -8,7 +8,7 @@
     </button>
 </ng-container>
 <ng-template #pinned>
-    <button class="pin-btn" mat-icon-button title="Unpin note" (click)="updatePin(false)">
+    <button class="pin-btn" mat-icon-button matTooltip="Unpin note" (click)="updatePin(false)">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path fill="none" d="M0 0h24v24H0z" />
             <path fill="#202124" d="M17 4a2 2 0 0 0-2-2H9c-1.1 0-2 .9-2 2v7l-2 3v2h6v5l1 1 1-1v-5h6v-2l-2-3V4z" />

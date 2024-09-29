@@ -1,3 +1,7 @@
+.tnote {
+  position: relative;
+}
+
 .asjqsq {
   letter-spacing: 0.00625em;
   font-family: "Google Sans", Roboto, Arial, sans-serif;
@@ -15,6 +19,12 @@
   position: relative;
 }
 
+.ctrl-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media (max-width: 601px) {
   .nbar {
     width: 100%;
@@ -25,7 +35,7 @@
   }
 }
 
-.nbar > :nth-child(n + 2) {
+.nbar> :nth-child(n + 2) {
   background-size: 24px 24px;
   height: 30px;
   position: absolute;
@@ -38,28 +48,13 @@
   cursor: pointer;
 }
 
-.nic1 {
-  background-image: url(../../../../../assets/icons/new-list.svg);
-  right: 120px;
-}
-.nic2 {
-  background-image: url(../../../../../assets/icons/pen.svg);
-  right: 65px;
-}
-.nic3 {
-  background-image: url(../../../../../assets/icons/gallery.svg);
-  right: 12px;
-}
-
-// .nico:nth-child(1){
-//   background-color: teal;
-
-// }
-
-.tnote2 {
-  padding: 15px 0;
-  white-space: nowrap;
-  display: none;
+.note-opts {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  right: 8px;
+  top: 0;
 }
 
 .nbar1 {

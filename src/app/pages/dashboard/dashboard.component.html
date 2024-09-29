@@ -2,7 +2,7 @@
   <mat-toolbar>
     <mat-toolbar-row id=row>
       <div class=left>
-        <div title="Main menu" class=icondiv (click)="drawer.toggle()">
+        <div matTooltip="Main menu" class=icondiv (click)="drawer.toggle()">
           <svg focusable="false" viewBox="0 0 24 24">
             <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
           </svg>
@@ -37,9 +37,9 @@
           </form>
         </div>
         <div class="icons3">
-          <div title="Refresh" class=refreshico (click)=refresh()></div>
-          <div title="list" (click)="onViewChange()" [ngClass]="view"></div>
-          <div title="Settings" class=settingsico></div>
+          <div matTooltip="Refresh" class=refreshico (click)=refresh()></div>
+          <div matTooltip="list" (click)="onViewChange()" [ngClass]="view"></div>
+          <div matTooltip="Settings" class=settingsico></div>
         </div>
       </div>
       <div class="ball">

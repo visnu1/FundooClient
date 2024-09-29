@@ -5,23 +5,43 @@
       </div>
 
       <div class="asjqsq sasr" (click)=click() *ngIf=!hide>
-        Take a note...
+        <b>Take a note...</b>
       </div>
       <div class="asjqsq" id="title" *ngIf=hide data-text="Title" contenteditable="true">
       </div>
       <div id="asas" *ngIf=hide data-text="Take a note..." contenteditable="true">
       </div>
+
+      <ng-container *ngIf=!hide>
+        <div class="note-opts">
+          <button matTooltip="New list" class="checkls-btn" mat-icon-button>
+            <span class="material-symbols-outlined small-icon">
+              check_box
+            </span>
+          </button>
+          <button matTooltip="New note with drawing" class="sketch-btn" mat-icon-button>
+            <span class="material-symbols-outlined small-icon">
+              brush
+            </span>
+          </button>
+          <button matTooltip="New note with image" class="add-img-btn" mat-icon-button>
+            <span class="material-symbols-outlined small-icon">
+              image
+            </span>
+          </button>
+        </div>
+      </ng-container>
     </div>
     <div>
 
     </div>
-    <app-icons-toolbar *ngIf=hide [undo]="userNoteMsg" (archiveCard)="userArchive($event)"
-      (colorCard)="noteColor($event)" (reminderCard)="reminder($event)">
-    </app-icons-toolbar>
-    <div role="button" class="clo" *ngIf=hide (click)="send()">Close</div>
-
+    <div class="ctrl-bar">
+      <app-icons-toolbar style="flex: 1;" *ngIf=hide [undo]="userNoteMsg" (archiveCard)="userArchive($event)"
+        (colorCard)="noteColor($event)" (reminderCard)="reminder($event)">
+      </app-icons-toolbar>
+      <div role="button" class="clo" *ngIf=hide (click)="send()">Close</div>
+    </div>
   </div>
-  <div class="nic1" *ngIf=!hide></div>
-  <div class="nic2" *ngIf=!hide></div>
-  <div class="nic3" *ngIf=!hide></div>
+
+
 </div>
