@@ -15,6 +15,7 @@ export class TrashComponent implements OnInit {
     gridCards2: [],
     gridCards3: [],
   }
+  emptyTrash = true;
 
   constructor(private service: NoteService, private data: DataService) { }
 
@@ -26,7 +27,6 @@ export class TrashComponent implements OnInit {
     //console.log(this.data.token);
     this.service.getNotes(this.data.token).subscribe(data => {
       this.segregate(data['result']);
-      // console.log(this.cards);
     })
   }
 
@@ -42,6 +42,7 @@ export class TrashComponent implements OnInit {
         tempo.push(data[i]);
       }
     }
+    if (temp.length) this.emptyTrash = false;
     this.trashCards.cards = temp.slice();
     while (tempo.length > 0) {
       temp1.push(tempo.pop());
@@ -65,5 +66,9 @@ export class TrashComponent implements OnInit {
   // delete note forever and restore
   userRes() {
     this.ngOnInit();
+  }
+
+  onEmptyTrash() {
+    //implementation
   }
 }

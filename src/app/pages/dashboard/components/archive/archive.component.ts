@@ -16,6 +16,7 @@ export class ArchiveComponent implements OnInit {
     gridCards2: [],
     gridCards3: [],
   }
+  emptyArchive = true;
 
   constructor(private service: NoteService, private data: DataService) { }
 
@@ -43,6 +44,7 @@ export class ArchiveComponent implements OnInit {
         tempo.push(data[i]);
       }
     }
+    if(temp.length) this.emptyArchive = false;
     this.archiveCards.cards = temp.slice();
     while (tempo.length > 0) {
       temp1.push(tempo.pop());

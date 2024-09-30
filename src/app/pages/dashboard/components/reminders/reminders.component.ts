@@ -16,6 +16,7 @@ export class RemindersComponent implements OnInit {
     gridCards2: [],
     gridCards3: [],
   }
+  emptyReminders = true;
 
   constructor(private service: NoteService, private data: DataService) { }
 
@@ -44,6 +45,7 @@ export class RemindersComponent implements OnInit {
         tempo.push(data[i]);
       }
     }
+    if (temp.length) this.emptyReminders = false;
     this.allCards.cards = temp.slice();
 
     while (tempo.length > 0) {

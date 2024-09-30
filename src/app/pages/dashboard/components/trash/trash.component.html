@@ -1,1 +1,22 @@
-<app-user-notes [getCards]="trashCards" (trashAction)="userRes()"></app-user-notes>
+<div class="trash-nav">
+    <div class="trash-msg">
+        <i>Notes in Trash are deleted after 7 days.</i>
+    </div>
+    <button *ngIf="!emptyTrash" mat-button (click)="onEmptyTrash()">
+        Empty Trash
+    </button>
+</div>
+
+<div>
+    <ng-container *ngIf="emptyTrash; else trashContent">
+        <div class="placeholder-template">
+            <div class="pl-icon"></div>
+            <div class="msg">No notes in Trash</div>
+        </div>
+    </ng-container>
+
+    <ng-template #trashContent>
+        <app-user-notes [getCards]="trashCards" (trashAction)="userRes()">
+        </app-user-notes>
+    </ng-template>
+</div>

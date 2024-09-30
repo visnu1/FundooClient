@@ -1,3 +1,12 @@
 <div>
-  <app-user-notes [getCards]="archiveCards" (archiveAction)="onReload()"></app-user-notes>
+  <ng-container *ngIf="emptyArchive; else archiveContent">
+    <div class="placeholder-template">
+      <div class="pl-icon"></div>
+      <div class="msg">Your archived notes appear here</div>
+    </div>
+  </ng-container>
+
+  <ng-template #archiveContent>
+    <app-user-notes [getCards]="archiveCards" (archiveAction)="onReload()"></app-user-notes>
+  </ng-template>
 </div>

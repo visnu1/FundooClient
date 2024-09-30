@@ -1,0 +1,24 @@
+.placeholder-template {
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .pl-icon {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMDAwIj4KICA8cGF0aCBkPSJNMTggMTd2LTZjMC0zLjA3LTEuNjMtNS42NC00LjUtNi4zMlY0YzAtLjgzLS42Ny0xLjUtMS41LTEuNXMtMS41LjY3LTEuNSAxLjV2LjY4QzcuNjQgNS4zNiA2IDcuOTIgNiAxMXY2SDR2MmgxNnYtMmgtMnptLTIgMEg4di02YzAtMi40OCAxLjUxLTQuNSA0LTQuNXM0IDIuMDIgNCA0LjV2NnptLTQgNWMxLjEgMCAyLS45IDItMmgtNGMwIDEuMS45IDIgMiAyeiIvPgo8L3N2Zz4K');
+        background-size: 120px;
+        height: 120px;
+        margin: 20px;
+        opacity: 0.1;
+        width: 120px;
+    }
+
+    .msg {
+        color: rgb(95, 99, 104);
+        cursor: default;
+        font-size: 1.375rem;
+        font-weight: 400;
+        line-height: 1.75rem;
+    }
+}

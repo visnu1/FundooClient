@@ -1,2 +1,14 @@
 <app-take-note></app-take-note>
-<app-user-notes [getCards]="allCards" (actionOne)="userinteract()"></app-user-notes>
+
+<div>
+    <ng-container *ngIf="emptyReminders; else reminderContent">
+        <div class="placeholder-template">
+            <div class="pl-icon"></div>
+            <div class="msg">Notes with upcoming reminders appear here</div>
+        </div>
+    </ng-container>
+
+    <ng-template #reminderContent>
+        <app-user-notes [getCards]="allCards" (actionOne)="userinteract()"></app-user-notes>
+    </ng-template>
+</div>
