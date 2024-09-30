@@ -1,27 +1,30 @@
-# FundooClient
+# Fundoo Notes - A Note-Taking App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
+![Fundoo Notes Screenshot](./src/assets/screenshots/dashboard.png)
 
-## Development server
+## Introduction
+**Fundoo Notes** is a simple and intuitive note-taking application inspired by Google Keep. It allows users to create, edit, organize, and delete notes effortlessly. The app is built using the **MEAN** stack, which includes **MongoDB**, **Express.js**, **Angular**, and **Node.js**.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project is perfect for those who want a full-featured notes app for personal use or to learn about building a CRUD application with the MEAN stack.
 
-## Code scaffolding
+## Features
+- **Create Notes**: Add new notes with text and titles.
+- **Edit Notes**: Modify existing notes quickly.
+- **Delete Notes**: Permanently delete any note.
+- **Labels & Categories**: Add labels to organize your notes.
+- **Search Notes**: Easily find notes using keywords.
+- **Archive & Trash**: Archive notes for later and manage trashed notes.
+- **Responsive Design**: Works seamlessly across all devices.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tech Stack
+- **Frontend**: Angular
+- **Backend**: Express.js & Node.js
+- **Database**: MongoDB
+- **Styling**: SCSS and Angular Material for UI components
 
-## Build
+## Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Prerequisites
+- **Node.js** (v12 or above)
+- **npm** (Node Package Manager)
+- **MongoDB** (You can use a local MongoDB instance or a cloud database like MongoDB Atlas)
