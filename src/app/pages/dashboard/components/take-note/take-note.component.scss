@@ -97,7 +97,7 @@
   float: right;
 }
 
-[contentEditable="true"]:empty:before {
+.asjqsq[contentEditable="true"]:empty:before {
   content: attr(data-text);
   letter-spacing: 0.00625em;
   font-family: "google-sans", "Roboto", Arial, sans-serif;
@@ -124,9 +124,6 @@
   font-weight: 500;
   height: 36px;
   padding: 8px 24px;
-  top: 73%;
-  position: absolute;
-  right: 0%;
 }
 
 .clo:hover {
@@ -138,4 +135,57 @@
   .clo {
     margin-right: 0px;
   }
+}
+
+.item {
+  min-height: 20px;
+  padding: 5px 45px 5px 53px;
+
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: .0178571429em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  user-select: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.border-bx {
+  min-height: 22px;
+  position: relative;
+}
+
+
+
+.trigger-ctn {
+  min-height: 20px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1000000;
+  border: 1px solid red;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+}
+
+.prefix-ico {
+  position: absolute;
+  top: 6px;
+  left: 22px;
+}
+
+.suffix-ico {
+  position: absolute;
+  top: 6px;
+  right: 22px;
+}
+
+.small-icon {
+  font-size: 18px;
+  opacity: 0.54;
+  outline: none;
+  user-select: none;
 }

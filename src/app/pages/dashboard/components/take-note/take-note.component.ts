@@ -14,7 +14,6 @@ import { DataService } from '../../../../core/services/data-service/data.service
 export class TakeNoteComponent implements OnInit {
 
 
-
   color: string = "#fff";
   archive: boolean = false;
   trash: boolean = false;
@@ -23,9 +22,12 @@ export class TakeNoteComponent implements OnInit {
   userNoteMsg = true;
   hide: boolean = false;
   labels: string[] = [];
+  noteType = 'plain';
 
-  constructor(private service: NoteService, private router: Router, private data: DataService) {
-  }
+  constructor(
+    private service: NoteService,
+    private router: Router,
+    private data: DataService) { }
 
   ngOnInit() {
   }
@@ -33,7 +35,7 @@ export class TakeNoteComponent implements OnInit {
   @Output() addingNote = new EventEmitter();
 
   send() {
-    this.click();
+    this.toggleNotes();
     if (document.getElementById("asas").innerText != "" || document.getElementById("title").innerText != "") {
       // console.log(this.data.userid);
       let body = {
@@ -45,7 +47,8 @@ export class TakeNoteComponent implements OnInit {
         archive: this.archive,
         trash: this.trash,
         pinned: this.pinned,
-        labels: this.labels
+        labels: this.labels,
+        noteType: this.noteType
       }
       this.service.createNote(body).subscribe(data => {
         console.log(data);
@@ -68,7 +71,13 @@ export class TakeNoteComponent implements OnInit {
     this.color = "#fff";;
   }
 
-  click() {
+  onNewNoteList() {
+    this.noteType = 'list';
+    this.toggleNotes();
+    
+  }
+
+  toggleNotes() {
     this.hide = !this.hide;
   }
 

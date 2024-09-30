@@ -1,20 +1,14 @@
 <div class="nbar">
   <div class=nbar1 [style.background-color]="color">
     <div class="tnote">
-      <div class="app-pin" *ngIf=hide>
-      </div>
 
-      <div class="asjqsq sasr" (click)=click() *ngIf=!hide>
-        <b>Take a note...</b>
-      </div>
-      <div class="asjqsq" id="title" *ngIf=hide data-text="Title" contenteditable="true">
-      </div>
-      <div id="asas" *ngIf=hide data-text="Take a note..." contenteditable="true">
-      </div>
+      <ng-container *ngIf="!hide; else showPad">
+        <div class="asjqsq sasr" (click)=toggleNotes()>
+          <b>Take a note...</b>
+        </div>
 
-      <ng-container *ngIf=!hide>
         <div class="note-opts">
-          <button matTooltip="New list" class="checkls-btn" mat-icon-button>
+          <button matTooltip="New list" class="checkls-btn" (click)="onNewNoteList()" mat-icon-button>
             <span class="material-symbols-outlined small-icon">
               check_box
             </span>
@@ -31,17 +25,40 @@
           </button>
         </div>
       </ng-container>
-    </div>
-    <div>
 
-    </div>
-    <div class="ctrl-bar">
-      <app-icons-toolbar style="flex: 1;" *ngIf=hide [undo]="userNoteMsg" (archiveCard)="userArchive($event)"
-        (colorCard)="noteColor($event)" (reminderCard)="reminder($event)">
-      </app-icons-toolbar>
-      <div role="button" class="clo" *ngIf=hide (click)="send()">Close</div>
+      <ng-template #showPad>
+        <div>
+          <!-- pin component -->
+          <div class="app-pin"></div>
+
+          <div class="asjqsq" id="title" data-text="Title" contenteditable="true"></div>
+
+          <!-- <div id="asas" data-text="Take a note..." contenteditable="true"></div> -->
+          <div class="ls-ctn">
+
+            <div class="border-bx">
+              <span class="material-symbols-outlined small-icon prefix-ico">check_box_outline_blank</span>
+              <div class="item" contenteditable="true"></div>
+              <span class="material-symbols-outlined small-icon suffix-ico">close</span>
+            </div>
+
+            <div class="border-bx">
+              <span class="material-symbols-outlined small-icon prefix-ico"> add </span>
+              <div class="item"> List Item </div>
+              <div class="item trigger-ctn" contenteditable="true"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="ctrl-bar">
+          <app-icons-toolbar style="flex: 1;" [undo]="userNoteMsg" (archiveCard)="userArchive($event)"
+            (colorCard)="noteColor($event)" (reminderCard)="reminder($event)">
+          </app-icons-toolbar>
+          <div role="button" class="clo" (click)="send()">Close</div>
+        </div>
+      </ng-template>
+
     </div>
   </div>
-
-
 </div>
