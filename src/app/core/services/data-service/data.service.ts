@@ -22,7 +22,9 @@ export class DataService {
   private messageSource = new BehaviorSubject(false);
   currentMessage = this.messageSource.asObservable();
 
-  constructor() { }
+  constructor() {
+    this.avatar = localStorage.getItem('profile');
+  }
 
   public initLabels(labels: NoteLabel[]) {
     this.labels = labels;
@@ -44,10 +46,6 @@ export class DataService {
 
   onUserIdInitialize(user: string) {
     this.userId = user;
-  }
-
-  onSetAvatar(pic) {
-    this.avatar = pic;
   }
 
   onEmitCurrentLabel(name) {

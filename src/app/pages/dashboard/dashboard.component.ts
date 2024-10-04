@@ -71,8 +71,6 @@ export class DashboardComponent implements OnInit {
 
   async ngOnInit() {
     this.userAvatar = this.dataService.avatar;
-    console.log(this.dataService.avatar);
-    
     this.service.fetchLabels();
     this.dataService.labels$.subscribe((labels: NoteLabel[]) => {
       this.labels = labels;
@@ -100,6 +98,7 @@ export class DashboardComponent implements OnInit {
       formData.append('image', data);
       this.service.userProfile(formData).subscribe({
         next: (result) => {
+          localStorage.setItem('profile', result['profile']);
           this.userAvatar = result['profile'];
         },
         error: (error) => {
@@ -125,7 +124,7 @@ export class DashboardComponent implements OnInit {
     this.matdailog.open(EditLabelsComponent, { data: this.labels });
   }
 
-  onClearSearch(){
+  onClearSearch() {
 
   }
 

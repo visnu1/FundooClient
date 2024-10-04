@@ -44,8 +44,14 @@
       </div>
       <div class="ball">
         <div class="uball" [matMenuTriggerFor]="profile">
-          <a class="tiny1" [ngStyle]="{ 'background-image': 'url('+userAvatar+')'}">{{name | slice:0:1}}</a>
-          <!-- <a class="bada"></a> -->
+          <div class="profile-ctn">
+            @if(userAvatar){
+            <img [src]="userAvatar" alt="profile">
+            }
+            @else{
+            <span>{{name | slice:0:1}}</span>
+            }
+          </div>
         </div>
       </div>
       <div></div>
