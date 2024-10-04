@@ -177,10 +177,7 @@ export class IconsToolbarComponent implements OnInit {
   }
 
   delete(card: Note): void {
-    const obj = {
-      "cardId": card._id
-    }
-    this.service.deleteService(obj).subscribe({
+    this.service.deleteNote(card._id).subscribe({
       next: (v) => {
         console.log(v);
         this.trashact.emit(card);

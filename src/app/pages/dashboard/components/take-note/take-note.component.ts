@@ -62,6 +62,12 @@ export class TakeNoteComponent implements OnInit {
       setTimeout(() => this.createTodoFormFld(), 50);
   }
 
+  setDefaults() {
+    this.noteType = 'plain';
+    this.color = "#fff";
+    this.hidden = true;
+  }
+
 
   onSend() {
 
@@ -70,7 +76,10 @@ export class TakeNoteComponent implements OnInit {
     const noteTitle = this.noteTitle.nativeElement.innerText || "";
     const userNotes = this.userNotes.nativeElement.innerText || "";
 
-    if (!(noteTitle != "" || userNotes != "")) return;
+    if (!(noteTitle != "" || userNotes != "")) {
+      this.setDefaults();
+      return;
+    }
 
     const body: Note = {
       userId: this.data.userId,
@@ -95,7 +104,7 @@ export class TakeNoteComponent implements OnInit {
         else
           console.error(e);
       },
-      complete: () => { this.color = "#fff"; this.noteType = 'plain'; this.toggleNotes(); }
+      complete: () => this.setDefaults()
     });
   }
 

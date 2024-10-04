@@ -46,9 +46,12 @@ export class NoteService {
     return this.httpService.userPost(environment.userNotes, token);
   }
 
+  deleteNote(noteId: string) {
+    return this.httpService.userDelete(environment.delete + '/' + noteId, this.dataService.token);
+  }
 
-  deleteService(body: any) {
-    return this.httpService.userDelete(environment.delete, this.dataService.token, body);
+  trashNotes(){
+    return this.httpService.userDelete(environment.delete, this.dataService.token);
   }
 
   updateNote(body: any) {

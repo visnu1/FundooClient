@@ -22,7 +22,7 @@ export class HttpService {
     return this.http.post(url, body, {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
-        'token': token
+        'authorization': `Bearer ${token}`
       })
     })
   }
@@ -31,7 +31,7 @@ export class HttpService {
     return this.http.delete(url, {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
-        'token': token
+        'authorization': `Bearer ${token}`
       }),
       body
     });
@@ -42,7 +42,7 @@ export class HttpService {
     return this.http.put(url, body, {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
-        'token': token
+        'authorization': `Bearer ${token}`
       })
     })
   }
@@ -50,7 +50,7 @@ export class HttpService {
   imgPost(url, token: string, body: any) {
     return this.http.post(url, body, {
       headers: new HttpHeaders({
-        'token': token
+        'authorization': `Bearer ${token}`
       })
     })
   }

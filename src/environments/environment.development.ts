@@ -21,7 +21,7 @@ export const environment = {
   updateNote: url + `update/note`,
 
   
-  delete: url + `delete/note`,
+  delete: url + `notes/trash`,
   userLabels: url + `getLabels`,
 
   deleteLabels: url + 'delete/labels',
