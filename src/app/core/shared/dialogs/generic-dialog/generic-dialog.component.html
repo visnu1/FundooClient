@@ -1,0 +1,7 @@
+<div class="main-ctn">
+    <div class="msg">{{data?.message}}</div>
+    <div class="ctrls">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button class="action-btn" mat-button (click)="onAction()">{{data?.actionName}}</button>
+    </div>
+</div>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
+import { MatDialog } from '@angular/material/dialog';
+import { GenericDialogComponent } from '../../../../core/shared/dialogs/generic-dialog/generic-dialog.component';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-trash',
@@ -10,65 +13,83 @@ import { DataService } from '../../../../core/services/data-service/data.service
 export class TrashComponent implements OnInit {
 
   trashCards = {
-    cards: [],
-    gridCards1: [],
-    gridCards2: [],
-    gridCards3: [],
-  }
+    cards: [] as any[],
+    gridCards1: [] as any[],
+    gridCards2: [] as any[],
+    gridCards3: [] as any[]
+  };
   emptyTrash = true;
 
-  constructor(private service: NoteService, private data: DataService) { }
+  constructor(
+    private noteService: NoteService,
+    private dataService: DataService,
+    private dialog: MatDialog
+  ) { }
 
-  ngOnInit() {
-    this.getCards();
+  ngOnInit(): void {
+    this.loadCards();
   }
 
-  getCards() {
-    //console.log(this.data.token);
-    this.service.getNotes(this.data.token).subscribe(data => {
-      this.segregate(data['result']);
-    })
-  }
-
-  segregate(data) {
-    let temp = [];
-    let tempo = [];
-    let temp1 = [];
-    let temp2 = [];
-    let temp3 = [];
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].trash == true) {
-        temp.push(data[i]);
-        tempo.push(data[i]);
-      }
+  // Fetch notes and segregate them
+  async loadCards(): Promise<void> {
+    try {
+      const notes = await this.noteService.getNotes(this.dataService.token).toPromise();
+      this.segregateNotes(notes?.result || []);
+    } catch (error) {
+      console.error('Failed to load notes:', error);
     }
-    if (temp.length) this.emptyTrash = false;
-    this.trashCards.cards = temp.slice();
-    while (tempo.length > 0) {
-      temp1.push(tempo.pop());
-      if (tempo.length == 0) {
-        break;
-      } else {
-        temp2.push(tempo.pop());
-        if (tempo.length == 0) {
-          break;
-        } else {
-          temp3.push(tempo.pop());
-        }
-      }
-    }
-    this.trashCards.gridCards1 = temp1;
-    this.trashCards.gridCards2 = temp2
-    this.trashCards.gridCards3 = temp3
-
   }
 
-  // delete note forever and restore
-  userRes() {
+  // Segregate notes into columns
+  segregateNotes(notes: any[]): void {
+    const trashNotes = notes.filter(note => note.trash);
+    this.emptyTrash = trashNotes.length === 0;
+    if (this.emptyTrash) return;
+    this.trashCards.cards = [...trashNotes];
+    this.divideIntoColumns(trashNotes);
+  }
+
+  // Divide notes into three grid columns
+  divideIntoColumns(notes: any[]): void {
+    const columnCount = 3;
+    const columns = [[], [], []];  // Initialize columns
+
+    notes.forEach((note, index) => {
+      const columnIndex = index % columnCount;
+      columns[columnIndex].push(note);
+    });
+
+    // Assign the divided columns
+    [this.trashCards.gridCards1, this.trashCards.gridCards2, this.trashCards.gridCards3] = columns;
+  }
+
+  // Handle restore and refresh
+  handleUserAction(): void {
+    // Re-load the notes after restore or delete action
     this.ngOnInit();
   }
 
-  onEmptyTrash() {
-    //implementation
+  // Delete all notes in trash permanently
+  async deleteAllNotes(): Promise<void> {
+    try {
+      await lastValueFrom(this.noteService.trashNotes());
+      this.handleUserAction(); // Refresh after deleting
+    } catch (error) {
+      console.error('Failed to delete all notes:', error);
+    }
+  }
+
+  onEmptyTrash(): void {
+    this.dialog.open(GenericDialogComponent, {
+      autoFocus: false, // Disable autofocus
+      data: {
+        message: 'Empty trash? All notes in Trash will be permanently deleted.',
+        actionName: 'Empty'
+      }
+    }).afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.deleteAllNotes();
+      }
+    });
   }
 }

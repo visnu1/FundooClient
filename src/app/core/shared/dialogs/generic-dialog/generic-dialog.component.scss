@@ -1,0 +1,56 @@
+.main-ctn {
+    width: 430px;
+    color: rgb(32, 33, 36);
+    background-color: #fff;
+    padding: 24px;
+    font-family: "Roboto", arial, sans-serif;
+    font-size: 15px;
+    background-clip: padding-box;
+    box-sizing: border-box;
+    outline: 0;
+    border: none;
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+    border-radius: 8px;
+}
+
+.msg {
+    letter-spacing: .0142857143em;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: rgb(50, 54, 57);
+    padding-bottom: 24px;
+    word-wrap: break-word;
+}
+
+.ctrls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    button {
+        outline: none !important;
+        color: rgba(0, 0, 0, 0.87);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        letter-spacing: .0178571429em;
+        font-family: "google-sans", "product-sans", Arial, sans-serif;
+        font-size: .875rem;
+        font-weight: bold;
+        line-height: 1.25rem;
+        height: 36px;
+        padding: 8px 24px;
+        border-radius: 4px;
+        margin-right: 16px;
+        border-color: transparent !important;
+    }
+
+    button:last-child {
+        margin: 0;
+    }
+
+    .action-btn {
+        color: rgb(26, 115, 232);
+    }
+}
