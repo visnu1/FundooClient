@@ -1,11 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation, DoCheck, } from '@angular/core';
 import { Router } from '@angular/router';
-import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
-import { OnDestroy, AfterViewInit, ElementRef, ViewChild, ChangeDetectorRef, NgZone } from '@angular/core';
+import { ElementRef, } from '@angular/core';
 
 import { FormControl, Validators } from '@angular/forms';
 import { Note, NoteLabel } from '../../../../core/Models/note';
-import { Observable, Subscription } from 'rxjs';
 import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
 

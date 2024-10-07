@@ -3,7 +3,7 @@ import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericDialogComponent } from '../../../../core/shared/dialogs/generic-dialog/generic-dialog.component';
-import { lastValueFrom } from 'rxjs';
+import { filter, lastValueFrom, map } from 'rxjs';
 
 @Component({
   selector: 'app-trash',
@@ -12,55 +12,36 @@ import { lastValueFrom } from 'rxjs';
 })
 export class TrashComponent implements OnInit {
 
-  trashCards = {
-    cards: [] as any[],
-    gridCards1: [] as any[],
-    gridCards2: [] as any[],
-    gridCards3: [] as any[]
-  };
+  trashedNotes = [];
   emptyTrash = true;
 
   constructor(
-    private noteService: NoteService,
-    private dataService: DataService,
+    private _noteService: NoteService,
+    private _dataService: DataService,
     private dialog: MatDialog
   ) { }
 
-  ngOnInit(): void {
-    this.loadCards();
+  ngOnInit() {
+    this.onLoadNotes();
   }
 
-  // Fetch notes and segregate them
-  async loadCards(): Promise<void> {
-    try {
-      const notes = await this.noteService.getNotes(this.dataService.token).toPromise();
-      this.segregateNotes(notes?.result || []);
-    } catch (error) {
-      console.error('Failed to load notes:', error);
-    }
-  }
-
-  // Segregate notes into columns
-  segregateNotes(notes: any[]): void {
-    const trashNotes = notes.filter(note => note.trash);
-    this.emptyTrash = trashNotes.length === 0;
-    if (this.emptyTrash) return;
-    this.trashCards.cards = [...trashNotes];
-    this.divideIntoColumns(trashNotes);
-  }
-
-  // Divide notes into three grid columns
-  divideIntoColumns(notes: any[]): void {
-    const columnCount = 3;
-    const columns = [[], [], []];  // Initialize columns
-
-    notes.forEach((note, index) => {
-      const columnIndex = index % columnCount;
-      columns[columnIndex].push(note);
-    });
-
-    // Assign the divided columns
-    [this.trashCards.gridCards1, this.trashCards.gridCards2, this.trashCards.gridCards3] = columns;
+  onLoadNotes() {
+    this._noteService.getNotes(this._dataService.token)
+      .pipe(
+        map((data) => {
+          const result = Array.isArray(data?.result)
+            ? data.result.filter(({ trash }) => trash)
+            : [];
+          return { ...data, result };
+        })
+      )
+      .subscribe({
+        next: ({ result }) => {
+          this.emptyTrash = result.length === 0;
+          this.trashedNotes = result;
+        },
+        error: (e) => console.warn(e)
+      })
   }
 
   // Handle restore and refresh
@@ -72,7 +53,7 @@ export class TrashComponent implements OnInit {
   // Delete all notes in trash permanently
   async deleteAllNotes(): Promise<void> {
     try {
-      await lastValueFrom(this.noteService.trashNotes());
+      await lastValueFrom(this._noteService.trashNotes());
       this.handleUserAction(); // Refresh after deleting
     } catch (error) {
       console.error('Failed to delete all notes:', error);

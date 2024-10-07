@@ -7,6 +7,6 @@
   </ng-container>
 
   <ng-template #archiveContent>
-    <app-user-notes [getCards]="archiveCards" (archiveAction)="onReload()"></app-user-notes>
+    <app-user-notes [notes]="archiveCards" (archiveAction)="onLoadArchived()"></app-user-notes>
   </ng-template>
 </div>

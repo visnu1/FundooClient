@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
+import { filter, map } from 'rxjs';
 
 
 @Component({
@@ -10,61 +11,36 @@ import { DataService } from '../../../../core/services/data-service/data.service
 })
 export class ArchiveComponent implements OnInit {
 
-  archiveCards = {
-    cards: [],
-    gridCards1: [],
-    gridCards2: [],
-    gridCards3: [],
-  }
+  archiveCards = [];
   emptyArchive = true;
 
-  constructor(private service: NoteService, private data: DataService) { }
+  constructor(
+    private _noteService: NoteService, 
+    private _dataService: DataService
+  ) { }
 
   ngOnInit() {
-    this.getCards();
+    this.onLoadArchived();
   }
 
-  getCards() {
-    //console.log(this.data.token);
-    this.service.getNotes(this.data.token).subscribe(data => {
-      this.segregate(data['result']);
-      // console.log(this.cards);
-    })
+
+  onLoadArchived() {
+    this._noteService.getNotes(this._dataService.token)
+      .pipe(
+        map((data) => {
+          const result = Array.isArray(data?.result)
+            ? data.result.filter(({ archive, trash }) => archive === true && trash === false)
+            : [];
+          return { ...data, result };
+        })
+      )
+      .subscribe({
+        next: ({ result }) => {
+          this.emptyArchive = result.length === 0;
+          this.archiveCards = result;
+        },
+        error: (e) => console.warn(e)
+      })
   }
 
-  segregate(data) {
-    let temp = [];
-    let tempo = [];
-    let temp1 = [];
-    let temp2 = [];
-    let temp3 = [];
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].archive == true && data[i].trash == false) {
-        temp.push(data[i]);
-        tempo.push(data[i]);
-      }
-    }
-    if(temp.length) this.emptyArchive = false;
-    this.archiveCards.cards = temp.slice();
-    while (tempo.length > 0) {
-      temp1.push(tempo.pop());
-      if (tempo.length == 0) {
-        break;
-      } else {
-        temp2.push(tempo.pop());
-        if (tempo.length == 0) {
-          break;
-        } else {
-          temp3.push(tempo.pop());
-        }
-      }
-    }
-    this.archiveCards.gridCards1 = temp1;
-    this.archiveCards.gridCards2 = temp2
-    this.archiveCards.gridCards3 = temp3
-  }
-
-  onReload() {
-    this.ngOnInit();
-  }
 }

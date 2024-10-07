@@ -9,6 +9,6 @@
     </ng-container>
 
     <ng-template #reminderContent>
-        <app-user-notes [getCards]="allCards" (actionOne)="userinteract()"></app-user-notes>
+        <app-user-notes [notes]="reminderNotes" (actionOne)="onLoadReminders()"></app-user-notes>
     </ng-template>
 </div>

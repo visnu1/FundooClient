@@ -1,2 +1,2 @@
-<app-take-note (addingNote)="userinteract()"></app-take-note>
-<app-user-notes [getCards]="allCards" (actionOne)="userinteract()"></app-user-notes>
+<app-take-note (addingNote)="onLoadNotes()"></app-take-note>
+<app-user-notes [notes]="labelNotes" (actionOne)="onLoadNotes()"></app-user-notes>

@@ -47,6 +47,7 @@ import { PaintPaletteComponent } from './pages/sketch/paint-palette/paint-palett
 import { SharedModule } from './core/shared/shared.module';
 import { PaintToolbarComponent } from './pages/sketch/paint-toolbar/paint-toolbar.component';
 import { AuthModule } from './pages/auth/auth.module';
+import { NgxMasonryModule } from 'ngx-masonry';
 
 
 @NgModule({
@@ -75,7 +76,7 @@ import { AuthModule } from './pages/auth/auth.module';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
     //repeated
     MatInputModule,
     MatFormFieldModule,
@@ -89,7 +90,7 @@ import { AuthModule } from './pages/auth/auth.module';
     HttpClientModule,
     MatToolbarModule,
     MatTooltipModule,
-    
+
     MatSidenavModule,
     MatMenuModule,
     MatDialogModule,
@@ -100,7 +101,8 @@ import { AuthModule } from './pages/auth/auth.module';
     MatSelectModule,
     ImageCropperComponent,
     SharedModule,
-    AuthModule
+    AuthModule,
+    NgxMasonryModule
   ],
   // entryComponents: [UpdateNoteComponent, ImageUploadComponent, EditLabelsComponent],
   providers: [AsyncPipe],

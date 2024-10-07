@@ -1,17 +1,23 @@
-<div class="container" *ngIf="!viewType" style="height: 200px;">
+<div class="ls-container" *ngIf="!viewType">
   <div class="fullii">
     <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="child edit" [style.background-color]="card.color" *ngFor="let card of getCards.cards" cdkDrag>
+      <div class="ls-card edit" [style.background-color]="card.color" *ngFor="let card of notes" cdkDrag>
         <div class="ele1">
-          <!-- mind-bending and mind-blowing you can use a selector name has class name and render that component -->
-          <div class="app-pin" [card]="card">
-          </div>
-          <div class="title" (click)="updateNote(card)">{{card.title}}</div>
-          <div class="descr" (click)="updateNote(card)">{{card.description}}</div>
+          <!-- Pin Icon -->
+          <div class="app-pin" [card]="card"></div>
+
+          <!-- Title -->
+          <div class="ls-title" (click)="updateNote(card)">{{card.title}}</div>
+
+          <!-- Description -->
+          <div class="ls-description" (click)="updateNote(card)">{{card.description}}</div>
         </div>
 
+        <!-- Labels -->
         <app-note-labels [card]="card"></app-note-labels>
-        <div class="iconbar">
+
+        <!-- Icons Toolbar -->
+        <div class="icon-bar">
           <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
             (archiveAct)="archiveCall()">
           </app-icons-toolbar>
@@ -21,60 +27,26 @@
   </div>
 </div>
 
-<!-- ----------------------------------------------------------------------------------------------- -->
 
 
-<div class="grid container" *ngIf="viewType">
-  <div class=contain>
-    <div class="gridele" *ngFor='let card of getCards.gridCards1' [style.background-color]="card.color">
-      <div class="ele" (click)="updateNote(card)">
-        <div class="titlee">
+<div class="notes-container" *ngIf="viewType">
+  <ngx-masonry>
+    <div ngxMasonryItem class="note-card" *ngFor="let card of notes" [style.background-color]="card.color">
+      <div class="note-content" (click)="updateNote(card)">
+        <div class="note-title">
           {{card.title}}
         </div>
-        <div class="descrr">
-          {{card.description}}
+        <div>
+          <div class="note-description">
+            {{ card.description}}
+          </div>
         </div>
       </div>
       <app-note-labels [card]="card"></app-note-labels>
-      <div class="iconbar">
+      <div class="note-toolbar">
         <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()">
         </app-icons-toolbar>
       </div>
     </div>
-  </div>
-  <div class=contain>
-    <div class="gridele" *ngFor='let card of getCards.gridCards2' [style.background-color]="card.color">
-      <div class="ele" (click)="updateNote(card)">
-        <div class="titlee">
-          {{card.title}}
-        </div>
-        <div class="descrr">
-          {{card.description}}
-        </div>
-      </div>
-      <app-note-labels [card]="card"></app-note-labels>
-      <div class="iconbar">
-        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()">
-        </app-icons-toolbar>
-      </div>
-    </div>
-  </div>
-  <div class=contain>
-    <div class="gridele" *ngFor='let card of getCards.gridCards3' [style.background-color]="card.color">
-      <div class="ele" (click)="updateNote(card)">
-        <div class="titlee">
-          {{card.title}}
-        </div>
-        <div class="descrr">
-          {{card.description}}
-        </div>
-      </div>
-      <app-note-labels [card]="card"></app-note-labels>
-      <div class="iconbar">
-        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
-          (archiveAct)="archiveCall()">
-        </app-icons-toolbar>
-      </div>
-    </div>
-  </div>
+  </ngx-masonry>
 </div>
