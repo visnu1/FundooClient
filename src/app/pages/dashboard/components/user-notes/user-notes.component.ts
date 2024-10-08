@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UpdateNoteComponent } from '../update-note/update-note.component';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'; import { DataService } from '../../../../core/services/data-service/data.service';
 import { NoteService } from '../../../../core/services/note/note.service';
+import { Note } from '../../../../core/Models/note';
 export interface DialogData {
   color?: string;
   title?: string;
@@ -25,7 +26,7 @@ export class UserNotesComponent implements OnInit {
   viewType: boolean;
 
 
-  @Input({ required: true }) notes;
+  @Input({ required: true }) notes: Note[];
 
   @Output() actionOne = new EventEmitter;
   @Output() trashAction = new EventEmitter;
@@ -113,25 +114,3 @@ export class UserNotesComponent implements OnInit {
     alert("not implemented")
   }
 }
-
-
-
-//error fall here tuple error
-
-// drop2(event: CdkDragDrop<any[]>) {
-//   if (event.previousContainer === event.container) {
-//     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-//   } else {
-//     transferArrayItem(event.previousContainer.data,
-//       event.container.data,
-//       event.previousIndex,
-//       event.currentIndex);
-//   }
-// }
-
-
-// <div cdkDropList #gridList2="cdkDropList" [cdkDropListData]="getCards.gridCards2"
-// [cdkDropListConnectedTo]="[gridList1,gridList3]" class="example-list" (cdkDropListDropped)="drop2($event)">
-
-// <div class="gridele example-box" *ngFor='let card of getCards.gridCards2' [style.background-color]="card.color"
-//   cdkDrag>

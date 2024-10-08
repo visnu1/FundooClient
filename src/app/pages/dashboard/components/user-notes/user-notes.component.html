@@ -1,27 +1,25 @@
 <div class="ls-container" *ngIf="!viewType">
-  <div class="fullii">
-    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="ls-card edit" [style.background-color]="card.color" *ngFor="let card of notes" cdkDrag>
-        <div class="ele1">
-          <!-- Pin Icon -->
-          <div class="app-pin" [card]="card"></div>
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="ls-card edit" [style.background-color]="card.color" *ngFor="let card of notes" cdkDrag>
+      <div>
+        <!-- Pin Icon -->
+        <div class="app-pin" [card]="card"></div>
 
-          <!-- Title -->
-          <div class="ls-title" (click)="updateNote(card)">{{card.title}}</div>
+        <!-- Title -->
+        <div class="note-title" (click)="updateNote(card)">{{card.title}}</div>
 
-          <!-- Description -->
-          <div class="ls-description" (click)="updateNote(card)">{{card.description}}</div>
-        </div>
+        <!-- Description -->
+        <div class="ls-description" (click)="updateNote(card)">{{card.description}}</div>
+      </div>
 
-        <!-- Labels -->
-        <app-note-labels [card]="card"></app-note-labels>
+      <!-- Labels -->
+      <app-note-labels [card]="card"></app-note-labels>
 
-        <!-- Icons Toolbar -->
-        <div class="icon-bar">
-          <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
-            (archiveAct)="archiveCall()">
-          </app-icons-toolbar>
-        </div>
+      <!-- Icons Toolbar -->
+      <div class="note-toolbar">
+        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
+          (archiveAct)="archiveCall()">
+        </app-icons-toolbar>
       </div>
     </div>
   </div>
@@ -33,6 +31,7 @@
   <ngx-masonry>
     <div ngxMasonryItem class="note-card" *ngFor="let card of notes" [style.background-color]="card.color">
       <div class="note-content" (click)="updateNote(card)">
+        <div class="app-pin" [card]="card"></div>
         <div class="note-title">
           {{card.title}}
         </div>
@@ -44,7 +43,8 @@
       </div>
       <app-note-labels [card]="card"></app-note-labels>
       <div class="note-toolbar">
-        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()">
+        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
+          (archiveAct)="archiveCall()">
         </app-icons-toolbar>
       </div>
     </div>

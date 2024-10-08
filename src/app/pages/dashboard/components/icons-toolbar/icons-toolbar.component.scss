@@ -74,23 +74,46 @@
 }
 
 
-.colorbox {
-  width: 450px;
+.shades-bx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 430px;
   background-color: #fff;
   z-index: 10;
   padding: 0px 5px;
 
-  &>div {
-    border: 0.5px solid transparent;
+  .color-ctn {
+    position: relative;
+    line-height: 10px;
+  }
+
+  .color {
     border-radius: 50%;
     box-sizing: border-box;
-    overflow: hidden;
     height: 32px;
     width: 32px;
     margin: 2px;
-    // display: inline-flex;
     display: inline-block;
-    border-color: #e0e0e0;
+    border: 0.5px solid #e0e0e0;
+
+    &:hover {
+      border: 1px solid black;
+    }
+  }
+
+  .active {
+    border: 2px solid #a142f4 !important;
+  }
+
+  .check-mark {
+    position: absolute;
+    top: -6px;
+    right: -5px;
+    font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 24;
+    font-size: 20px;
+    color: #a142f4;
   }
 }
 

@@ -4,6 +4,21 @@
   cursor: pointer;
 }
 
+.note-title {
+  min-height: 26px;
+  max-height: 84px;
+  padding: 12px 16px 0px;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: black;
+  line-height: 1.5rem;
+}
+
+.note-toolbar {
+  opacity: 0;
+}
+
 .ls-container {
   /* For list view */
   width: 632px;
@@ -38,19 +53,6 @@
   }
 }
 
-.ls-title {
-  min-height: 26px;
-  padding: 12px 16px 0;
-  transition: background-color 0.218s ease-in;
-  font-family: "Google Sans", Roboto, Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-  cursor: text;
-  white-space: pre-line;
-  outline: none;
-}
-
 .ls-description {
   max-height: 405px;
   color: #202124;
@@ -58,15 +60,17 @@
   line-height: 19px;
   min-height: 30px;
   padding: 12px 16px;
-  cursor: text;
+
   white-space: pre-wrap;
   word-wrap: break-word;
   outline: none;
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.ls-card:hover .pin-icon,
-.ls-card:hover .icon-bar {
+.ls-card:hover .app-pin,
+.ls-card:hover .note-toolbar {
   opacity: 1;
   transition: opacity 0.318s ease-in-out;
 }
@@ -74,10 +78,6 @@
 .ls-card:hover {
   box-shadow: 0 1px 4px 0 rgba(60, 64, 67, 0.102),
     0 0px 4px 1px rgba(60, 64, 67, 0.149);
-}
-
-.icon-bar {
-  opacity: 0;
 }
 
 
@@ -101,24 +101,6 @@
 .note-content {
   min-height: 60px;
   overflow: hidden;
-}
-
-.note-toolbar {
-  font-size: 12px;
-  line-height: 26px;
-  margin: 3.5px 0;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.note-title {
-  min-height: 26px;
-  padding: 12px 16px 0px;
-  font-family: "Google Sans", Roboto, Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: bold;
-  color: black;
-  line-height: 1.5rem;
 }
 
 .note-description {

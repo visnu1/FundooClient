@@ -67,10 +67,14 @@
 </div>
 
 <!-- colors -->
-<mat-menu class="colri" #paletteMenu="matMenu" yPosition="above" [overlapTrigger]="false" panelClass="custom">
-  <div class=colorbox>
-    <div *ngFor="let obj of colorbox" [attr.title]="obj.title" (click)="color(obj,card)"
-      [ngStyle]="{'background-color':obj.color}"></div>
+<mat-menu #paletteMenu="matMenu" yPosition="above" [overlapTrigger]="false" panelClass="custom">
+  <div class="shades-bx">
+    <div class="color-ctn" *ngFor="let obj of colorbox">
+      <div class="color" [matTooltip]="obj.title" [ngClass]="{'active': card.color == obj.color}"
+        (click)="color(obj,card)" [ngStyle]="{'background-color':obj.color}">
+      </div>
+      <span *ngIf="card.color == obj.color" class="material-symbols-outlined check-mark">check_circle</span>
+    </div>
   </div>
 </mat-menu>
 

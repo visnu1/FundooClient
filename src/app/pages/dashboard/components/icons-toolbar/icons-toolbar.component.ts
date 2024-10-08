@@ -26,8 +26,8 @@ export class IconsToolbarComponent implements OnInit {
     private service: NoteService,
     private router: Router,
     public dataService: DataService,
-    private _eref: ElementRef) {
-  }
+    private _eref: ElementRef
+  ) { }
 
 
   date = new FormControl(new Date());
@@ -46,7 +46,7 @@ export class IconsToolbarComponent implements OnInit {
   //To hide the icon
   @Input() undo: boolean;
   //To recieve the card details from the user notes on which the user poke
-  @Input() card: Note | any
+  @Input() card: Note | any;
 
   // @Input() upDateCard
 
@@ -62,17 +62,17 @@ export class IconsToolbarComponent implements OnInit {
 
   colorbox = [
     { color: "#fff", title: "Default" },
-    { color: "#f28b82", title: "Red" },
-    { color: "#fbbc04", title: "Orange" },
-    { color: "#fff475", title: "Yellow" },
-    { color: "#ccff90", title: "Green" },
-    { color: "#a7ffeb", title: "Teel" },
-    { color: "#cbf0f8", title: "Blue" },
-    { color: "#aecbfa", title: "Dark blue" },
-    { color: "#d7aefb", title: "Purple" },
-    { color: "#fdcfe8", title: "Pink" },
-    { color: "#e6c9a8", title: "Brown" },
-    { color: "#e0e0e0", title: "Gray" }
+    { color: "#faafa8", title: "Coral" },
+    { color: "#f39f76", title: "Peach" },
+    { color: "#fff8b8", title: "Sand" },
+    { color: "#e2f6d3", title: "Mint" },
+    { color: "#b4ddd3", title: "Sage" },
+    { color: "#d4e3ed", title: "Fog" },
+    { color: "#aeccdc", title: "Storm" },
+    { color: "#d3bfdb", title: "Dusk" },
+    { color: "#f6e2dd", title: "Blossom" },
+    { color: "#e9e3d3", title: "Clay" },
+    { color: "#efeff1", title: "Chalk" }
   ]
 
   ngOnInit() {

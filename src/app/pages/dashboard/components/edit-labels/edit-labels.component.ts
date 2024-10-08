@@ -34,6 +34,10 @@ export class EditLabelsComponent implements OnInit {
       item['dirty'] = false;
       item['newItem'] = false;
     });
+
+    this.dialogRef.backdropClick().subscribe({
+      next: () => this.closeDialog()
+    })
   }
 
 
@@ -107,6 +111,8 @@ export class EditLabelsComponent implements OnInit {
     return this.service.removeLabels({ labels }); //returns obervabale
   }
 
+
+  // implementation required to trigger the API once the dialog box is closed
   async closeDialog() {
     const newLabels = [];
     const updatedLabels = [];
