@@ -46,7 +46,16 @@ export class IconsToolbarComponent implements OnInit {
   //To hide the icon
   @Input() undo: boolean;
   //To recieve the card details from the user notes on which the user poke
-  @Input() card: Note | any;
+  @Input() card: Note | any = {
+    title: '',
+    description: '',
+    color: '#fff',
+    archive: false,
+    trash: false,
+    pinned: false,
+    reminder: '',
+    labels: []
+  };
 
   // @Input() upDateCard
 
@@ -82,7 +91,7 @@ export class IconsToolbarComponent implements OnInit {
     if (this.router.url == '/dashboard/archive') {
       this.archiveIco = false;
     }
-    document.body.click();
+    // document.body.click();
   }
 
 

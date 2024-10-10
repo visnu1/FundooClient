@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogData, UserNotesComponent } from '../user-notes/user-notes.component';
+import { Note } from '../../../../core/Models/note';
 
 
 
@@ -11,7 +12,7 @@ import { DialogData, UserNotesComponent } from '../user-notes/user-notes.compone
 })
 export class UpdateNoteComponent implements OnInit {
 
-  
+
 
   d = new Date();
   d0 = new Date(this.d.getFullYear(), this.d.getMonth(), this.d.getDate() - 1);
@@ -20,9 +21,10 @@ export class UpdateNoteComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<UserNotesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   updateTitle(event: Event): void {
     const target = event.target as HTMLElement;

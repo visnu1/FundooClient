@@ -3,7 +3,7 @@ import { HttpService } from '../http/http.service';
 import { DataService } from '../data-service/data.service';
 import { Observable, map } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
-import { NoteLabel } from '../../Models/note';
+import { Note, NoteLabel } from '../../Models/note';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +38,8 @@ export class NoteService {
 
 
 
-  createNote(body: any) {
-    return this.httpService.post(body, environment.createNote);
+  createNote(body: Note, token: string) {
+    return this.httpService.userPost(environment.createNote, token, body);
   }
 
   getNotes(token: string) {
@@ -50,7 +50,7 @@ export class NoteService {
     return this.httpService.userDelete(environment.delete + '/' + noteId, this.dataService.token);
   }
 
-  trashNotes(){
+  trashNotes() {
     return this.httpService.userDelete(environment.delete, this.dataService.token);
   }
 

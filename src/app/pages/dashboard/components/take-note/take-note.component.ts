@@ -1,20 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
+import { Note } from '../../../../core/Models/note';
 
 
-interface Note {
-  userId: string,
-  title: string,
-  description: string,
-  reminder: string,
-  color: string,
-  archive: boolean,
-  trash: boolean,
-  pinned: boolean,
-  labels: string[],
-  noteType: 'plain' | 'list'
-}
 @Component({
   selector: 'app-take-note',
   templateUrl: './take-note.component.html',
@@ -43,8 +32,8 @@ export class TakeNoteComponent implements OnInit {
   prevCheckListIpList;
 
   constructor(
-    private service: NoteService,
-    private data: DataService,
+    private _noteService: NoteService,
+    private _dataService: DataService,
     private renderer: Renderer2
   ) { }
 
@@ -81,8 +70,8 @@ export class TakeNoteComponent implements OnInit {
       return;
     }
 
-    const body: Note = {
-      userId: this.data.userId,
+    const note: Note = {
+      userId: this._dataService.userId,
       title: noteTitle,
       description: userNotes,
       reminder: this.rem,
@@ -91,10 +80,10 @@ export class TakeNoteComponent implements OnInit {
       trash: this.trash,
       pinned: this.pinned,
       labels: this.labels,
-      noteType: this.noteType
+      noteType: this.noteType,
     }
 
-    this.service.createNote(body).subscribe({
+    this._noteService.createNote(note, this._dataService.token).subscribe({
       next: (data) => this.addingNote.emit(),
       error: (e) => {
         if (e.status == 500)

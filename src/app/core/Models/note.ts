@@ -6,16 +6,18 @@ export interface NoteLabel {
 
 
 export interface Note {
-    _id: string;
+    _id?: string;
+    userId?: string,
     title: string;
     description: string;
     color: string;
     archive: boolean;
     pinned: boolean;
     trash: boolean;
-    labels: NoteLabel[];
-    updatedAt: Date;
-    reminder: Date;
-    index: number;
-    __v: number;
+    labels: NoteLabel[] | string[];
+    noteType: 'plain' | 'list';
+    updatedAt?: Date;
+    reminder: Date | string;
+    index?: number;
+    __v?: number;
 }
