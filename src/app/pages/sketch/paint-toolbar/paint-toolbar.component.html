@@ -4,21 +4,21 @@
             <ul class="list-unstyled items">
                 <li>
                     <div>
-                        <button mat-button>
+                        <button mat-button (click)="warningMsg()">
                             <span class="material-symbols-outlined">arrow_back</span>
                         </button>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <button mat-button>
+                        <button mat-button (click)="onUpdateTool('select')" (click)="warningMsg()">
                             <span class="material-symbols-outlined">select</span>
                         </button>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <button mat-button>
+                        <button mat-button (click)="onUpdateTool('eraser')" (click)="warningMsg()">
                             <span class="material-symbols-outlined">ink_eraser</span>
                         </button>
                         <button class="arrow_drop_down" mat-button [matMenuTriggerFor]="eraseOptions">
@@ -28,7 +28,7 @@
                 </li>
                 <li>
                     <div>
-                        <button mat-button>
+                        <button mat-button (click)="onUpdateTool('pen')">
                             <app-svg-icon src="assets/icons/sketch-pen.svg"></app-svg-icon>
                         </button>
                         <button class="arrow_drop_down" mat-button [matMenuTriggerFor]="penOpts">
@@ -38,7 +38,7 @@
                 </li>
                 <li>
                     <div>
-                        <button mat-button>
+                        <button mat-button (click)="onUpdateTool('marker')">
                             <app-svg-icon src="assets/icons/sketch-marker.svg"></app-svg-icon>
                         </button>
                         <button class="arrow_drop_down" mat-button [matMenuTriggerFor]="markerOpts">
@@ -48,7 +48,7 @@
                 </li>
                 <li>
                     <div>
-                        <button mat-button>
+                        <button mat-button (click)="onUpdateTool('highlighter')">
                             <app-svg-icon src="assets/icons/sketch-highlighter.svg"></app-svg-icon>
                         </button>
                         <button class="arrow_drop_down" mat-button [matMenuTriggerFor]="highlighterOpts">
@@ -57,13 +57,12 @@
                     </div>
                 </li>
                 <li>
-                    <div>
+                    <div [matMenuTriggerFor]="pageOptions" role="button" tabindex="0">
                         <button mat-button>
                             <app-svg-icon src="assets/icons/page-type.svg"></app-svg-icon>
                         </button>
                         <button class="arrow_drop_down" mat-button>
-                            <span class="material-symbols-outlined"
-                                [matMenuTriggerFor]="pageOptions">arrow_drop_down</span>
+                            <span class="material-symbols-outlined">arrow_drop_down</span>
                         </button>
                     </div>
                 </li>
@@ -73,21 +72,21 @@
             <ul class="list-unstyled items">
                 <li>
                     <div>
-                        <button mat-button>
+                        <button mat-button (click)="warningMsg()">
                             <span class="material-symbols-outlined">undo</span>
                         </button>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <button mat-button>
+                        <button mat-button (click)="warningMsg()">
                             <span class="material-symbols-outlined">redo</span>
                         </button>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <button mat-button>
+                        <button mat-button (click)="warningMsg()">
                             <span class="material-symbols-outlined">fullscreen_exit</span>
                         </button>
                     </div>
@@ -103,22 +102,22 @@
         </div>
     </div>
 </div>
-
 <mat-menu #penOpts="matMenu">
-    <app-paint-palette [(shade)]="penShade" [(brushSize)]="penSize"></app-paint-palette>
+    <app-paint-palette [toolOptions]="pen" (optionsChange)="onOptsChange('pen', $event)"></app-paint-palette>
 </mat-menu>
 
 <mat-menu #markerOpts="matMenu">
-    <app-paint-palette [(shade)]="markerShade" [(brushSize)]="markerSize"></app-paint-palette>
+    <app-paint-palette [toolOptions]="marker" (optionsChange)="onOptsChange('marker', $event)"></app-paint-palette>
 </mat-menu>
 
 <mat-menu #highlighterOpts="matMenu">
-    <app-paint-palette [(shade)]="highlighterShade" [(brushSize)]="highlighterSize"></app-paint-palette>
+    <app-paint-palette [toolOptions]="highlighter"
+        (optionsChange)="onOptsChange('highlighter',$event)"></app-paint-palette>
 </mat-menu>
 
 <mat-menu #eraseOptions="matMenu">
     <div>
-        <button class="basic-btn clear-btn">Clear Page</button>
+        <button class="basic-btn clear-btn" (click)="onClearCanvas()">Clear Page</button>
     </div>
 </mat-menu>
 
@@ -138,9 +137,10 @@
 
 <mat-menu class="page-menu" #pageOptions="matMenu" xPosition="before">
     <div class="page-ctrls">
-        <button>
+        <button (click)="onPageStyle('square')">
             <svg xmlns="http://www.w3.org/2000/svg" id="squareType" viewBox="0 0 48 48" width="48" height="48">
-                <circle class="out-cir" fill="#fff" cx="24" cy="24" r="23.5"></circle>
+                <circle [ngClass]="pageStyle() === 'square' ? 'active' : 'inactive'" fill="#fff" cx="24" cy="24"
+                    r="23.5"></circle>
                 <g stroke="rgba(0,0,0,0.45)">
                     <line x1="12.33" y1="44.59" x2="12.33" y2="3.41"></line>
                     <line x1="24" y1="48" x2="24"></line>
@@ -149,7 +149,7 @@
                     <line y1="24" x2="48" y2="24"></line>
                     <line x1="3.56" y1="35.67" x2="44.44" y2="35.67"></line>
                 </g>
-                <g *ngIf="">
+                <g *ngIf="pageStyle() === 'square'">
                     <circle cx="8" cy="8" r="6.33" fill="#fff"></circle>
                     <path fill="blue"
                         d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.4,12l-4-4L3.53,6.87,6.4,9.74l6.07-6.08L13.6,4.8Z">
@@ -159,9 +159,10 @@
             <label for="squareType">Square</label>
         </button>
 
-        <button>
-            <svg xmlns="http://www.w3.org/2000/svg" id="dotsType" viewBox="0 0 48 48" width="48" height="48">
-                <circle class="out-cir" fill="#fff" cx="24" cy="24" r="23.5"></circle>
+        <button (click)="onPageStyle('dots')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                <circle [ngClass]="pageStyle() === 'dots' ? 'active' : 'inactive'" fill="#fff" cx="24" cy="24" r="23.5">
+                </circle>
                 <g>
                     <circle cx="11.37" cy="11.49" r="1.08"></circle>
                     <circle cx="24" cy="11.49" r="1.08"></circle>
@@ -173,7 +174,7 @@
                     <circle cx="24" cy="36.51" r="1.08"></circle>
                     <circle cx="36.63" cy="36.51" r="1.08"></circle>
                 </g>
-                <g *ngIf="">
+                <g *ngIf="pageStyle() === 'dots'">
                     <circle cx="8" cy="8" r="6.33" fill="#fff"></circle>
                     <path fill="blue"
                         d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.4,12l-4-4L3.53,6.87,6.4,9.74l6.07-6.08L13.6,4.8Z">
@@ -183,15 +184,16 @@
             <label for="dotsType">Dots</label>
         </button>
 
-        <button>
-            <svg xmlns="http://www.w3.org/2000/svg" id="dotsType" viewBox="0 0 48 48" width="48" height="48">
-                <circle class="out-cir" fill="#fff" cx="24" cy="24" r="23.5"></circle>
+        <button (click)="onPageStyle('rules')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                <circle [ngClass]="pageStyle() === 'rules' ? 'active' : 'inactive'" fill="#fff" cx="24" cy="24"
+                    r="23.5"></circle>
                 <g stroke="rgba(0,0,0,0.45)">
                     <line x1="3.56" y1="12.33" x2="44.44" y2="12.33"></line>
                     <line y1="24" x2="48" y2="24"></line>
                     <line x1="3.56" y1="35.67" x2="44.44" y2="35.67"></line>
                 </g>
-                <g *ngIf="">
+                <g *ngIf="pageStyle() === 'rules'">
                     <circle cx="8" cy="8" r="6.33" fill="#fff"></circle>
                     <path fill="blue"
                         d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.4,12l-4-4L3.53,6.87,6.4,9.74l6.07-6.08L13.6,4.8Z">
@@ -201,9 +203,16 @@
             <label for="rulesType">Rules</label>
         </button>
 
-        <button>
-            <svg xmlns="http://www.w3.org/2000/svg" id="dotsType" viewBox="0 0 48 48" width="48" height="48">
-                <circle class="out-cir" fill="#fff" cx="24" cy="24" r="23.5"></circle>
+        <button (click)="onPageStyle('none')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                <circle [ngClass]="pageStyle() === 'none' ? 'active' : 'inactive'" fill="#fff" cx="24" cy="24" r="23.5">
+                </circle>
+                <g *ngIf="pageStyle() === 'none'">
+                    <circle cx="8" cy="8" r="6.33" fill="#fff"></circle>
+                    <path fill="blue"
+                        d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.4,12l-4-4L3.53,6.87,6.4,9.74l6.07-6.08L13.6,4.8Z">
+                    </path>
+                </g>
             </svg>
             <label for="noneType">None</label>
         </button>

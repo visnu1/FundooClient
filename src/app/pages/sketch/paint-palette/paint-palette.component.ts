@@ -1,85 +1,79 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Color, ToolOptions } from '../../../core/Models/sketch';
+import { Colors1, Colors2, Colors3, Colors4 } from '../../../core/constants/color.constants';
 
-const Colors1 = ["black", "#ff5252", "#ffbc00", "#00c853", "#00b0ff", "#d500f9", "#8d6e63"];
-const Colors2 = ["#fafafa", "#a52714", "#ee8100", "#558b2f", "#01579b", "#8e24aa", "#4e342e"];
-const Colors3 = ["#90a4ae", "#ff4081", "#ff6e40", "#aeea00", "#304ffe", "#7c4dff", "#1de9b6"];
-const Colors4 = ["#cfd8dc", "#f8bbd0", "#ffccbc", "#f0f4c3", "#9fa8da", "#d1c4e9", "#b2dfdb"];
-
-type Color = typeof Colors1[number] | typeof Colors2[number] | typeof Colors3[number] | typeof Colors4[number];
 
 const BrushSizes = [
-  { value: 0.2379, label: 'Size 1', dimension: '2px' },
-  { value: 0.2931, label: 'Size 2', dimension: '4px' },
-  { value: 0.4167, label: 'Size 3', dimension: '8px' },
-  { value: 0.5657, label: 'Size 4', dimension: '12px' },
-  { value: 0.7244, label: 'Size 5', dimension: '16px' },
-  { value: 0.8878, label: 'Size 6', dimension: '20px' },
-  { value: 1.0536, label: 'Size 7', dimension: '24px' },
-  { value: 1.2209, label: 'Size 8', dimension: '28px' }
+  { value: 4, label: 'Size 1', dimension: '2px' },
+  { value: 6, label: 'Size 2', dimension: '4px' },
+  { value: 8, label: 'Size 3', dimension: '8px' },
+  { value: 12, label: 'Size 4', dimension: '12px' },
+  { value: 18, label: 'Size 5', dimension: '16px' },
+  { value: 28, label: 'Size 6', dimension: '20px' },
+  { value: 40, label: 'Size 7', dimension: '24px' },
+  { value: 52, label: 'Size 8', dimension: '28px' }
 ];
-
 
 @Component({
   selector: 'app-paint-palette',
   templateUrl: './paint-palette.component.html',
-  styleUrl: './paint-palette.component.scss'
+  styleUrls: ['./paint-palette.component.scss']
 })
 export class PaintPaletteComponent {
 
+  private _brush = 4;  // Default brush size
+  private _color: Color = '#ff5252';  // Default color based on the Color type
+  private readonly _shades = [...Colors1, ...Colors2, ...Colors3, ...Colors4];
 
-  private _brush = 0.5657;
-  private _color: Color = '#ff5252';
-  private _shades: Color[] = Colors1.concat(Colors2, Colors3, Colors4);
+  public readonly colors1 = Colors1;
+  public readonly colors2 = Colors2;
+  public readonly colors3 = Colors3;
+  public readonly colors4 = Colors4;
+  public readonly brushSizes = BrushSizes;
 
   public expandPalette = false;
-  public colors1: Color[] = Colors1;
-  public colors2: Color[] = Colors2;
-  public colors3: Color[] = Colors3;
-  public colors4: Color[] = Colors4;
-  public brushSizes = BrushSizes;
 
   @Input({ required: true })
-  public set brushSize(size: number) {
-    // make it generic by throwing error if value is not passed
-    this._brush = size || 0.5657;
+  public set toolOptions(opts: ToolOptions) {
+    this._brush = opts?.size ?? 4;  // Default brush size if not provided
+    this._color = this._validateShade(opts?.shade) ? opts.shade : '#ff5252';  // Validate shade against Color type
   }
 
   public get brushSize(): number {
     return this._brush;
   }
-  @Output() brushSizeChange = new EventEmitter<number>();
-
-
-  @Input({ required: true })
-  public set shade(color: Color) {
-    this._color = color || '#ff5252';
-  }
 
   public get shade(): Color {
     return this._color;
   }
-  @Output() shadeChange = new EventEmitter<Color>();
- 
 
-  //convert this mouseEvent to directive
+  @Output() optionsChange = new EventEmitter<ToolOptions>();
+
+  // Utility method to validate the color shade
+  private _validateShade(color: string): color is Color {
+    return this._shades.includes(color as Color);
+  }
+
   onToggleMoreColors(event: MouseEvent) {
     event.stopPropagation();
     this.expandPalette = !this.expandPalette;
   }
 
-  //convert this mouseEvent to directive
   onSelectColor(shade: Color, event: MouseEvent) {
     event.stopPropagation();
-    if (!this._shades.includes(shade)) return;
+    if (!this._validateShade(shade)) return;
     this._color = shade;
-    this.shadeChange.emit(this._color);
+    this.emitChanges();
   }
-  //convert this mouseEvent to directive
+
   onSelectSize(size: number, event: MouseEvent) {
     event.stopPropagation();
     if (!size) return;
     this._brush = size;
-    this.brushSizeChange.emit(this._brush);
+    this.emitChanges();
   }
 
+  private emitChanges() {
+    this.optionsChange.emit({ size: this._brush, shade: this._color });
+  }
 }

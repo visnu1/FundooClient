@@ -79,8 +79,12 @@
         &>svg {
             margin-bottom: 15px;
 
-            .out-cir {
+            .inactive {
                 stroke: rgba(0, 0, 0, 0.54);
+            }
+
+            .active {
+                stroke: #4081f5;
             }
         }
 

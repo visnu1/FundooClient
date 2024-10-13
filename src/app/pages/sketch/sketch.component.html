@@ -1,4 +1,5 @@
-<app-paint-toolbar class="cool"></app-paint-toolbar>
+<app-paint-toolbar (toolAction)="onToolbarEvent($event)" (pageStyle)="canvasPageStyle($event)"></app-paint-toolbar>
 <div class="sketch-sheet">
-    <canvas id="canvas" tabindex="-1" width="2876" height="924" #canvas style="border: 1px solid silver; background-color: blueviolet;"></canvas>
+    <canvas id="canvas" tabindex="-1" width="2876" height="924" #canvas></canvas>
 </div>
+
