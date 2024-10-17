@@ -1,5 +1,5 @@
-var url = `http://localhost:3000/`;
-// var url = `http://18.188.137.21:3000/`
+// const url = `http://localhost:3000/`;
+const url = `https://memonest.site/`
 
 export const environment = {
   production: false,
@@ -36,6 +36,4 @@ export const environment = {
   updateIndex: url + `updateIndex`,
 
   addLabels: url + `addLabels`,
-
-
 };

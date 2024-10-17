@@ -1,2 +1,16 @@
-<router-outlet></router-outlet>
+<!-- <div class="banner" *ngIf="!showDisclaimer()">
+    <div class="disclaimer">{{bannerMsg}}</div>
+</div> -->
 
+<!-- Backdrop with modal -->
+<div class="disclaimer-backdrop" *ngIf="showDisclaimer()">
+    <div class="disclaimer-modal">
+        <div class="ctn">
+            <span class="material-symbols-outlined">info</span>
+            <p>{{disclaimer}}</p>
+            <button mat-stroked-button autofocus (click)="onUnderstood()">Understood</button>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

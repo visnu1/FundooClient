@@ -1,3 +1,72 @@
+.banner {
+  background-color: black;
+  height: 14px;
+  padding: 5px 10px;
+
+  .disclaimer {
+    font-size: 12.5px;
+    color: #fff;
+    white-space: pre;
+    box-sizing: border-box;
+    letter-spacing: 0.55px;
+    text-align: center;
+  }
+
+}
+
+.disclaimer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.disclaimer-modal {
+  max-width: 540px;
+  width: 100%;
+  z-index: 100;
+  border-radius: 8px;
+  text-align: center;
+  background: #fdedef;
+  border: 1px solid #eee;
+  padding: 20px;
+  position: relative;
+  top: 0;
+
+
+  .ctn>span {
+    color: black;
+    font-size: 40px;
+  }
+
+  .ctn>p {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: google-sans, sans-serif;
+    letter-spacing: 0.3px;
+    word-break: break-word;
+    line-height: 1.5;
+  }
+
+  .ctn>button {
+    color: white;
+    background: red;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+}
+
+
 @font-face {
   font-family: product-sans;
   src: url("../assets/fonts/product.ttf");
