@@ -139,6 +139,10 @@ title {
   max-width: 100%;
   flex: 1 1 auto;
   padding-right: 16px;
+
+  .material-symbols-outlined{
+    opacity: 0.7;
+  }
 }
 
 @media (max-width: 426px) {
@@ -203,28 +207,21 @@ form svg {
 
 .icons3 {
   line-height: 0;
-  /* max-width: 100%; */
-  /* flex: 1 1 auto; */
-  /* height: 48px; */
-  /* width: 167px; */
   display: inline-flex;
 }
 
 .icons3 div {
-  background-size: 24px 24px;
-  background-position: center;
-  background-repeat: no-repeat;
-  align-items: center;
-  opacity: 0.5;
-  display: inline-block;
+  opacity: 0.7;
   height: 48px;
   width: 48px;
-  transition: width 0.218s ease-out;
-  flex: 0 0 auto;
   cursor: pointer;
-  // left: 0;
-  // top: 0;
-  // position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .material-symbols-outlined {
+    font-size: 26px;
+  }
 }
 
 @media (max-width: 403px) {
@@ -238,10 +235,9 @@ form svg {
   opacity: 1;
 }
 
-.refreshico {
-  background-image: url(../../../assets/icons/refresh.svg);
+.refresh-anim {
   animation: spin3 0.6s linear;
-  animation-iteration-count: 1;
+  // animation-iteration-count: 2;
 }
 
 @keyframes spin3 {
@@ -260,17 +256,6 @@ form svg {
   }
 }
 
-.listico {
-  background-image: url(../../../assets/icons/listView.svg);
-}
-
-.gridico {
-  background-image: url(../../../assets/icons/grid-view.svg);
-}
-
-.settingsico {
-  background-image: url(../../../assets/icons/settings.svg);
-}
 
 .ball {
   box-sizing: border-box;

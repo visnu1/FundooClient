@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
-import { filter, map } from 'rxjs';
+import { filter, map, Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,14 +13,20 @@ export class ArchiveComponent implements OnInit {
 
   archiveCards = [];
   emptyArchive = true;
+  private refreshPage$: Subscription;
 
   constructor(
-    private _noteService: NoteService, 
+    private _noteService: NoteService,
     private _dataService: DataService
   ) { }
 
   ngOnInit() {
     this.onLoadArchived();
+    this.refreshPageEvent();
+  }
+
+  refreshPageEvent() {
+    this.refreshPage$ = this._dataService.pageRefresh.subscribe(_ => this.onLoadArchived());
   }
 
 
@@ -41,6 +47,11 @@ export class ArchiveComponent implements OnInit {
         },
         error: (e) => console.warn(e)
       })
+  }
+
+  ngOnDestroy(): void {
+    if (this.refreshPage$)
+      this.refreshPage$.unsubscribe();
   }
 
 }

@@ -45,7 +45,7 @@
       </span>
     </button>
 
-    <button matTooltip="More" class="note-ctrls" *ngIf=url mat-icon-button (click)=more()>
+    <button matTooltip="More" class="note-ctrls" *ngIf=url mat-icon-button (click)="openMenu(menuBtn)" #menuBtn>
       <span class="material-symbols-outlined small-icon">
         more_vert
       </span>
@@ -55,16 +55,6 @@
   </div>
 </div>
 
-
-<div class="menu" *ngIf="pop">
-  <div class="menu1">
-    <div (click)=trash(card)>Delete Note</div>
-    <div [matMenuTriggerFor]="lmenu" (menuClosed)="isClosed(card)">
-      {{ card?.labels.length ? 'Change labels' : 'Add labels'}}
-    </div>
-    <div>Copy to Google Docs</div>
-  </div>
-</div>
 
 <!-- colors -->
 <mat-menu #paletteMenu="matMenu" yPosition="above" [overlapTrigger]="false" panelClass="custom">
@@ -193,6 +183,8 @@
 </mat-menu>
 
 
+
+
 <mat-menu class="lmenu" #lmenu="matMenu">
   <div class="txt1">
     Label note
@@ -210,3 +202,16 @@
     </div>
   </div>
 </mat-menu>
+
+
+<ng-template #moreOptsTemplate>
+  <div class="menu">
+    <div>
+      <div (click)=trash(card)>Delete Note</div>
+      <div [matMenuTriggerFor]="lmenu" (menuClosed)="isClosed(card)">
+        {{ card?.labels.length ? 'Change labels' : 'Add labels'}}
+      </div>
+      <div>Copy to Google Docs</div>
+    </div>
+  </div>
+</ng-template>

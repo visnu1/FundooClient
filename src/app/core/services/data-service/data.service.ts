@@ -11,7 +11,7 @@ export class DataService {
   token: string;
   userId: string;
   avatar: string;
-  currentLabel = new EventEmitter();
+  pageRefresh = new EventEmitter<boolean>();
 
   labels: NoteLabel[];
   labels$ = new EventEmitter<NoteLabel[]>;
@@ -36,20 +36,20 @@ export class DataService {
   }
 
   //To change the view style of cards
-  onViewChange(message: boolean) {
+  public onViewChange(message: boolean): void {
     this.messageSource.next(message);
   }
 
-  onTokenInitialize(token: string) {
+  public onTokenInitialize(token: string): void {
     this.token = token;
   }
 
-  onUserIdInitialize(user: string) {
+  public onUserIdInitialize(user: string): void {
     this.userId = user;
   }
 
-  onEmitCurrentLabel(name) {
-    this.currentLabel.emit(name);
+  public emitPageRefesh(): void {
+    this.pageRefresh.emit(true);
   }
 
 }

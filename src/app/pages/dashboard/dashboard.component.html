@@ -15,31 +15,41 @@
           <span class="k22"
             *ngIf="router.url == '/dashboard/reminders' || router.url == '/dashboard/archive' || router.url == '/dashboard/trash' ; else elseBlock">{{router.url
             | slice:11 | titlecase}}</span>
-          <ng-template class="k22" #elseBlock>{{router.url | slice:18 }}</ng-template>
+          <ng-template class="k22" #elseBlock>{{labelName || 'Labels'}}</ng-template>
         </div>
       </div>
       <div class="all">
         <div class="search">
           <form method="get" class="form">
-
-            <button mat-icon-button class="button se">
+            <button mat-icon-button class="se">
               <span class="material-symbols-outlined">
                 search
               </span>
             </button>
-            <input class="input" type="text" placeholder="Search">
-            <button mat-icon-button class="button close" (click)="onClearSearch()">
+            <input class="input" type="text" placeholder="Search" [formControl]="search" #searchIp>
+            <button mat-icon-button class="close" *ngIf="search.value"  (click)="onClearSearch()">
               <span class="material-symbols-outlined">
                 close
               </span>
             </button>
-
           </form>
         </div>
         <div class="icons3">
-          <div matTooltip="Refresh" class=refreshico (click)=refresh()></div>
-          <div matTooltip="list" (click)="onViewChange()" [ngClass]="view"></div>
-          <div matTooltip="Settings" class=settingsico></div>
+          <div matTooltip="Refresh" (click)=refresh()>
+            <span class="refresh-anim" class="material-symbols-outlined">
+              refresh
+            </span>
+          </div>
+          <div [matTooltip]=" view == 'listico' ? 'Grid' : 'List'" (click)="onViewChange()">
+            <span class="material-symbols-outlined">
+              {{ view == 'listico' ? 'grid_view' : 'view_stream'}}
+            </span>
+          </div>
+          <div matTooltip="Dark Mode">
+            <span class="material-symbols-outlined">
+              dark_mode
+            </span>
+          </div>
         </div>
       </div>
       <div class="ball">
@@ -88,8 +98,8 @@
           <ul class="sul">
             <div class="qwer">LABELS</div>
             <li class="sli" *ngFor="let label of labels" [routerLinkActive]="['active']"
-              [routerLink]="['labels', label.name]">
-              <a (click)=labelsPage(label.name)>
+              [routerLink]="['labels', label.name]" [queryParams]="{ id: label._id }">
+              <a (click)="labelsPage(label)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_jc">
                   <path
                     d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16zM16 17H5V7h11l3.55 5L16 17z">

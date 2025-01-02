@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Renderer2, ElementRef, ViewChi
 import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
 import { Note } from '../../../../core/Models/note';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class TakeNoteComponent implements OnInit {
   constructor(
     private _noteService: NoteService,
     private _dataService: DataService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    public router: Router
   ) { }
 
   ngOnInit() { }
@@ -60,7 +62,7 @@ export class TakeNoteComponent implements OnInit {
 
   onSend() {
 
-    if (this.noteType == 'list') this.extractTodoItems();
+    if (this.noteType == 'list') { this.extractTodoItems(); return; }
 
     const noteTitle = this.noteTitle.nativeElement.innerText || "";
     const userNotes = this.userNotes.nativeElement.innerText || "";
@@ -98,7 +100,8 @@ export class TakeNoteComponent implements OnInit {
   }
 
   extractTodoItems() {
-    // needs implementation
+    Array.from(this.listNote.nativeElement.querySelectorAll('.frm-ctn'))
+      .forEach((node: HTMLElement) => console.log(node.innerText))
   }
 
   createTodoFormFld() {
@@ -167,6 +170,10 @@ export class TakeNoteComponent implements OnInit {
 
   onRemoveTodoFld(parentEle: HTMLElement) {
     this.renderer.removeChild(this.listNote.nativeElement, parentEle);
+  }
+
+  onSketch() {
+    this.router.navigate(['sketch']);
   }
 
   userArchive(event) {

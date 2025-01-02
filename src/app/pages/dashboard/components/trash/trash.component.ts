@@ -3,7 +3,7 @@ import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericDialogComponent } from '../../../../core/shared/dialogs/generic-dialog/generic-dialog.component';
-import { filter, lastValueFrom, map } from 'rxjs';
+import { filter, lastValueFrom, map, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-trash',
@@ -14,6 +14,7 @@ export class TrashComponent implements OnInit {
 
   trashedNotes = [];
   emptyTrash = true;
+  private refreshPage$: Subscription;
 
   constructor(
     private _noteService: NoteService,
@@ -23,6 +24,11 @@ export class TrashComponent implements OnInit {
 
   ngOnInit() {
     this.onLoadNotes();
+    this.refreshPageEvent();
+  }
+
+  refreshPageEvent() {
+    this.refreshPage$ = this._dataService.pageRefresh.subscribe(_ => this.onLoadNotes());
   }
 
   onLoadNotes() {
@@ -72,5 +78,10 @@ export class TrashComponent implements OnInit {
         this.deleteAllNotes();
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.refreshPage$)
+      this.refreshPage$.unsubscribe();
   }
 }

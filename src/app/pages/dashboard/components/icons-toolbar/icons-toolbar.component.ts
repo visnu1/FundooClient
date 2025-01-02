@@ -1,11 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation, DoCheck, } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation, ViewContainerRef, viewChild, TemplateRef, } from '@angular/core';
 import { Router } from '@angular/router';
-import { ElementRef, } from '@angular/core';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
 
 import { FormControl, Validators } from '@angular/forms';
 import { Note, NoteLabel } from '../../../../core/Models/note';
 import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
+import { MatIconButton } from '@angular/material/button';
 
 
 
@@ -13,9 +15,6 @@ import { DataService } from '../../../../core/services/data-service/data.service
   selector: 'app-icons-toolbar',
   templateUrl: './icons-toolbar.component.html',
   styleUrls: ['./icons-toolbar.component.scss'],
-  // host: {
-  //   '(document:click)': 'onClick($event)',
-  // },
   encapsulation: ViewEncapsulation.None
 })
 export class IconsToolbarComponent implements OnInit {
@@ -26,19 +25,18 @@ export class IconsToolbarComponent implements OnInit {
     private service: NoteService,
     private router: Router,
     public dataService: DataService,
-    private _eref: ElementRef
+    private overlay: Overlay,
+    private viewContainerRef: ViewContainerRef
   ) { }
 
 
   date = new FormControl(new Date());
   time = new FormControl('Set time', Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/));
-  // timeArray: any[];
-
 
   period = new FormControl('Does not repeat');
   pdt: boolean = false;
 
-  pop: boolean = false;
+
   url: boolean = true;
   archiveIco = true;
 
@@ -58,6 +56,9 @@ export class IconsToolbarComponent implements OnInit {
   };
 
   // @Input() upDateCard
+
+  moreOptsTemplate = viewChild<TemplateRef<any>>('moreOptsTemplate');
+  private overlayRef!: OverlayRef;
 
   @Output() archiveCard = new EventEmitter();
   @Output() colorCard = new EventEmitter();
@@ -95,6 +96,31 @@ export class IconsToolbarComponent implements OnInit {
   }
 
 
+  openMenu(menuEle: MatIconButton) {
+    this.overlayRef = this.overlay.create({
+      hasBackdrop: true,
+      backdropClass: 'custom-backdrop',
+      positionStrategy: this.overlay
+        .position()
+        .flexibleConnectedTo(menuEle._elementRef.nativeElement)
+        .withPositions([{
+          originX: 'start',
+          originY: 'bottom',
+          overlayX: 'start',
+          overlayY: 'top',
+          offsetY: 5
+        }])
+    })
+    this.overlayRef.attach(new TemplatePortal(this.moreOptsTemplate(), this.viewContainerRef));
+    this.overlayRef.backdropClick().subscribe({ next: () => this.closeMenu() })
+  }
+
+  closeMenu() {
+    if (this.overlayRef)
+      this.overlayRef.detach()
+  }
+
+
   public get labels(): any[] {
     const noteLbs = this.card?.labels || [];
     return this.dataService.labels.map((label: NoteLabel) => ({
@@ -103,9 +129,6 @@ export class IconsToolbarComponent implements OnInit {
     }));
   }
 
-  more() {
-    this.pop = !this.pop;
-  }
 
   color(colorObj, card) {
     console.log(colorObj.color);

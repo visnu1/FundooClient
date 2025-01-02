@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, ViewChild, ElementRef, viewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, lastValueFrom } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { debounceTime, map } from 'rxjs/operators';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
@@ -9,6 +9,7 @@ import { EditLabelsComponent } from './components/edit-labels/edit-labels.compon
 import { NoteLabel } from '../../core/Models/note';
 import { DataService } from '../../core/services/data-service/data.service';
 import { NoteService } from '../../core/services/note/note.service';
+import { FormControl } from '@angular/forms';
 
 
 export interface LabelData {
@@ -32,6 +33,9 @@ export class DashboardComponent implements OnInit {
   userAvatar: string;
   message
   labels: any[];
+  labelName!: string;
+  refreshEle = viewChild<ElementRef<HTMLDivElement>>('refresh');
+  search = new FormControl('');
 
   @Input() email: string;
   @Input() name: string;
@@ -47,22 +51,21 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     public router: Router,
-    private dataService: DataService,
+    private _dataService: DataService,
     private matDailog: MatDialog,
     private service: NoteService,
     private breakpointObserver: BreakpointObserver,
     private matdailog: MatDialog,
-    private route: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute
+  ) {
     this.email = localStorage.getItem('email');
     this.name = localStorage.getItem('name');
     this.userid = localStorage.getItem('userid');
     this.token = localStorage.getItem('token');
-    this.dataService.onTokenInitialize(this.token);
-    this.dataService.onUserIdInitialize(this.userid);
+    this._dataService.onTokenInitialize(this.token);
+    this._dataService.onUserIdInitialize(this.userid);
     // localStorage.clear();
   }
-
-
 
   public get usernameFirstLetter(): string {
     return this.name.substring(0, 1).toUpperCase();
@@ -70,11 +73,24 @@ export class DashboardComponent implements OnInit {
 
 
   async ngOnInit() {
-    this.userAvatar = this.dataService.avatar;
+    this.userAvatar = this._dataService.avatar;
     this.service.fetchLabels();
-    this.dataService.labels$.subscribe((labels: NoteLabel[]) => {
+    this._dataService.labels$.subscribe((labels: NoteLabel[]) => {
       this.labels = labels;
     });
+    this.search.valueChanges
+      .pipe(debounceTime(800))
+      .subscribe({
+        next: (value) => console.log(value)
+      })
+  }
+
+  refresh() {
+    this._dataService.emitPageRefesh();
+  }
+
+  onClearSearch() {
+    this.search.reset();
   }
 
 
@@ -86,7 +102,7 @@ export class DashboardComponent implements OnInit {
       this.view = "gridico";
     }
     this.viewType = !this.viewType;
-    this.dataService.onViewChange(this.viewType);
+    this._dataService.onViewChange(this.viewType);
 
   }
 
@@ -115,20 +131,10 @@ export class DashboardComponent implements OnInit {
   }
 
   labelsPage(l) {
-    this.router.navigate(['dashboard/labels', l]);
-    this.dataService.onEmitCurrentLabel(l);
+    this.labelName = l.name;
   }
-
 
   editLabels() {
     this.matdailog.open(EditLabelsComponent, { data: this.labels });
-  }
-
-  onClearSearch() {
-
-  }
-
-
-  refresh() {
   }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateNoteComponent } from '../update-note/update-note.component';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'; import { DataService } from '../../../../core/services/data-service/data.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { DataService } from '../../../../core/services/data-service/data.service';
 import { NoteService } from '../../../../core/services/note/note.service';
 import { Note } from '../../../../core/Models/note';
 export interface DialogData {
@@ -24,24 +25,30 @@ export class UserNotesComponent implements OnInit {
   //to send the data for undo icon
   userNoteMsg = false;
   viewType: boolean;
+  pinned: Note[] = [];
+  unpinned: Note[] = [];
 
-
-  @Input({ required: true }) notes: Note[];
-
+  @Input({ required: true })
+  public set notes(data: Note[]) {
+    if (!data) return;
+    this.pinned = [];
+    this.unpinned = [];
+    data.forEach((note: Note) => note.pinned ? this.pinned.push(note) : this.unpinned.push(note)); //EACH TIME DOING THIS COULD BE WRONG FOR BETTER JUST DO IT IN DB
+  }
   @Output() actionOne = new EventEmitter;
   @Output() trashAction = new EventEmitter;
   @Output() archiveAction = new EventEmitter;
 
 
   constructor(
-    private data: DataService,
+    private _dataService: DataService,
     private matdailog: MatDialog,
-    private service: NoteService,
+    private _noteService: NoteService
   ) { }
 
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(message => {
+    this._dataService.currentMessage.subscribe(message => {
       this.viewType = message;
     });
   }
@@ -62,7 +69,7 @@ export class UserNotesComponent implements OnInit {
           title: result.title,
           description: result.description
         }
-        this.service.updateNote(body).subscribe(data => {
+        this._noteService.updateNote(body).subscribe(data => {
           console.log("card updated");
           this.actionOne.emit();
         }, error => {
@@ -84,30 +91,33 @@ export class UserNotesComponent implements OnInit {
     this.archiveAction.emit();
   }
 
-  drop(event: CdkDragDrop<any[]>) {
-    moveItemInArray(this.notes, event.previousIndex, event.currentIndex);
-    let index;
-    if (event.currentIndex == 0) {
-      let frontIndex = this.notes[event.currentIndex + 1]['index'];
-      index = frontIndex + 0.0001;
-    } else if (event.currentIndex == this.notes.length - 1) {
-      let prevIndex = this.notes[event.currentIndex - 1]['index']
-      index = prevIndex - 0.0001;
-    } else {
-      let prevIndex = this.notes[event.currentIndex - 1]['index']
-      let frontIndex = this.notes[event.currentIndex + 1]['index'];
-      index = (prevIndex + frontIndex) / 2
-    }
-    this.notes[event.currentIndex]["index"] = index;
-    let card = this.notes[event.currentIndex];
-    let data = {
-      cardId: card._id,
-      index: card.index
-    }
-    this.service.updateIndex(data).subscribe(res => {
-      console.log(res);
-    });
-  }
+
+  //LATER HAVE TO ADD IT BACK
+
+  // drop(event: CdkDragDrop<any[]>) {
+  //   moveItemInArray(this.notes, event.previousIndex, event.currentIndex);
+  //   let index;
+  //   if (event.currentIndex == 0) {
+  //     let frontIndex = this.notes[event.currentIndex + 1]['index'];
+  //     index = frontIndex + 0.0001;
+  //   } else if (event.currentIndex == this.notes.length - 1) {
+  //     let prevIndex = this.notes[event.currentIndex - 1]['index']
+  //     index = prevIndex - 0.0001;
+  //   } else {
+  //     let prevIndex = this.notes[event.currentIndex - 1]['index']
+  //     let frontIndex = this.notes[event.currentIndex + 1]['index'];
+  //     index = (prevIndex + frontIndex) / 2
+  //   }
+  //   this.notes[event.currentIndex]["index"] = index;
+  //   let card = this.notes[event.currentIndex];
+  //   let data = {
+  //     cardId: card._id,
+  //     index: card.index
+  //   }
+  //   this.service.updateIndex(data).subscribe(res => {
+  //     console.log(res);
+  //   });
+  // }
 
 
   remove() {

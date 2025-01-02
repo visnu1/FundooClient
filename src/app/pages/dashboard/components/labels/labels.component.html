@@ -1,2 +1,2 @@
 <app-take-note (addingNote)="onLoadNotes()"></app-take-note>
-<app-user-notes [notes]="labelNotes" (actionOne)="onLoadNotes()"></app-user-notes>
+<app-user-notes *ngIf="labelNotes.length" [notes]="labelNotes" (actionOne)="onLoadNotes()"></app-user-notes>

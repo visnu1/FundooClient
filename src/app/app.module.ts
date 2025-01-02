@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 //we have to import this module for taking form inputs froms
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 
 import { MatInputModule } from '@angular/material/input';
@@ -102,7 +103,8 @@ import { NgxMasonryModule } from 'ngx-masonry';
     ImageCropperComponent,
     SharedModule,
     AuthModule,
-    NgxMasonryModule
+    NgxMasonryModule,
+    OverlayModule
   ],
   // entryComponents: [UpdateNoteComponent, ImageUploadComponent, EditLabelsComponent],
   providers: [AsyncPipe],

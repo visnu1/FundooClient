@@ -1,33 +1,61 @@
 <div class="ls-container" *ngIf="!viewType">
-  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="ls-card edit" [style.background-color]="card.color" *ngFor="let card of notes" cdkDrag>
-      <div>
-        <!-- Pin Icon -->
-        <div class="app-pin" [card]="card"></div>
-
-        <!-- Title -->
-        <div class="note-title" (click)="updateNote(card)">{{card.title}}</div>
-
-        <!-- Description -->
-        <div class="ls-description" (click)="updateNote(card)">{{card.description}}</div>
-      </div>
-
-      <!-- Labels -->
-      <app-note-labels [card]="card"></app-note-labels>
-
-      <!-- Icons Toolbar -->
-      <div class="note-toolbar">
-        <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
-          (archiveAct)="archiveCall()">
-        </app-icons-toolbar>
-      </div>
+  <div class="spacing-btm" *ngIf="pinned.length">
+    <div>
+      <p class="category-title">pinned</p>
     </div>
+    <ng-container *ngTemplateOutlet="listView; context:{notes : pinned}"></ng-container>
+  </div>
+  <div>
+    <div *ngIf="pinned.length">
+      <p class="category-title">others</p>
+    </div>
+    <ng-container *ngTemplateOutlet="listView; context:{notes : unpinned}"></ng-container>
   </div>
 </div>
 
 
-
 <div class="notes-container" *ngIf="viewType">
+  <div class="spacing-btm" *ngIf="pinned.length">
+    <div>
+      <p class="category-title">pinned</p>
+    </div>
+    <ng-container *ngTemplateOutlet="gridView; context:{notes : pinned}"></ng-container>
+  </div>
+  <div>
+    <div *ngIf="pinned.length && unpinned.length">
+      <p class="category-title">others</p>
+    </div>
+    <ng-container *ngTemplateOutlet="gridView; context:{notes : unpinned}"></ng-container>
+  </div>
+</div>
+
+<ng-template #listView let-notes="notes">
+  <div class="ls-card edit" [style.background-color]="card.color" *ngFor="let card of notes">
+    <div>
+      <!-- Pin Icon -->
+      <div class="app-pin" [card]="card"></div>
+
+      <!-- Title -->
+      <div class="note-title" (click)="updateNote(card)">{{card.title}}</div>
+
+      <!-- Description -->
+      <div class="ls-description" (click)="updateNote(card)">{{card.description}}</div>
+    </div>
+
+    <!-- Labels -->
+    <app-note-labels [card]="card"></app-note-labels>
+
+    <!-- Icons Toolbar -->
+    <div class="note-toolbar">
+      <app-icons-toolbar [card]="card" [undo]="userNoteMsg" (action)="noteCall()" (trashact)="trashCall()"
+        (archiveAct)="archiveCall()">
+      </app-icons-toolbar>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #gridView let-notes="notes">
   <ngx-masonry>
     <div ngxMasonryItem class="note-card" *ngFor="let card of notes" [style.background-color]="card.color">
       <div class="note-content" (click)="updateNote(card)">
@@ -49,4 +77,4 @@
       </div>
     </div>
   </ngx-masonry>
-</div>
+</ng-template>

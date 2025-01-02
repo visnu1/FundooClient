@@ -14,7 +14,7 @@ export class PaintToolbarComponent {
   // Default options
   pen: ToolOptions = { shade: '#ff5252', size: 6 };
   marker: ToolOptions = { shade: '#d500f9', size: 6 };
-  highlighter: ToolOptions = { shade: 'black', size: 6 };
+  highlighter: ToolOptions = { shade: '#000000', size: 6 };
   eraser = { size: 0 };
 
   activeTool = signal<Tool>('pen');

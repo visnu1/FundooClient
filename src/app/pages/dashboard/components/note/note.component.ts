@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../../../../core/services/note/note.service';
 import { DataService } from '../../../../core/services/data-service/data.service';
-import { filter, map } from 'rxjs';
+import { filter, map, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-note',
@@ -11,6 +11,7 @@ import { filter, map } from 'rxjs';
 export class NoteComponent implements OnInit {
 
   notes = [];
+  private refreshPage$: Subscription;
 
   constructor(
     private _noteService: NoteService,
@@ -19,6 +20,11 @@ export class NoteComponent implements OnInit {
 
   ngOnInit() {
     this.onLoadNotes();
+    this.refreshPageEvent();
+  }
+
+  refreshPageEvent() {
+    this.refreshPage$ = this._dataService.pageRefresh.subscribe(_ => this.onLoadNotes());
   }
 
   onLoadNotes() {
@@ -35,6 +41,11 @@ export class NoteComponent implements OnInit {
         next: ({ result }) => this.notes = result,
         error: (e) => console.warn(e)
       })
+  }
+
+  ngOnDestroy(): void {
+    if (this.refreshPage$)
+      this.refreshPage$.unsubscribe();
   }
 
 }
