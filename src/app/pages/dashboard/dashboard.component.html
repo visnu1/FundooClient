@@ -40,9 +40,9 @@
               refresh
             </span>
           </div>
-          <div [matTooltip]=" view == 'listico' ? 'Grid' : 'List'" (click)="onViewChange()">
+          <div [matTooltip]=" view == 'listico' ? 'List' : 'Grid'" (click)="onViewChange()">
             <span class="material-symbols-outlined">
-              {{ view == 'listico' ? 'grid_view' : 'view_stream'}}
+              {{ view == 'listico' ? 'view_stream' : 'grid_view'}}
             </span>
           </div>
           <div matTooltip="Dark Mode">

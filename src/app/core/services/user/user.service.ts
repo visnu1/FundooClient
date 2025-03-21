@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
-import { DataService } from '../data-service/data.service';
 import { environment } from '../../../../environments/environment.development';
 
 @Injectable({
@@ -11,18 +10,18 @@ export class UserService {
   constructor(private httpService: HttpService) { }
 
   register(body: any) {
-    return this.httpService.post(body, environment.signUp);
+    return this.httpService.post(environment.signUp, body);
   }
 
   login(body: any) {
-    return this.httpService.post(body, environment.signIn);
+    return this.httpService.post(environment.signIn, body);
   }
 
   forgotPassword(body: any) {
-    return this.httpService.post(body, environment.forgotPassword);
+    return this.httpService.post(environment.forgotPassword, body);
   }
 
   resetPassword(body: any) {
-    return this.httpService.post(body, environment.resetPassword);
+    return this.httpService.post(environment.resetPassword, body);
   }
 }

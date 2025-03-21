@@ -24,7 +24,7 @@ export class UserNotesComponent implements OnInit {
 
   //to send the data for undo icon
   userNoteMsg = false;
-  viewType: boolean;
+  viewType: boolean ;
   pinned: Note[] = [];
   unpinned: Note[] = [];
 

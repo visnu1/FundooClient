@@ -16,7 +16,7 @@ export class NoteService {
   //labels
 
   fetchLabels(): void {
-    this.httpService.userPost(environment.userLabels, this.dataService.token).pipe(
+    this.httpService.userGet(environment.userLabels).pipe(
       map((labels: any[]) => labels.sort((a, b) => a.name.localeCompare(b.name)))
     ).subscribe({
       next: (labels: NoteLabel[]) => this.dataService.initLabels(labels),
@@ -25,62 +25,61 @@ export class NoteService {
   }
 
   addLabels(payload: any): Observable<any> {
-    return this.httpService.userPut(environment.addLabels, this.dataService.token, payload);
+    return this.httpService.userPut(environment.addLabels, payload);
   }
 
   renameLabels(updatePayload: any): Observable<any> {
-    return this.httpService.userPut(environment.renameLabels, this.dataService.token, updatePayload);
+    return this.httpService.userPut(environment.renameLabels, updatePayload);
   }
 
   removeLabels(deletePayload: any): Observable<any> {
-    return this.httpService.userPut(environment.deleteLabels, this.dataService.token, deletePayload);
+    return this.httpService.userPut(environment.deleteLabels, deletePayload);
   }
 
 
-
-  createNote(body: Note, token: string) {
-    return this.httpService.userPost(environment.createNote, token, body);
+  createNote(body: Note ) {
+    return this.httpService.userPost(environment.createNote, body);
   }
 
-  getNotes(token: string) {
-    return this.httpService.userPost(environment.userNotes, token);
+  getNotes() {
+    return this.httpService.userGet(environment.userNotes);
   }
 
   deleteNote(noteId: string) {
-    return this.httpService.userDelete(environment.delete + '/' + noteId, this.dataService.token);
+    return this.httpService.userDelete(environment.delete + '/' + noteId);
   }
 
   trashNotes() {
-    return this.httpService.userDelete(environment.delete, this.dataService.token);
+    return this.httpService.userDelete(environment.delete);
   }
 
   updateNote(body: any) {
-    return this.httpService.userPost(environment.updateNote, this.dataService.token, body);
+    return this.httpService.userPost(environment.updateNote, body);
   }
 
   removeNoteLabel(body: any) {
     body = { ...body, removeLabels: true };
-    return this.httpService.userPut(environment.updateNoteLabel, this.dataService.token, body);
+    return this.httpService.userPut(environment.updateNoteLabel, body);
   }
 
   addNoteLabel(body: any) {
     body = { ...body, removeLabels: false };
-    return this.httpService.userPut(environment.updateNoteLabel, this.dataService.token, body);
+    return this.httpService.userPut(environment.updateNoteLabel, body);
   }
 
   userProfile(body: any) {
-    return this.httpService.imgPost(environment.userProfile, this.dataService.token, body);
+    return this.httpService.imgPost(environment.userProfile, body);
   }
 
   updateFbToken(token: string) {
-    return this.httpService.userPost(environment.updateFbToken, this.dataService.token, {
+    return this.httpService.userPost(environment.updateFbToken, {
       userId: this.dataService.userId,
       firebaseToken: token
     });
   }
 
   updateIndex(body: { cardId; index; }) {
-    return this.httpService.userPut(environment.updateIndex, this.dataService.token, body);
+    return this.httpService.userPut(environment.updateIndex, body);
   }
 
 }

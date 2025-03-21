@@ -85,7 +85,7 @@ export class TakeNoteComponent implements OnInit {
       noteType: this.noteType,
     }
 
-    this._noteService.createNote(note, this._dataService.token).subscribe({
+    this._noteService.createNote(note).subscribe({
       next: (data) => this.addingNote.emit(),
       error: (e) => {
         if (e.status == 500)

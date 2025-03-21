@@ -18,9 +18,8 @@ export class LoginComponent implements OnInit {
 
 
   click: boolean = false;
-  email = new FormControl('', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]/)]);
-  password = new FormControl('', [Validators.required]);
-  response: any;
+  email = new FormControl('vishnusriranjan.dr@gmail.com', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]/)]);
+  password = new FormControl('mypassword$321', [Validators.required]);
   hide = false;
 
 
@@ -39,9 +38,9 @@ export class LoginComponent implements OnInit {
 
     if (this.email.errors) {
       this.handleEmailErrors();
-    } else {
-      this.attemptLogin();
+      return;
     }
+    this.attemptLogin();
   }
 
   private handleEmailErrors(): void {
@@ -51,39 +50,62 @@ export class LoginComponent implements OnInit {
       this.email.setErrors({ userError: "Not a valid email" });
   }
 
-  private attemptLogin(): void {
+
+  attemptLogin(): void {
     const loginData = {
       email: this.email.value,
       password: this.password.value
     };
-
     this.service.login(loginData).subscribe({
       next: (data) => this.handleLoginSuccess(data),
-      error: (error) => this.handleLoginError(error)
+      error: (error: any) => this.handleLoginError(error)
     });
   }
 
-  private handleLoginSuccess(data: any): void {
-    this.response = data;
-    this._dataService.avatar = this.response.profile;
-    localStorage.setItem('userid', this.response.id);
-    localStorage.setItem('token', this.response.token);
-    localStorage.setItem('name', `${this.response.fname} ${this.response.lname}`);
-    localStorage.setItem('email', this.response.email);
-    localStorage.setItem('profile', this.response.profile);
-    this.router.navigate(['dashboard']);
-  }
 
-  private handleLoginError(error: any): void {
-    if (error.status === 500) {
-      console.error(`${error.error.message}\n\t${error.error.result}`);
-      this.snackbar.open('You don\'t have a Fundoo Account', '', { duration: 5000, panelClass: ['error-snackbar'] });
-    } else if (error.status === 422) {
-      console.warn("Invalid inputs");
-    } else {
-      console.error(error);
+  private handleLoginSuccess(data): void {
+    const user = data?.results[0];
+    if (user) {
+      this._dataService.avatar = user.profile;
+      localStorage.setItem('userid', user.id);
+      localStorage.setItem('token', user.accessToken);
+      localStorage.setItem('refreshToken', user.refreshToken);
+      localStorage.setItem('name', `${user.fname} ${user.lname}`);
+      localStorage.setItem('email', user.email);
+      localStorage.setItem('profile', user.profile);
+
+      this.router.navigate(['dashboard']);
+      return;
     }
   }
+
+
+  private handleLoginError(error: any): void {
+    let errorMessage = "An unexpected error occurred";
+
+    switch (error.status) {
+      case 500:
+        console.error(`Server Error: ${error.error.message}`, error.error.result);
+        errorMessage = "Something went wrong. Try again later.";
+        break;
+      case 422:
+        console.warn("Invalid inputs provided");
+        errorMessage = "Invalid email or password";
+        break;
+      case 401:
+        console.warn("Unauthorized access");
+        errorMessage = "Incorrect email or password";
+        break;
+      default:
+        console.error("Unexpected Error:", error);
+    }
+
+    this.snackbar.open(errorMessage, '', {
+      duration: 3000,
+      panelClass: ['error-snackbar']
+    });
+  }
+
 
   signup() {
     this.router.navigate(['signup']);

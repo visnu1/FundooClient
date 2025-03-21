@@ -12,6 +12,8 @@ export const environment = {
     messagingSenderId: "922374463864"
   },
 
+  apiUrl: url,
+
   signUp: url + `register`,
   signIn: url + `login`,
   forgotPassword: url + `forgot_password`,

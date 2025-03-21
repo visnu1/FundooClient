@@ -32,7 +32,7 @@ export class TrashComponent implements OnInit {
   }
 
   onLoadNotes() {
-    this._noteService.getNotes(this._dataService.token)
+    this._noteService.getNotes()
       .pipe(
         map((data) => {
           const result = Array.isArray(data?.result)
